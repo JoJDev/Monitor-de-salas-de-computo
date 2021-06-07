@@ -33,17 +33,46 @@ namespace Monitor_de_salas_de_computo
             switch (usu)
             {
                 case "admin":
-                    Monitor_de_salas_de_computo.Administrador.GetWindow().Show();
+                    if (pass.Equals("admin"))
+                    {
+                        Administrador windowAdm = new Administrador();
+                        windowAdm.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuario o contraseña incorrecta", " Error de ");
+                    }
                     break;
 
                 case "ayudante":
+                    if (pass.Equals("ayudante"))
+                    {
+                        Ayudante windowAyu = new Ayudante();
+                        windowAyu.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuario o contraseña incorrecta", " Error de ");
+                    }
                     break;
 
                 case "usuario":
+                    if (pass.Equals("usuario"))
+                    {
+                        Usuario windowUsu = new Usuario();
+                        windowUsu.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuario o contraseña incorrecta", " Error de ");
+                    }
                     break;
 
                 default:
-                    MessageBox.Show("Usuario o contraseña incorrecta"," Error de ");
+                    MessageBox.Show("Usuario o contraseña incorrecta", " Error de ");
                     break;
             }
         }
