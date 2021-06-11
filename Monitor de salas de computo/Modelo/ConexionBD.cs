@@ -60,6 +60,7 @@ namespace Monitor_de_salas_de_computo.Modelo
             Ususario
         }
 
+
         public Usuario(int id, string nombre, string apePaterno, string apeMaterno, string nickname, string contrasena, string email, string tipo, string numCuenta, DateTime fechaInicio, DateTime fechaNacim)
         {
             _id = id;
@@ -90,7 +91,9 @@ namespace Monitor_de_salas_de_computo.Modelo
             _fechaNacim = fechaNacim;
         }
 
-
+        public Usuario()
+        {
+        }
     }
 
     class Computadora
@@ -99,6 +102,10 @@ namespace Monitor_de_salas_de_computo.Modelo
         private int _id, _idSala;
         private string _nombre, _ip, _submascar;
         private DateTime _fechaAdqui;
+
+        public Computadora()
+        {
+        }
 
         public Computadora(int id, int idSala, string nombre, string ip, string submascar, DateTime fechaAdqui)
         {
@@ -117,6 +124,10 @@ namespace Monitor_de_salas_de_computo.Modelo
         private int _id;
         private string _nombre, _plantel, _ipInicial, _ipFinal, _gateway, _servidor, _encargado, _telefono;
 
+        public Sala()
+        {
+        }
+
         public Sala(int id, string nombre, string plantel, string ipInicial, string ipFinal, string gateway, string servidor, string encargado, string telefono)
         {
             _id = id;
@@ -129,20 +140,31 @@ namespace Monitor_de_salas_de_computo.Modelo
             _encargado = encargado;
             _telefono = telefono;
         }
+
     }
 
     class Registro
     {
         //id, idUsuario, idCompu, fechaIncio, duracionTiempo, tipoDesconexion, 
-        private int _id, _idUsuario, _idCompu;
+        private int _id, _idUsuario, _idCompu, _tipoDesconexion;
         private DateTime _fechaIncio, _duracionTiempo;
-        private string _tipoDesconexion;
 
+        //Tipos de desconexion:
+        // conecado = conectado
+        // desconexionNormal = desconexion normal
+        // desconexionInesperada = desconexion por apagado de maqui repentino
+        // desconexionInactivo = desconexion por tiempo en espera escesivo
+        // desconexionAdministrada = desconexion por admin (en desarrollo)
         enum desconecciones
         {
-
+            conecado,
+            desconexionNormal,
+            desconexionInesperada,
+            desconexionInactivo,
+            desconexionAdministrada
         }
-        public Registro(int id, int idUsuario, int idCompu, DateTime fechaIncio, DateTime duracionTiempo, string tipoDesconexion)
+
+        public Registro(int id, int idUsuario, int idCompu, DateTime fechaIncio, DateTime duracionTiempo, int tipoDesconexion)
         {
             _id = id;
             _idUsuario = idUsuario;
@@ -151,10 +173,29 @@ namespace Monitor_de_salas_de_computo.Modelo
             _duracionTiempo = duracionTiempo;
             _tipoDesconexion = tipoDesconexion;
         }
+
+        public Registro()
+        {
+        }
     }
 
     class Configuraciones
     {
         //id, idSala, tiempoEnEspera, permitirUSB
+        private int _id, _idSala;
+        private DateTime _tiempoEnEspera;
+        private bool _permitirUSB/*en desarrollo*/;
+
+        public Configuraciones()
+        {
+        }
+
+        public Configuraciones(int id, int idSala, DateTime tiempoEnEspera, bool permitirUSB)
+        {
+            _id = id;
+            _idSala = idSala;
+            _tiempoEnEspera = tiempoEnEspera;
+            _permitirUSB = permitirUSB;
+        }
     }
 }
