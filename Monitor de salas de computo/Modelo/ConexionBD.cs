@@ -50,7 +50,7 @@ namespace Monitor_de_salas_de_computo.Modelo
     class Usuario
     {
         private int _id, _tipo;
-        private string _nombre, _apePaterno, _apeMaterno, _nickname, _contrasena, _email, _numCuenta;
+        private string _apePaterno, _apeMaterno, _nickname, _contrasena, _email, _numCuenta;
         private DateTime _fechaInicio, _fechaNacim;
 
         enum Tipo
@@ -63,37 +63,49 @@ namespace Monitor_de_salas_de_computo.Modelo
 
         public Usuario(int id, string nombre, string apePaterno, string apeMaterno, string nickname, string contrasena, string email, string tipo, string numCuenta, DateTime fechaInicio, DateTime fechaNacim)
         {
-            _id = id;
+            Id = id;
             switch (tipo.ToLower())
             {
                 case "admin":
                 case "administrador":
                 case "0":
-                    _tipo = (int)Tipo.Administrador;
+                    Tipo1 = (int)Tipo.Administrador;
                     break;
                 case "ayu":
                 case "ayudante":
                 case "1":
-                    _tipo = (int)Tipo.Ayudante;
+                    Tipo1 = (int)Tipo.Ayudante;
                     break;
                 default:
-                    _tipo = (int)Tipo.Ususario;
+                    Tipo1 = (int)Tipo.Ususario;
                     break;
             }
-            _nombre = nombre;
-            _apePaterno = apePaterno;
-            _apeMaterno = apeMaterno;
-            _nickname = nickname;
-            _contrasena = contrasena;
-            _email = email;
-            _numCuenta = numCuenta;
-            _fechaInicio = fechaInicio;
-            _fechaNacim = fechaNacim;
+            Nombre = nombre;
+            ApePaterno = apePaterno;
+            ApeMaterno = apeMaterno;
+            Nickname = nickname;
+            Contrasena = contrasena;
+            Email = email;
+            NumCuenta = numCuenta;
+            FechaInicio = fechaInicio;
+            FechaNacim = fechaNacim;
         }
 
         public Usuario()
         {
         }
+
+        public string Nombre { get; set; }
+        public string ApePaterno { get => _apePaterno; set => _apePaterno = value; }
+        public string ApeMaterno { get => _apeMaterno; set => _apeMaterno = value; }
+        public string Nickname { get => _nickname; set => _nickname = value; }
+        public string Contrasena { get => _contrasena; set => _contrasena = value; }
+        public string Email { get => _email; set => _email = value; }
+        public string NumCuenta { get => _numCuenta; set => _numCuenta = value; }
+        public int Id { get => _id; set => _id = value; }
+        public int Tipo1 { get => _tipo; set => _tipo = value; }
+        public DateTime FechaInicio { get => _fechaInicio; set => _fechaInicio = value; }
+        public DateTime FechaNacim { get => _fechaNacim; set => _fechaNacim = value; }
     }
 
     class Computadora
@@ -109,13 +121,20 @@ namespace Monitor_de_salas_de_computo.Modelo
 
         public Computadora(int id, int idSala, string nombre, string ip, string submascar, DateTime fechaAdqui)
         {
-            _id = id;
-            _idSala = idSala;
-            _nombre = nombre;
-            _ip = ip;
-            _submascar = submascar;
-            _fechaAdqui = fechaAdqui;
+            Id = id;
+            IdSala = idSala;
+            Nombre = nombre;
+            Ip = ip;
+            Submascar = submascar;
+            FechaAdqui = fechaAdqui;
         }
+
+        public int Id { get => _id; set => _id = value; }
+        public int IdSala { get => _idSala; set => _idSala = value; }
+        public string Nombre { get => _nombre; set => _nombre = value; }
+        public string Ip { get => _ip; set => _ip = value; }
+        public string Submascar { get => _submascar; set => _submascar = value; }
+        public DateTime FechaAdqui { get => _fechaAdqui; set => _fechaAdqui = value; }
     }
 
     class Sala
@@ -130,17 +149,26 @@ namespace Monitor_de_salas_de_computo.Modelo
 
         public Sala(int id, string nombre, string plantel, string ipInicial, string ipFinal, string gateway, string servidor, string encargado, string telefono)
         {
-            _id = id;
-            _nombre = nombre;
-            _plantel = plantel;
-            _ipInicial = ipInicial;
-            _ipFinal = ipFinal;
-            _gateway = gateway;
-            _servidor = servidor;
-            _encargado = encargado;
-            _telefono = telefono;
+            Id = id;
+            Nombre = nombre;
+            Plantel = plantel;
+            IpInicial = ipInicial;
+            IpFinal = ipFinal;
+            Gateway = gateway;
+            Servidor = servidor;
+            Encargado = encargado;
+            Telefono = telefono;
         }
 
+        public int Id { get => _id; set => _id = value; }
+        public string Nombre { get => _nombre; set => _nombre = value; }
+        public string Plantel { get => _plantel; set => _plantel = value; }
+        public string IpInicial { get => _ipInicial; set => _ipInicial = value; }
+        public string IpFinal { get => _ipFinal; set => _ipFinal = value; }
+        public string Gateway { get => _gateway; set => _gateway = value; }
+        public string Servidor { get => _servidor; set => _servidor = value; }
+        public string Encargado { get => _encargado; set => _encargado = value; }
+        public string Telefono { get => _telefono; set => _telefono = value; }
     }
 
     class Registro
@@ -148,6 +176,13 @@ namespace Monitor_de_salas_de_computo.Modelo
         //id, idUsuario, idCompu, fechaIncio, duracionTiempo, tipoDesconexion, 
         private int _id, _idUsuario, _idCompu, _tipoDesconexion;
         private DateTime _fechaIncio, _duracionTiempo;
+
+        public int Id { get => _id; set => _id = value; }
+        public int IdUsuario { get => _idUsuario; set => _idUsuario = value; }
+        public int IdCompu { get => _idCompu; set => _idCompu = value; }
+        public int TipoDesconexion { get => _tipoDesconexion; set => _tipoDesconexion = value; }
+        public DateTime FechaIncio { get => _fechaIncio; set => _fechaIncio = value; }
+        public DateTime DuracionTiempo { get => _duracionTiempo; set => _duracionTiempo = value; }
 
         //Tipos de desconexion:
         // conecado = conectado
@@ -166,12 +201,12 @@ namespace Monitor_de_salas_de_computo.Modelo
 
         public Registro(int id, int idUsuario, int idCompu, DateTime fechaIncio, DateTime duracionTiempo, int tipoDesconexion)
         {
-            _id = id;
-            _idUsuario = idUsuario;
-            _idCompu = idCompu;
-            _fechaIncio = fechaIncio;
-            _duracionTiempo = duracionTiempo;
-            _tipoDesconexion = tipoDesconexion;
+            Id = id;
+            IdUsuario = idUsuario;
+            IdCompu = idCompu;
+            FechaIncio = fechaIncio;
+            DuracionTiempo = duracionTiempo;
+            TipoDesconexion = tipoDesconexion;
         }
 
         public Registro()
@@ -192,10 +227,15 @@ namespace Monitor_de_salas_de_computo.Modelo
 
         public Configuraciones(int id, int idSala, DateTime tiempoEnEspera, bool permitirUSB)
         {
-            _id = id;
-            _idSala = idSala;
-            _tiempoEnEspera = tiempoEnEspera;
-            _permitirUSB = permitirUSB;
+            Id = id;
+            IdSala = idSala;
+            TiempoEnEspera = tiempoEnEspera;
+            PermitirUSB = permitirUSB;
         }
+
+        public int Id { get => _id; set => _id = value; }
+        public int IdSala { get => _idSala; set => _idSala = value; }
+        public DateTime TiempoEnEspera { get => _tiempoEnEspera; set => _tiempoEnEspera = value; }
+        public bool PermitirUSB { get => _permitirUSB; set => _permitirUSB = value; }
     }
 }
