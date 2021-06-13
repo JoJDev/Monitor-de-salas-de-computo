@@ -4,16 +4,76 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Usuario" Height="490" Width="800" ResizeMode="CanMinimize">
+        Title="Monitor de salas de computo - Usuario" Height="380" Width="680" ResizeMode="CanMinimize">
     <Grid>
-        <Label Content=""/>
-        <Button Content="Cerrar sesión y apagar" Margin="0,24,20,0" VerticalAlignment="Top" Click="Button_Click" Height="20" HorizontalAlignment="Right" Width="140" Grid.RowSpan="2"/>
-        <Button Content="Cerrar sesión" Margin="0,24,185,0" VerticalAlignment="Top" Click="Button_Click" Height="20" RenderTransformOrigin="1.333,0.502" Grid.RowSpan="2" HorizontalAlignment="Right" Width="75"/>
-        <Grid Margin="20,43,20,37" Height="360" Grid.Row="1" >
-            <Border BorderBrush="Black" BorderThickness="1">
-            </Border>
-                <DataGrid Margin="0,60,0,0"/>
-            <Label Content="Buscar: " HorizontalAlignment="Left"  Width="60" Height="40" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0,10,0,0"/>
+        <Button Content="Cerrar sesión" Margin="0,10,180,0" VerticalAlignment="Top" Click="ButtonCerrar_Click" Height="30"  HorizontalAlignment="Right" Width="100"/>
+        <Button Content="Cerrar sesión y apagar" Margin="0,10,20,0" VerticalAlignment="Top" Click="ButtonSalir_Click" Height="30"  HorizontalAlignment="Right" Width="140"/>
+        <Label Content="Monitor de salas de computo UAEMex" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10" FontSize="18" />
+
+        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="180" Height="280" Margin="10,10" >
+            <Border BorderBrush="Black" BorderThickness="1"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="80"/>
+                </Grid.RowDefinitions>
+                <Label Content="Usuario: __" Grid.Row="1"/>
+                <Label Content="Plantel: __" Grid.Row="2"/>
+                <Label Content="Carrera: __" Grid.Row="3"/>
+                <Label Content="Semestre: __" Grid.Row="4"/>
+                <Label Content="Reportar algun error:" Grid.Row="5" VerticalAlignment="Top" HorizontalAlignment="Center" />
+                <Button Content="Reportar" Grid.Row="5" VerticalAlignment="Bottom" Margin="20,10" Height="30" />
+
+            </Grid>
         </Grid>
+        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="460" Height="280" Margin="10,10">
+            <Border BorderBrush="Black" BorderThickness="1"/>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid HorizontalAlignment="Stretch" Width="220">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="Nombre del PC: "  HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Left" Height="26" Width="96"/>
+                    <Label Content="Comp1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Width="48"/>
+                    <Label Content="Direccion IP: " Grid.Row="1"  HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Width="78" />
+                    <Label Content="192.168.1.2" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Width="70"/>
+                    <Label Content="Submascara de red: " Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Width="118"  />
+                    <Label Content="255.255.255.0" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Width="82"/>
+                    <Label Content="Gateway: " Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Width="62"  />
+                    <Label Content="192.168.1.200" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Width="82"/>
+                </Grid>
+                <Grid HorizontalAlignment="Stretch" Grid.Column="1" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Fecha de inicio de sesión" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="0"/>
+                    <Label Content="27/03/2019  10:10:10" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1"/>
+                    <Label Content="Duración de la sesión" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="2"/>
+                    <Label Content="00 : 00 : 50" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="2"/>
+                </Grid>
+            </Grid>
+        </Grid>
+
     </Grid>
 </Window>
