@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using Npgsql;
 using System.Windows;
+using System.Data;
 
 namespace Monitor_de_salas_de_computo.Modelo
 {
@@ -30,11 +32,13 @@ namespace Monitor_de_salas_de_computo.Modelo
             this.w = ventanaPadre;
         }
 
+        public NpgsqlConnection Conn { get => conn; set => conn = value; }
+
         public NpgsqlConnection conectar()
         {
             try
             {
-                conn = new NpgsqlConnection("Server = " + server
+                Conn = new NpgsqlConnection("Server = " + server
                     + "; User id = " + userId
                     + "; Password = " + password
                     + "; Database =" + database);
@@ -43,7 +47,7 @@ namespace Monitor_de_salas_de_computo.Modelo
             {
                 MessageBox.Show("Error: Falla con la conexion a la base de datos", "Error con la conexion");
             }
-            return conn;
+            return Conn;
         }
     }
 
@@ -52,6 +56,7 @@ namespace Monitor_de_salas_de_computo.Modelo
         private int _id, _tipo;
         private string _apePaterno, _apeMaterno, _nickname, _contrasena, _email, _numCuenta;
         private DateTime _fechaInicio, _fechaNacim;
+        public Window w;
 
         enum Tipo
         {
@@ -61,8 +66,9 @@ namespace Monitor_de_salas_de_computo.Modelo
         }
 
 
-        public Usuario(int id, string nombre, string apePaterno, string apeMaterno, string nickname, string contrasena, string email, string tipo, string numCuenta, DateTime fechaInicio, DateTime fechaNacim)
+        public Usuario(Window ventanaPadre, int id, string nombre, string apePaterno, string apeMaterno, string nickname, string contrasena, string email, string tipo, string numCuenta, DateTime fechaInicio, DateTime fechaNacim)
         {
+            w = ventanaPadre;
             Id = id;
             switch (tipo.ToLower())
             {
@@ -106,6 +112,18 @@ namespace Monitor_de_salas_de_computo.Modelo
         public int Tipo1 { get => _tipo; set => _tipo = value; }
         public DateTime FechaInicio { get => _fechaInicio; set => _fechaInicio = value; }
         public DateTime FechaNacim { get => _fechaNacim; set => _fechaNacim = value; }
+
+        public Usuario GetUsuario(int id = 0)
+        {
+            ConexionBD conn = new ConexionBD(w);
+            string query = "SELECT * FROM 'usuarios'";
+            NpgsqlCommand conector = new NpgsqlCommand(query, conn.conectar());
+            NpgsqlDataAdapter datos = new NpgsqlDataAdapter(conector);
+            DataTable table = new DataTable();
+            datos.Fill(table);
+            //Id = from celda in table.AsEnumerable() select * ;
+            return this;
+        }
     }
 
     class Computadora

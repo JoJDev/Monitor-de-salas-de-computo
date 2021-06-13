@@ -21,5 +21,17 @@ namespace Monitor_de_salas_de_computo
         {
             InitializeComponent();
         }
+
+        private void ButtonCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow iniSesion = new MainWindow();
+            iniSesion.Show();
+            this.Close();
+        }
+        private void ButtonSalir_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }

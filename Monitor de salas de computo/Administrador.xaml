@@ -5,8 +5,62 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monitor_de_salas_de_computo"
         mc:Ignorable="d"
-        Title="Administrador" Height="450" Width="800">
+        Title="Monitor de salas de computo - Administrador" Height="480" Width="960
+        " ResizeMode="CanMinimize">
     <Grid>
-        
+        <Label Content="Sesion:__  >Administrador" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20"/>
+        <Button Content="Cerrar sesión" Margin="0,20,180,0" VerticalAlignment="Top" Click="ButtonCerrar_Click" Height="30"  HorizontalAlignment="Right" Width="100"/>
+        <Button Content="Cerrar sesión y apagar" Margin="0,20,20,0" VerticalAlignment="Top" Click="ButtonSalir_Click" Height="30"  HorizontalAlignment="Right" Width="140"/>
+        <TabControl Margin="20,60,20,20" Grid.Row="1" BorderThickness="1" BorderBrush="Black">
+            <TabItem Header="PC's activas">
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
+                    <TextBox Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
+                    <DataGrid Margin="0,60,0,0"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Registros">
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
+                    <TextBox Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
+                    <DataGrid Margin="0,60,0,0"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Ususarios">
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
+                    <TextBox Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
+                    <Button Content="Crear nuevo usuario" Width="140" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="40,20" />
+                    <DataGrid Margin="0,60,0,0"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Computadoras">
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
+                    <TextBox Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
+                    <Button Content="Crear nueva Computadora" Width="140" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="40,20" />
+                    <DataGrid Margin="0,60,0,0"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Salas">
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
+                    <TextBox Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
+                    <Button Content="Crear nueva sala" Width="140" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="40,20" />
+                    <DataGrid Margin="0,60,0,0"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Configuraciones">
+                <Grid Background="#FFE5E5E5">
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Exportar a Excel/CSB">
+                <Grid Background="#FFE5E5E5" >
+                    <Button Content="Exportar a Excel" Width="140" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="200,20"/>
+                    <Button Content="Exportar a CSV" Width="140" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
