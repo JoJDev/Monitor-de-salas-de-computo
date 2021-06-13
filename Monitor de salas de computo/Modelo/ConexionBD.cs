@@ -97,8 +97,9 @@ namespace Monitor_de_salas_de_computo.Modelo
             FechaNacim = fechaNacim;
         }
 
-        public Usuario()
+        public Usuario(Window ventanaPadre)
         {
+            this.w = ventanaPadre;
         }
 
         public string Nombre { get; set; }
@@ -113,16 +114,26 @@ namespace Monitor_de_salas_de_computo.Modelo
         public DateTime FechaInicio { get => _fechaInicio; set => _fechaInicio = value; }
         public DateTime FechaNacim { get => _fechaNacim; set => _fechaNacim = value; }
 
-        public Usuario GetUsuario(int id = 0)
+        public DataTable GetTablaUsuario(int id = 0)
         {
             ConexionBD conn = new ConexionBD(w);
-            string query = "SELECT * FROM 'usuarios'";
-            NpgsqlCommand conector = new NpgsqlCommand(query, conn.conectar());
-            NpgsqlDataAdapter datos = new NpgsqlDataAdapter(conector);
-            DataTable table = new DataTable();
-            datos.Fill(table);
+            string query = "SELECT * FROM \"usuarios\"";
+            try
+            {
+                NpgsqlCommand conector = new NpgsqlCommand(query, conn.conectar());
+                NpgsqlDataAdapter datos = new NpgsqlDataAdapter(conector);
+                DataTable table = new DataTable("tabla");
+                datos.Fill(table);
+                return table;
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Error al rellenar la tabla con los datos\n" + ex.Message);
+                return null;
+
+            }
+            return null;
             //Id = from celda in table.AsEnumerable() select * ;
-            return this;
+
         }
     }
 

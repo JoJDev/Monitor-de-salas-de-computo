@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
+using Monitor_de_salas_de_computo.Modelo;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -31,6 +32,12 @@ namespace Monitor_de_salas_de_computo
         private void ButtonSalir_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void TabItem_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Modelo.Usuario usu = new Modelo.Usuario(this);
+            dg_PCsActivas.ItemsSource = usu.GetTablaUsuario().DefaultView;
         }
     }
 }

@@ -76,5 +76,10 @@ namespace Monitor_de_salas_de_computo
                     break;
             }
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -5,22 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monitor_de_salas_de_computo"
         mc:Ignorable="d"
-        Title="Monitor de salas de computo" Height="220" Width="340">
+        Title="Monitor de salas de computo" Height="200" Width="320">
     <Grid>
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="9*"/>
-            <ColumnDefinition Width="151*"/>
-        </Grid.ColumnDefinitions>-->
-        <Label Grid.Column="1" Grid.Row="1" Content="Inicio de sesión" HorizontalAlignment="Center" VerticalAlignment="Top" Height="25" Width="92" HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
-        <Button Content="Acceder" Margin="0,144,199,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="80" Click="Button_Click"/>
-        <Button Content="Cancelar" Margin="0,144,60,0" VerticalAlignment="Top" IsDefault="True" Width="81" HorizontalAlignment="Right"/>
-        <Grid Grid.Column="1" Grid.Row="2"  Margin="0,20,0,0" HorizontalAlignment="Center" Width="280" Height="104" VerticalAlignment="Top" Grid.ColumnSpan="8">
-            <PasswordBox x:Name="txt_psw" HorizontalAlignment="Left" Margin="122,65,0,0" VerticalAlignment="Top" Width="140" Height="20"/>
-            <Label Content="Usuario:" HorizontalAlignment="Left" Margin="22,13,0,0" VerticalAlignment="Top" Height="30" Width="80" HorizontalContentAlignment="Right"/>
-            <Label Content="Contraseña:" HorizontalAlignment="Left" Margin="22,60,0,0" VerticalAlignment="Top" Height="30" Width="80" HorizontalContentAlignment="Right"/>
-            <TextBox x:Name="txt_usu" HorizontalAlignment="Left" Margin="122,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Height="20"/>
+        <Label Content="Inicio de sesión" HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Width="100" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Margin="10"/>
+        <Grid  Margin="0,20,0,0" HorizontalAlignment="Center" Width="280" Height="100" VerticalAlignment="Top" Grid.ColumnSpan="2">
+            <Label Content="Usuario:" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Height="30" Width="80" HorizontalContentAlignment="Right"/>
+            <Label Content="Contraseña:" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top" Height="30" Width="80" HorizontalContentAlignment="Right"/>
+            <TextBox x:Name="txt_usu" HorizontalAlignment="Left" Margin="120,25,0,0" VerticalAlignment="Top" Width="140" Height="20"/>
+            <PasswordBox x:Name="txt_psw" HorizontalAlignment="Left" Margin="120,65,0,0" VerticalAlignment="Top" Width="140" Height="20"/>
         </Grid>
-
-
+        <Button Content="Acceder" Margin="40,0,0,20" VerticalAlignment="Bottom" HorizontalAlignment="Left"   Width="80" Click="Button_Click" IsDefault="True"/>
+        <Button Content="Cancelar" Margin="0,0,40,20" VerticalAlignment="Bottom" Width="80" HorizontalAlignment="Right" Click="Button_Click_1" IsCancel="True" Grid.Column="1"/>
     </Grid>
 </Window>
