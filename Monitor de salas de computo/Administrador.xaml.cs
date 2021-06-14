@@ -25,6 +25,16 @@ namespace Monitor_de_salas_de_computo
             InitializeComponent();
         }
 
+        private void ActualizarRegistros()
+        {
+
+        }
+
+        private void ButtonActualizar_Click(object sender, RoutedEventArgs e)
+        {
+            this.ActualizarRegistros();
+        }
+
         private void ButtonCerrar_Click(object sender, RoutedEventArgs e)
         {
             MainWindow iniSesion = new MainWindow();
@@ -38,8 +48,9 @@ namespace Monitor_de_salas_de_computo
 
         private void TabItem_GotFocus(object sender, RoutedEventArgs e)
         {
-          //  Modelo.Usuario usu = new Modelo.Usuario(this);
-           // dg_PCsActivas.ItemsSource = usu.GetTablaUsuario().DefaultView;
+            this.ActualizarRegistros();
+            //  Modelo.Usuario usu = new Modelo.Usuario(this);
+            // dg_PCsActivas.ItemsSource = usu.GetTablaUsuario().DefaultView;
         }
 
         private void Window_SourceInitialized(object sender, EventArgs e)
@@ -58,9 +69,11 @@ namespace Monitor_de_salas_de_computo
         {
             using (var dbUsu = new ConexionBD(this))
             {
-                MessageBox.Show("Prueba: " + dbUsu.Usuarios.ToList().FirstOrDefault().usuario_nombre);
+                //MessageBox.Show("Prueba: " + dbUsu.Usuarios.ToList().FirstOrDefault().usuario_nombre);
             }
             
         }
+
+        
     }
 }

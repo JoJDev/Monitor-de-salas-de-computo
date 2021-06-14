@@ -9,8 +9,9 @@
         " ResizeMode="CanMinimize" SourceInitialized="Window_SourceInitialized">
     <Grid>
         <Label Content="Sesion:__  >Administrador" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20"/>
+        <Button Content="Actualizar registros" Margin="0,20,300,0" VerticalAlignment="Top" Click="ButtonActualizar_Click" Height="30" HorizontalAlignment="Right" Width="120"/>
         <Button Content="Cerrar sesión" Margin="0,20,180,0" VerticalAlignment="Top" Click="ButtonCerrar_Click" Height="30"  HorizontalAlignment="Right" Width="100"/>
-        <Button Content="Cerrar sesión y apagar" Margin="0,20,20,0" VerticalAlignment="Top" Click="ButtonSalir_Click" Height="30"  HorizontalAlignment="Right" Width="140"/>
+        <Button Content="Cerrar sesión y apagar" Margin="0,20,20,0" VerticalAlignment="Top" Click="ButtonSalir_Click" Height="30" HorizontalAlignment="Right" Width="140"/>
         <TabControl Margin="20,60,20,20" Grid.Row="1" BorderThickness="1" BorderBrush="Black">
             <TabItem Header="PC's activas" GotFocus="TabItem_GotFocus">
                 <Grid Background="#FFE5E5E5">
@@ -30,7 +31,7 @@
                 <Grid Background="#FFE5E5E5">
                     <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
                     <TextBox x:Name="tb_BuscarUsuarios" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
-                    <Button x:Name="bt_CrearUsuario" Content="Crear nuevo usuario" Width="140" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="40,20" />
+                    <Button x:Name="bt_CrearUsuario" Content="Crear nuevo usuario" Width="140" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,15" />
                     <DataGrid x:Name="dg_Usuarios" Margin="0,60,0,0"/>
                 </Grid>
             </TabItem>
@@ -38,7 +39,7 @@
                 <Grid Background="#FFE5E5E5">
                     <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
                     <TextBox x:Name="tb_BuscarComp" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
-                    <Button x:Name="bt_CrearComp" Content="Crear nueva Computadora" Width="140" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="40,20" Click="bt_CrearComp_Click" />
+                    <Button x:Name="bt_CrearComp" Content="Crear nueva Computadora" Width="auto" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,15" Click="bt_CrearComp_Click" />
                     <DataGrid x:Name="dg_Computadoras" Margin="0,60,0,0"/>
                 </Grid>
             </TabItem>
@@ -46,7 +47,7 @@
                 <Grid Background="#FFE5E5E5">
                     <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
                     <TextBox x:Name="tb_BuscarSalas" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
-                    <Button x:Name="bt_CrearSalas" Content="Crear nueva sala" Width="140" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="40,20" />
+                    <Button x:Name="bt_CrearSalas" Content="Crear nueva sala" Width="140" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,15" />
                     <DataGrid x:Name="dg_Salas" Margin="0,60,0,0"/>
                 </Grid>
             </TabItem>
