@@ -32,7 +32,23 @@
                     <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
                     <TextBox x:Name="tb_BuscarUsuarios" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
                     <Button x:Name="bt_CrearUsuario" Content="Crear nuevo usuario" Width="140" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,15" />
-                    <DataGrid x:Name="dg_Usuarios" Margin="0,60,0,0"/>
+                    <DataGrid x:Name="dg_Usuarios" Margin="0,60,0,0" >
+                        <!--
+                        <DataGrid.Columns >
+                            <DataGridTextColumn Header="id"/>
+                            <DataGridTextColumn Header="Nombre" />
+                            <DataGridTextColumn Header="Ape Materno" />
+                            <DataGridTextColumn Header="Ape Paterno" />
+                            <DataGridTextColumn Header="Nickname"/>
+                            <DataGridTextColumn Header="Contraseña"/>
+                            <DataGridTextColumn Header="Email" />
+                            <DataGridTextColumn Header="Tipo" />
+                            <DataGridTextColumn Header="Num de cuenta" />
+                            <DataGridTextColumn Header="Carrera" />
+                            <DataGridTextColumn Header="Semestre" />
+                            <DataGridTextColumn Header="Fecha de nacimiento" />
+                        </DataGrid.Columns>-->
+                    </DataGrid>
                 </Grid>
             </TabItem>
             <TabItem Header="Computadoras">

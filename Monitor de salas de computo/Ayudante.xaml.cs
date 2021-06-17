@@ -33,5 +33,14 @@ namespace Monitor_de_salas_de_computo
             this.Close();
         }
 
+        private void ButtonActualizar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void bt_CrearComp_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

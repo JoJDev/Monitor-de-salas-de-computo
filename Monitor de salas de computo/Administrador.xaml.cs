@@ -27,7 +27,9 @@ namespace Monitor_de_salas_de_computo
 
         private void ActualizarRegistros()
         {
-
+            UsuarioORM usuarios = new UsuarioORM();
+            dg_Usuarios.ItemsSource = usuarios.GetAll();
+            //dg_Usuarios.Columns[0].Header = "id cambiado";
         }
 
         private void ButtonActualizar_Click(object sender, RoutedEventArgs e)
@@ -48,7 +50,7 @@ namespace Monitor_de_salas_de_computo
 
         private void TabItem_GotFocus(object sender, RoutedEventArgs e)
         {
-            this.ActualizarRegistros();
+            //this.ActualizarRegistros();
             //  Modelo.Usuario usu = new Modelo.Usuario(this);
             // dg_PCsActivas.ItemsSource = usu.GetTablaUsuario().DefaultView;
         }
@@ -67,11 +69,9 @@ namespace Monitor_de_salas_de_computo
 
         private void bt_CrearComp_Click(object sender, RoutedEventArgs e)
         {
-            using (var dbUsu = new ConexionBD(this))
-            {
-                //MessageBox.Show("Prueba: " + dbUsu.Usuarios.ToList().FirstOrDefault().usuario_nombre);
-            }
-            
+          // ConexionBD dbUsu = new ConexionBD();
+            //MessageBox.Show("Prueba: " + dbUsu.Usuarios.ToList().FirstOrDefault().usuario_nombre);
+
         }
 
         

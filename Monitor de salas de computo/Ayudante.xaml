@@ -12,7 +12,7 @@
         <Button Content="Cerrar sesión" Margin="0,20,180,0" VerticalAlignment="Top" Click="ButtonCerrar_Click" Height="30"  HorizontalAlignment="Right" Width="100"/>
         <Button Content="Cerrar sesión y apagar" Margin="0,20,20,0" VerticalAlignment="Top" Click="ButtonSalir_Click" Height="30"  HorizontalAlignment="Right" Width="140"/>
         <TabControl Margin="20,60,20,20" Grid.Row="1" BorderThickness="1" BorderBrush="Black">
-            <TabItem Header="PC's activas" GotFocus="TabItem_GotFocus">
+            <TabItem Header="PC's activas" >
                 <Grid Background="#FFE5E5E5">
                     <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
                     <TextBox x:Name="tb_BucarPCs" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
