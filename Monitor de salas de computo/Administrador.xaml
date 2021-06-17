@@ -30,8 +30,8 @@
             <TabItem Header="Usuarios">
                 <Grid Background="#FFE5E5E5">
                     <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
-                    <TextBox x:Name="tb_BuscarUsuarios" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
-                    <Button x:Name="bt_CrearUsuario" Content="Crear nuevo usuario" Width="140" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,15" />
+                    <TextBox x:Name="tb_BuscarUsuarios" TextChanged="tb_BuscarUsuarios_TextChanged" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
+                    <Button x:Name="bt_CrearUsuario" Click="bt_CrearUsuario_Click" Content="Crear nuevo usuario" Width="140" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,15" />
                     <DataGrid x:Name="dg_Usuarios" Margin="0,60,0,0" >
                         <!--
                         <DataGrid.Columns >

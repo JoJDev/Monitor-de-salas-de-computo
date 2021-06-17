@@ -69,11 +69,24 @@ namespace Monitor_de_salas_de_computo
 
         private void bt_CrearComp_Click(object sender, RoutedEventArgs e)
         {
+
           // ConexionBD dbUsu = new ConexionBD();
             //MessageBox.Show("Prueba: " + dbUsu.Usuarios.ToList().FirstOrDefault().usuario_nombre);
 
         }
 
-        
+        private void bt_CrearUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            UsuarioORM nuevoUsuario = new UsuarioORM();
+            nuevoUsuario.Insertar(new Modelo.Usuario(2,"Maria","Mendez", "MArtinez", "MarAdmin", "MarAdmin", "1478522","email@gmail.com"
+                ,"0","ICO", new DateTime(2016,03,04), new DateTime(2000,10,14)));
+            ActualizarRegistros();
+        }
+
+        private void tb_BuscarUsuarios_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dg_Usuarios.TryFindResource(tb_BuscarUsuarios.Text);
+            //dg_Usuarios.fil
+        }
     }
 }

@@ -14,6 +14,28 @@ namespace Monitor_de_salas_de_computo.Modelo
             Ususario
         }
 
+
+
+        public Usuario(int id, string nombre, string apePaterno, string apeMaterno, string nickname, string contrasena, string numCuenta, string email, string tipo, string carrera, DateTime fechaInicio, DateTime fechaNacimiento)
+        {
+            Id = id;
+            Nombre = nombre;
+            ApePaterno = apePaterno;
+            ApeMaterno = apeMaterno;
+            Nickname = nickname;
+            Contrasena = contrasena;
+            NumCuenta = numCuenta;
+            Email = email;
+            Tipo = tipo;
+            Carrera = carrera;
+            FechaInicio = fechaInicio;
+            FechaNacimiento = fechaNacimiento;
+        }
+
+        public Usuario()
+        {
+        }
+
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string ApePaterno { get; set; }
