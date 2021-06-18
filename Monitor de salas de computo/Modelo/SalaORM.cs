@@ -12,53 +12,58 @@ namespace Monitor_de_salas_de_computo.Modelo
         {
             return new ConexionBD().conectar();
         }
-        public bool Actualizar(Usuario obj)
+        public bool Actualizar(Sala obj)
         {
             using (var bd = bdConexion())
             {
                 string sentenciaSQL = "UPDATE public.salas SET " +
                     "sala_nombre = @Nombre, sala_plantel = @Plantel" +
-                    ",sala_ip_inicial = @IPInicial, nickname = @Nickname" +
-                    ", contrasena = @Contrasena, email = @Email" +
-                    ",tipo = @Tipo, numcuenta = @NumCuenta" +
-                    ",carrera = @Carrera, fechainicio = @FechaInicio" +
-                    ",fechanacimiento = @FechaNacimiento)" +
-                    "WHERE usuario_id = @Id";
+                    ",sala_ip_inicial = @IpInicial, sala_ip_final = @IpFinal" +
+                    ",sala_gateway = @Gateway, sala_servidor = @Servidor" +
+                    ",sala_encargado = @Encargado, sala_telefono = @Telefono" +
+                    "WHERE sala_id = @Id";
 
                 int result = bd.Execute(sentenciaSQL, new
                 {
                     obj.Nombre,
-                    obj.ApePaterno,
-                    obj.ApeMaterno,
-                    obj.Nickname,
-                    obj.Contrasena,
-                    obj.NumCuenta,
-                    obj.Email,
-                    obj.Tipo,
-                    obj.Carrera,
-                    obj.FechaInicio,
-                    obj.FechaNacimiento,
+                    obj.Plantel,
+                    obj.IpInicial,
+                    obj.IpFinal,
+                    obj.Gateway,
+                    obj.Servidor,
+                    obj.Encargado,
+                    obj.Telefono,
                     obj.Id
                 });
                 return result > 0;
             }
         }
 
-        public Usuario Detalle(int id)
+        public Sala Detalle(int id)
         {
             using (var bd = bdConexion())
             {
-                string sentenciaSQL = "SELECT * FROM usuarios WHERE usuario_id = @Id";
+                string sentenciaSQL = "SELECT " +
+                    "  sala_id as @Id" +
+                    ", sala_nombre as @Nombre" +
+                    ", sala_plantel as @Plantel " +
+                    ", sala_ip_inicial as @IpInicial " +
+                    ", sala_ip_final as @IpFinal " +
+                    ", sala_gateway as @Gateway" +
+                    ", sala_servidor as @servidor" +
+                    ", sala_encargado as @Encargado" +
+                    ", sala_telefono as @Telefono" +
+                    " FROM salas WHERE sala_id = @Id";
 
-                return bd.QueryFirstOrDefault<Usuario>(sentenciaSQL, new { Id = id });
+                return bd.QueryFirstOrDefault<Sala>(sentenciaSQL, new { Id = id });
             }
         }
 
-        public bool Eliminar(Usuario obj)
+        public bool Eliminar(Sala obj)
         {
             using (var bd = bdConexion())
             {
-                string sentenciaSQL = "DELETE FROM public.usuarios WHERE usuario_id = @Id";
+                string sentenciaSQL = "DELETE FROM public.salas WHERE sala_id = @Id";
                 int result = bd.Execute(sentenciaSQL, new
                 {
                     obj.Id
@@ -67,34 +72,42 @@ namespace Monitor_de_salas_de_computo.Modelo
             }
         }
 
-        public IEnumerable<Usuario> GetAll()
+        public IEnumerable<Sala> GetAll()
         {
             var bd = bdConexion();
-            string sentenciaSQL = "SELECT * FROM usuarios";
+            string sentenciaSQL = "SELECT " +
+                    "  sala_id as @Id" +
+                    ", sala_nombre as @Nombre" +
+                    ", sala_plantel as @Plantel " +
+                    ", sala_ip_inicial as @IpInicial " +
+                    ", sala_ip_final as @IpFinal " +
+                    ", sala_gateway as @Gateway" +
+                    ", sala_servidor as @servidor" +
+                    ", sala_encargado as @Encargado" +
+                    ", sala_telefono as @Telefono" +
+                    " FROM salas";
 
-            return bd.Query<Usuario>(sentenciaSQL);
+            return bd.Query<Sala>(sentenciaSQL);
         }
 
-        public bool Insertar(Usuario obj)
+        public bool Insertar(Sala obj)
         {
             using (var bd = bdConexion())
             {
-                string sentenciaSQL = "INSERT INTO public.usuarios (nombre, apepaterno,apematerno,nickname,contrasena,email,tipo,numcuenta,carrera,fechainicio,fechanacimiento)" +
-                    " VALUES (@Nombre,@ApePaterno,@ApeMaterno,@Nickname,@Contrasena,@Email,@Tipo,@NumCuenta,@Carrera,@FechaInicio,@FechaNacimiento)";
+                string sentenciaSQL = "INSERT INTO public.salas " +
+                    " ( sala_nombre, sala_plantel, sala_ip_inicial, sala_ip_final, sala_gateway, sala_servidor, sala_encargado as @Encargado, sala_telefono)" +
+                    " VALUES (@Nombre,@Plantel,@IpInicial,@IpFinal,@Gateway,@Servidor,@Encargado,@Telefono)";
 
                 int result = bd.Execute(sentenciaSQL, new
                 {
                     obj.Nombre,
-                    obj.ApePaterno,
-                    obj.ApeMaterno,
-                    obj.Nickname,
-                    obj.Contrasena,
-                    obj.Email,
-                    obj.Tipo,
-                    obj.NumCuenta,
-                    obj.Carrera,
-                    obj.FechaInicio,
-                    obj.FechaNacimiento
+                    obj.Plantel,
+                    obj.IpInicial,
+                    obj.IpFinal,
+                    obj.Gateway,
+                    obj.Servidor,
+                    obj.Encargado,
+                    obj.Telefono
                 });
                 return result > 0;
             }
