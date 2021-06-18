@@ -2,10 +2,6 @@
 {
     class Sala
     {
-        // id, nombre, plantel, ipInicial, ipFinal, gateway, servidor, encargado, telefono
-        private int _id;
-        private string _nombre, _plantel, _ipInicial, _ipFinal, _gateway, _servidor, _encargado, _telefono;
-
         public Sala()
         {
         }
@@ -23,14 +19,14 @@
             Telefono = telefono;
         }
 
-        public int Id { get => _id; set => _id = value; }
-        public string Nombre { get => _nombre; set => _nombre = value; }
-        public string Plantel { get => _plantel; set => _plantel = value; }
-        public string IpInicial { get => _ipInicial; set => _ipInicial = value; }
-        public string IpFinal { get => _ipFinal; set => _ipFinal = value; }
-        public string Gateway { get => _gateway; set => _gateway = value; }
-        public string Servidor { get => _servidor; set => _servidor = value; }
-        public string Encargado { get => _encargado; set => _encargado = value; }
-        public string Telefono { get => _telefono; set => _telefono = value; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Plantel { get; set; }
+        public string IpInicial { get; set; }
+        public string IpFinal { get; set; }
+        public string Gateway { get; set; }
+        public string Servidor { get; set; }
+        public string Encargado { get; set; }
+        public string Telefono { get; set; }
     }
 }
