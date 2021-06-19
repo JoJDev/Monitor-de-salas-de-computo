@@ -1,5 +1,5 @@
-/*DROP DATABASE IF EXISTS monitor_salas_computo;*/
-/*CREATE DATABASE if not exists monitor_salas_computo;*/
+/*DELETE DATABASE IF EXISTS monitor_salas_computo;*/
+CREATE DATABASE if not exists monitor_salas_computo;
 
 CREATE TABLE usuarios (
   usuario_id SERIAL PRIMARY KEY NOT NULL ,
@@ -25,7 +25,7 @@ CREATE TABLE salas (
   sala_gateway VARCHAR(16) NOT NULL,
   sala_servidor VARCHAR(16), 
   sala_encargado VARCHAR(40),
-  sala_telefono VARCHAR(16),
+  sala_telefono VARCHAR(16)
   );
 
 CREATE TABLE computadoras (
@@ -51,7 +51,7 @@ CREATE TABLE registros (
     sala_id SMALLINT REFERENCES salas(sala_id),
     conf_tiempo_actualizar SMALLINT DEFAULT 5,
     conf_tiempo_espera SMALLINT DEFAULT 20,
-    conf_perm_usb BOOLEAN DEFAULT 'false',
+    conf_perm_usb BOOLEAN DEFAULT 'false'
   );
     
     insert into usuarios(usuario_nombre, usuario_ape_paterno, usuario_ape_materno, usuario_nickname, usuario_contrasena, usuario_email, usuario_tipo, usuario_numero_cuenta, usuario_carrera
@@ -64,4 +64,6 @@ CREATE TABLE registros (
   VALUES ('Lab1', 'CU Ecatepec', '192.168.1.2', '192.168.1.50', '192.168.1.1', '192.168.1.254', 'jose juarez jerundio', '5544778899')
   , ('Lab2', 'C.U. Ecatepec', '192.168.1.52', '192.168.1.100', '192.168.1.1', '192.168.1.254', 'maria mendez martinez', '5511223355');
 
-
+INSERT INTO computadoras 
+VALUES('','1','Comp1-Lab1','192.168.1.2', '255.255.255.0','2015-03-03 10:10:40')
+,('','1','Comp2-Lab1','192.168.1.3', '255.255.255.0','2015-03-04 10:10:40');

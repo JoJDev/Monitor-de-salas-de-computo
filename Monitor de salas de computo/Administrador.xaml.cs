@@ -29,8 +29,25 @@ namespace Monitor_de_salas_de_computo
         {
             UsuarioORM usuarios = new UsuarioORM();
             dg_Usuarios.ItemsSource = usuarios.GetAll();
+
+            ComputadoraORM computadoras = new ComputadoraORM();
+            dg_Computadoras.ItemsSource = computadoras.GetAll();
             //dg_Usuarios.Columns[0].Header = "id cambiado";
         }
+
+       /* bool BuscarUsuario(Object obj)
+        {
+            
+            switch (tb_BuscarComp.Text)
+            {
+                case obj.ToString():
+                    break;
+                default:
+                    break;
+
+            }
+            return false;//if obj.
+        }*/
 
         private void ButtonActualizar_Click(object sender, RoutedEventArgs e)
         {
@@ -85,7 +102,9 @@ namespace Monitor_de_salas_de_computo
 
         private void tb_BuscarUsuarios_TextChanged(object sender, TextChangedEventArgs e)
         {
-            dg_Usuarios.TryFindResource(tb_BuscarUsuarios.Text);
+            
+
+            //dg_Usuarios.ItemsSource = dg_Usuarios.Items.Filter(new Predicate<ItemsControl> (usu => usutb_BuscarUsuarios.Text));
             //dg_Usuarios.fil
         }
     }

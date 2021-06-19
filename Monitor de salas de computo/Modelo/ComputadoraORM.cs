@@ -8,14 +8,6 @@ namespace Monitor_de_salas_de_computo.Modelo
 {
     class ComputadoraORM
     {
-        private const string _tabla = " public.computadoras ";
-        private const string _idComp = " comp_id AS CompId ";
-        private const string _idSala = " sala_id AS SalaId ";
-        private const string _nombre = " comp_nombre AS Nombre ";
-        private const string _ip = " comp_ip AS Ip ";
-        private const string _submascara = " comp_submascara AS Submascara ";
-        private const string _fechaAdquisicion = " comp_fecha_adquisicion AS FechaAdqui ";
-
         protected NpgsqlConnection bdConexion()
         {
             return new ConexionBD().conectar();
@@ -35,7 +27,7 @@ namespace Monitor_de_salas_de_computo.Modelo
                 int result = bd.Execute(sentenciaSQL, new
                 {
                     obj.Nombre,
-                    obj.Sala.SalaId,
+                    obj.SalaId,
                     obj.Ip,
                     obj.Submascara,
                     obj.FechaAdqui,
@@ -56,7 +48,7 @@ namespace Monitor_de_salas_de_computo.Modelo
                     ", comp_ip AS Ip " +
                     ", comp_submascara AS Submascara " +
                     ", comp_fecha_adquisicion AS FechaAdqui " +
-                    " FROM camputadoras WHERE comp_id = @Id";
+                    " FROM computadoras WHERE comp_id = @Id";
 
                 return bd.QueryFirstOrDefault<Computadora>(sentenciaSQL, new { Id = id });
             }
@@ -85,7 +77,7 @@ namespace Monitor_de_salas_de_computo.Modelo
                     ", comp_ip AS Ip " +
                     ", comp_submascara AS Submascara " +
                     ", comp_fecha_adquisicion AS FechaAdqui " +
-                    " FROM camputadoras";
+                    " FROM computadoras";
 
             return bd.Query<Computadora>(sentenciaSQL);
         }
@@ -104,7 +96,7 @@ namespace Monitor_de_salas_de_computo.Modelo
 
                 int result = bd.Execute(sentenciaSQL, new
                 {
-                    obj.Sala.SalaId,
+                    obj.SalaId,
                     obj.Nombre,
                     obj.Ip,
                     obj.Submascara,

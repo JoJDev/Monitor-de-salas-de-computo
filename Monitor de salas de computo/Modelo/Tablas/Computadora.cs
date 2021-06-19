@@ -10,10 +10,10 @@ namespace Monitor_de_salas_de_computo.Modelo
         {
         }
 
-        public Computadora(int id, Sala sala, string nombre, string ip, string submascar, DateTime fechaAdqui)
+        public Computadora(int id, int sala, string nombre, string ip, string submascar, DateTime fechaAdqui)
         {
             CompId = id;
-            Sala = sala;
+            SalaId = sala;
             Nombre = nombre;
             Ip = ip;
             Submascara = submascar;
@@ -21,7 +21,7 @@ namespace Monitor_de_salas_de_computo.Modelo
         }
 
         public int CompId { get; set; }
-        public Sala Sala { get; set; }
+        public int SalaId { get; set; }
         public string Nombre { get; set; }
         public string Ip { get; set; }
         public string Submascara { get; set; }
