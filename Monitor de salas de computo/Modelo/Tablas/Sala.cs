@@ -8,7 +8,7 @@
 
         public Sala(int id, string nombre, string plantel, string ipInicial, string ipFinal, string gateway, string servidor, string encargado, string telefono)
         {
-            Id = id;
+            SalaId = id;
             Nombre = nombre;
             Plantel = plantel;
             IpInicial = ipInicial;
@@ -19,7 +19,7 @@
             Telefono = telefono;
         }
 
-        public int Id { get; set; }
+        public int SalaId { get; set; }
         public string Nombre { get; set; }
         public string Plantel { get; set; }
         public string IpInicial { get; set; }

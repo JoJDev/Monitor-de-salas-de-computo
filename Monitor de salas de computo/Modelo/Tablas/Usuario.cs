@@ -18,7 +18,7 @@ namespace Monitor_de_salas_de_computo.Modelo
 
         public Usuario(int id, string nombre, string apePaterno, string apeMaterno, string nickname, string contrasena, string numCuenta, string email, string tipo, string carrera, DateTime fechaInicio, DateTime fechaNacimiento)
         {
-            Id = id;
+            UsuarioId = id;
             Nombre = nombre;
             ApePaterno = apePaterno;
             ApeMaterno = apeMaterno;
@@ -36,7 +36,7 @@ namespace Monitor_de_salas_de_computo.Modelo
         {
         }
 
-        public int Id { get; set; }
+        public int UsuarioId { get; set; }
         public string Nombre { get; set; }
         public string ApePaterno { get; set; }
         public string ApeMaterno { get; set; }

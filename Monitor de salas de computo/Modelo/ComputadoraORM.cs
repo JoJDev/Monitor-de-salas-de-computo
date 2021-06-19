@@ -6,8 +6,12 @@ using System.Text;
 
 namespace Monitor_de_salas_de_computo.Modelo
 {
-    class SalaORM
+    class ComputadoraORM
     {
+        private const string _tabla = " public.computadoras ";
+        private const string _idComp = " comp_id AS Id ";
+        private const string _idSala = " sala_id AS Id ";
+
         protected NpgsqlConnection bdConexion()
         {
             return new ConexionBD().conectar();
@@ -33,7 +37,7 @@ namespace Monitor_de_salas_de_computo.Modelo
                     obj.Servidor,
                     obj.Encargado,
                     obj.Telefono,
-                    obj.SalaId
+                    obj.Id
                 });
                 return result > 0;
             }
@@ -44,18 +48,18 @@ namespace Monitor_de_salas_de_computo.Modelo
             using (var bd = bdConexion())
             {
                 string sentenciaSQL = "SELECT " +
-                    "  sala_id AS @SalaId" +
-                    ", sala_nombre AS @Nombre" +
-                    ", sala_plantel AS @Plantel " +
-                    ", sala_ip_inicial AS @IpInicial " +
-                    ", sala_ip_final AS @IpFinal " +
-                    ", sala_gateway AS @Gateway" +
-                    ", sala_servidor AS @servidor" +
-                    ", sala_encargado AS @Encargado" +
-                    ", sala_telefono AS @Telefono" +
-                    " FROM salas WHERE sala_id = @SalaId";
+                    "  sala_id as @Id" +
+                    ", sala_nombre as @Nombre" +
+                    ", sala_plantel as @Plantel " +
+                    ", sala_ip_inicial as @IpInicial " +
+                    ", sala_ip_final as @IpFinal " +
+                    ", sala_gateway as @Gateway" +
+                    ", sala_servidor as @servidor" +
+                    ", sala_encargado as @Encargado" +
+                    ", sala_telefono as @Telefono" +
+                    " FROM salas WHERE sala_id = @Id";
 
-                return bd.QueryFirstOrDefault<Sala>(sentenciaSQL, new { SalaId = id });
+                return bd.QueryFirstOrDefault<Sala>(sentenciaSQL, new { Id = id });
             }
         }
 
@@ -63,10 +67,10 @@ namespace Monitor_de_salas_de_computo.Modelo
         {
             using (var bd = bdConexion())
             {
-                string sentenciaSQL = "DELETE FROM public.salas WHERE sala_id = @SalaId";
+                string sentenciaSQL = "DELETE FROM public.salas WHERE sala_id = @Id";
                 int result = bd.Execute(sentenciaSQL, new
                 {
-                    obj.SalaId
+                    obj.Id
                 });
                 return result > 0;
             }
@@ -76,15 +80,15 @@ namespace Monitor_de_salas_de_computo.Modelo
         {
             var bd = bdConexion();
             string sentenciaSQL = "SELECT " +
-                    "  sala_id AS @SalaId" +
-                    ", sala_nombre AS @Nombre" +
-                    ", sala_plantel AS @Plantel " +
-                    ", sala_ip_inicial AS @IpInicial " +
-                    ", sala_ip_final AS @IpFinal " +
-                    ", sala_gateway AS @Gateway" +
-                    ", sala_servidor AS @servidor" +
-                    ", sala_encargado AS @Encargado" +
-                    ", sala_telefono AS @Telefono" +
+                    "  sala_id as @Id" +
+                    ", sala_nombre as @Nombre" +
+                    ", sala_plantel as @Plantel " +
+                    ", sala_ip_inicial as @IpInicial " +
+                    ", sala_ip_final as @IpFinal " +
+                    ", sala_gateway as @Gateway" +
+                    ", sala_servidor as @servidor" +
+                    ", sala_encargado as @Encargado" +
+                    ", sala_telefono as @Telefono" +
                     " FROM salas";
 
             return bd.Query<Sala>(sentenciaSQL);
@@ -95,7 +99,7 @@ namespace Monitor_de_salas_de_computo.Modelo
             using (var bd = bdConexion())
             {
                 string sentenciaSQL = "INSERT INTO public.salas " +
-                    " ( sala_nombre, sala_plantel, sala_ip_inicial, sala_ip_final, sala_gateway, sala_servidor, sala_encargado, sala_telefono)" +
+                    " ( sala_nombre, sala_plantel, sala_ip_inicial, sala_ip_final, sala_gateway, sala_servidor, sala_encargado as @Encargado, sala_telefono)" +
                     " VALUES (@Nombre,@Plantel,@IpInicial,@IpFinal,@Gateway,@Servidor,@Encargado,@Telefono)";
 
                 int result = bd.Execute(sentenciaSQL, new
