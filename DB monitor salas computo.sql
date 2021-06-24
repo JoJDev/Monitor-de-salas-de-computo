@@ -52,6 +52,7 @@ CREATE TABLE registros (
     conf_tiempo_actualizar SMALLINT DEFAULT 5,
     conf_tiempo_espera SMALLINT DEFAULT 20,
     conf_perm_usb BOOLEAN DEFAULT 'false'
+    conf_num_registros_mostrados SMALLINT DEFAULT 100
   );
     
     insert into usuarios(usuario_nombre, usuario_ape_paterno, usuario_ape_materno, usuario_nickname, usuario_contrasena, usuario_email, usuario_tipo, usuario_numero_cuenta, usuario_carrera

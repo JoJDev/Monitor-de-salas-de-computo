@@ -17,7 +17,7 @@ namespace Monitor_de_salas_de_computo.Modelo
             using (var bd = bdConexion())
             {
                 string sentenciaSQL = "UPDATE public.registros SET " +
-                    ", usuario_id = @UsuarioId" +
+                    " usuario_id = @UsuarioId" +
                     ", comp_id = @CompId" +
                     ", registro_fecha_inicio = @FechaInicio" +
                     ", registro_duracion_tiempo = @DuracionTiempo" +
