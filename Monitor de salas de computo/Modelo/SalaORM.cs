@@ -53,7 +53,7 @@ namespace Monitor_de_salas_de_computo.Modelo
                     ", sala_servidor AS @servidor" +
                     ", sala_encargado AS @Encargado" +
                     ", sala_telefono AS @Telefono" +
-                    " FROM salas WHERE sala_id = @SalaId";
+                    " FROM public.salas WHERE sala_id = @SalaId";
 
                 return bd.QueryFirstOrDefault<Sala>(sentenciaSQL, new { SalaId = id });
             }
@@ -85,7 +85,7 @@ namespace Monitor_de_salas_de_computo.Modelo
                     ", sala_servidor AS @servidor" +
                     ", sala_encargado AS @Encargado" +
                     ", sala_telefono AS @Telefono" +
-                    " FROM salas";
+                    " FROM public.salas";
 
             return bd.Query<Sala>(sentenciaSQL);
         }

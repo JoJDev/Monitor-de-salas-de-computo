@@ -62,7 +62,7 @@ namespace Monitor_de_salas_de_computo.Modelo
                     ", usuario_carrera AS Carrera" +
                     ", usuario_fecha_inicio AS FechaInicio" +
                     ", usuario_fecha_nacimiento AS FechaNacimiento" +
-                    " FROM usuarios WHERE usuario_id = @UsuarioId";
+                    " FROM public.usuarios WHERE usuario_id = @UsuarioId";
 
                 return bd.QueryFirstOrDefault<Usuario>(sentenciaSQL, new { UsuarioId = id });
             }
@@ -97,7 +97,7 @@ namespace Monitor_de_salas_de_computo.Modelo
                     ", usuario_carrera AS Carrera" +
                     ", usuario_fecha_inicio AS FechaInicio" +
                     ", usuario_fecha_nacimiento AS FechaNacimiento" +
-                    " FROM usuarios";
+                    " FROM public.usuarios";
 
             return bd.Query<Usuario>(sentenciaSQL);
         }

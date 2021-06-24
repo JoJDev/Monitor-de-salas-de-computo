@@ -48,7 +48,7 @@ namespace Monitor_de_salas_de_computo.Modelo
                     ", comp_ip AS Ip " +
                     ", comp_submascara AS Submascara " +
                     ", comp_fecha_adquisicion AS FechaAdqui " +
-                    " FROM computadoras WHERE comp_id = @Id";
+                    " FROM public.computadoras WHERE comp_id = @Id";
 
                 return bd.QueryFirstOrDefault<Computadora>(sentenciaSQL, new { Id = id });
             }
@@ -58,7 +58,7 @@ namespace Monitor_de_salas_de_computo.Modelo
         {
             using (var bd = bdConexion())
             {
-                string sentenciaSQL = "DELETE FROM public.computadoras WHERE comp_id = @Id";
+                string sentenciaSQL = "DELETE FROM public.computadoras WHERE comp_id = @CompId";
                 int result = bd.Execute(sentenciaSQL, new
                 {
                     obj.CompId
@@ -77,7 +77,7 @@ namespace Monitor_de_salas_de_computo.Modelo
                     ", comp_ip AS Ip " +
                     ", comp_submascara AS Submascara " +
                     ", comp_fecha_adquisicion AS FechaAdqui " +
-                    " FROM computadoras";
+                    " FROM public.computadoras";
 
             return bd.Query<Computadora>(sentenciaSQL);
         }

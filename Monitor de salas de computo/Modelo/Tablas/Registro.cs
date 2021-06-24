@@ -9,9 +9,10 @@ namespace Monitor_de_salas_de_computo.Modelo
         public int RegistroId { get; set; }
         public int UsuarioId { get; set; }
         public int CompId { get; set; }
-        public int TipoDesconexion { get; set; }
         public DateTime FechaIncio { get; set; }
         public DateTime DuracionTiempo { get; set; }
+        public int TipoDesconexion { get; set; }
+
 
         //Tipos de desconexion:
         // conecado = conectado

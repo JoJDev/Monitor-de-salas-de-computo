@@ -16,22 +16,22 @@ namespace Monitor_de_salas_de_computo.Modelo
         {
             using (var bd = bdConexion())
             {
-                string sentenciaSQL = "UPDATE public.computadoras SET " +
-                    "  sala_id = @SalaId" +
-                    ", comp_nombre = @Nombre" +
-                    ", comp_ip= @Ip" +
-                    ", comp_submascara = @Submascara" +
-                    ", comp_fecha_adquisicion = @FechaAdqui" +
-                    " WHERE comp_id = @CompId";
+                string sentenciaSQL = "UPDATE public.registros SET " +
+                    ", usuario_id = @UsuarioId" +
+                    ", comp_id = @CompId" +
+                    ", registro_fecha_inicio = @FechaInicio" +
+                    ", registro_duracion_tiempo = @DuracionTiempo" +
+                    ", registro_tipo_desconexion = @TipoDesconexion" +
+                    " WHERE registro_id = @RegistroId";
 
                 int result = bd.Execute(sentenciaSQL, new
                 {
-                    obj.Nombre,
-                    obj.SalaId,
-                    obj.Ip,
-                    obj.Submascara,
-                    obj.FechaAdqui,
-                    obj.CompId
+                    obj.UsuarioId,
+                    obj.CompId,
+                    obj.FechaIncio,
+                    obj.DuracionTiempo,
+                    obj.TipoDesconexion,
+                    obj.RegistroId,
                 });
                 return result > 0;
             }
@@ -42,13 +42,13 @@ namespace Monitor_de_salas_de_computo.Modelo
             using (var bd = bdConexion())
             {
                 string sentenciaSQL = "SELECT " +
-                    "  comp_id AS CompId" +
-                    ", sala_id AS SalaId" +
-                    ", comp_nombre AS Nombre " +
-                    ", comp_ip AS Ip " +
-                    ", comp_submascara AS Submascara " +
-                    ", comp_fecha_adquisicion AS FechaAdqui " +
-                    " FROM computadoras WHERE comp_id = @Id";
+                    "  registro_id AS RegistroId" +
+                    ", usuario_id AS UsuarioId" +
+                    ", comp_id AS CompId" +
+                    ", registro_fecha_inicio AS FechaInicio" +
+                    ", registro_duracion_tiempo AS DuracionTiempo" +
+                    ", registro_tipo_desconexion AS TipoDesconexion" +
+                    " FROM public.registros WHERE registro_id = @Id";
 
                 return bd.QueryFirstOrDefault<Registro>(sentenciaSQL, new { Id = id });
             }
@@ -58,7 +58,7 @@ namespace Monitor_de_salas_de_computo.Modelo
         {
             using (var bd = bdConexion())
             {
-                string sentenciaSQL = "DELETE FROM public.computadoras WHERE comp_id = @Id";
+                string sentenciaSQL = "DELETE FROM public.registros WHERE registros_id = @RegistrosId";
                 int result = bd.Execute(sentenciaSQL, new
                 {
                     obj.RegistroId
@@ -71,13 +71,13 @@ namespace Monitor_de_salas_de_computo.Modelo
         {
             var bd = bdConexion();
             string sentenciaSQL = "SELECT " +
-                    "  comp_id AS CompId" +
-                    ", sala_id AS SalaId" +
-                    ", comp_nombre AS Nombre " +
-                    ", comp_ip AS Ip " +
-                    ", comp_submascara AS Submascara " +
-                    ", comp_fecha_adquisicion AS FechaAdqui " +
-                    " FROM Registros";
+                    "  registro_id AS RegistroId" +
+                    ", usuario_id AS UsuarioId" +
+                    ", comp_id AS CompId" +
+                    ", registro_fecha_inicio AS FechaInicio" +
+                    ", registro_duracion_tiempo AS DuracionTiempo" +
+                    ", registro_tipo_desconexion AS TipoDesconexion" +
+                    " FROM public.registros";
 
             return bd.Query<Registro>(sentenciaSQL);
         }
@@ -87,20 +87,20 @@ namespace Monitor_de_salas_de_computo.Modelo
             using (var bd = bdConexion())
             {
                 string sentenciaSQL = "INSERT INTO public.computadoras " +
-                    "  sala_id " +
-                    ", comp_nombre  " +
-                    ", comp_ip " +
-                    ", comp_submascara " +
-                    ", comp_fecha_adquisicion " +
-                    " VALUES (@SalaId,@Nombre,@Ip,@Submascara,@FechaAdqui)";
+                    " usuario_id " +
+                    ", comp_id " +
+                    ", registro_fecha_inicio " +
+                    ", registro_duracion_tiempo " +
+                    ", registro_tipo_desconexion " +
+                    " VALUES (@UsuarioId,@CompId,@FechInicio,@DuracionTiempo,@TipoDesconexion)";
 
                 int result = bd.Execute(sentenciaSQL, new
                 {
-                    obj.SalaId,
-                    obj.Nombre,
-                    obj.Ip,
-                    obj.Submascara,
-                    obj.FechaAdqui
+                    obj.UsuarioId,
+                    obj.CompId,
+                    obj.FechaIncio,
+                    obj.DuracionTiempo,
+                    obj.TipoDesconexion
                 });
                 return result > 0;
             }
