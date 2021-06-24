@@ -6,13 +6,13 @@ using System.Text;
 
 namespace Monitor_de_salas_de_computo.Modelo
 {
-    class ComputadoraORM : ICRUD<Computadora>
+    class RegistroORM : ICRUD<Registro>
     {
         protected NpgsqlConnection bdConexion()
         {
             return new ConexionBD().conectar();
         }
-        public bool Actualizar(Computadora obj)
+        public bool Actualizar(Registro obj)
         {
             using (var bd = bdConexion())
             {
@@ -37,7 +37,7 @@ namespace Monitor_de_salas_de_computo.Modelo
             }
         }
 
-        public Computadora Detalle(int id)
+        public Registro Detalle(int id)
         {
             using (var bd = bdConexion())
             {
@@ -50,24 +50,24 @@ namespace Monitor_de_salas_de_computo.Modelo
                     ", comp_fecha_adquisicion AS FechaAdqui " +
                     " FROM computadoras WHERE comp_id = @Id";
 
-                return bd.QueryFirstOrDefault<Computadora>(sentenciaSQL, new { Id = id });
+                return bd.QueryFirstOrDefault<Registro>(sentenciaSQL, new { Id = id });
             }
         }
 
-        public bool Eliminar(Computadora obj)
+        public bool Eliminar(Registro obj)
         {
             using (var bd = bdConexion())
             {
                 string sentenciaSQL = "DELETE FROM public.computadoras WHERE comp_id = @Id";
                 int result = bd.Execute(sentenciaSQL, new
                 {
-                    obj.CompId
+                    obj.RegistroId
                 });
                 return result > 0;
             }
         }
 
-        public IEnumerable<Computadora> GetAll()
+        public IEnumerable<Registro> GetAll()
         {
             var bd = bdConexion();
             string sentenciaSQL = "SELECT " +
@@ -77,12 +77,12 @@ namespace Monitor_de_salas_de_computo.Modelo
                     ", comp_ip AS Ip " +
                     ", comp_submascara AS Submascara " +
                     ", comp_fecha_adquisicion AS FechaAdqui " +
-                    " FROM computadoras";
+                    " FROM Registros";
 
-            return bd.Query<Computadora>(sentenciaSQL);
+            return bd.Query<Registro>(sentenciaSQL);
         }
 
-        public bool Insertar(Computadora obj)
+        public bool Insertar(Registro obj)
         {
             using (var bd = bdConexion())
             {
