@@ -26,8 +26,10 @@ namespace Monitor_de_salas_de_computo.Modelo
                     ",usuario_fecha_nacimiento = @FechaNacimiento)" +
                     "WHERE usuario_id = @UsuarioId";
 
+                
                 int result = bd.Execute(sentenciaSQL, new
                 {
+                    obj.UsuarioId,
                     obj.Nombre,
                     obj.ApePaterno,
                     obj.ApeMaterno,
@@ -38,8 +40,7 @@ namespace Monitor_de_salas_de_computo.Modelo
                     obj.Tipo,
                     obj.Carrera,
                     obj.FechaInicio,
-                    obj.FechaNacimiento,
-                    obj.UsuarioId
+                    obj.FechaNacimiento
                 });
                 return result > 0;
             }

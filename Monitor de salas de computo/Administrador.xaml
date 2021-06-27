@@ -1,22 +1,23 @@
-﻿<Window x:Class="Monitor_de_salas_de_computo.Administrador"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Monitor_de_salas_de_computo"
+        x:Class="Monitor_de_salas_de_computo.Administrador"
         mc:Ignorable="d"
-        Title="Monitor de salas de computo - Administrador" Height="480" Width="960
-        " ResizeMode="CanMinimize" SourceInitialized="Window_SourceInitialized">
+        Title="Monitor de salas de computo - Administrador" Height="480" Width="960" ResizeMode="CanMinimize" SourceInitialized="Window_SourceInitialized">
     <Grid>
-        <Label Content="Sesion:__  >Administrador" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20"/>
+        <Label Content="Sesion:__  &gt;Administrador" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20"/>
         <Button Content="Actualizar registros" Margin="0,20,300,0" VerticalAlignment="Top" Click="ButtonActualizar_Click" Height="30" HorizontalAlignment="Right" Width="120"/>
         <Button Content="Cerrar sesión" Margin="0,20,180,0" VerticalAlignment="Top" Click="ButtonCerrar_Click" Height="30"  HorizontalAlignment="Right" Width="100"/>
         <Button Content="Cerrar sesión y apagar" Margin="0,20,20,0" VerticalAlignment="Top" Click="ButtonSalir_Click" Height="30" HorizontalAlignment="Right" Width="140"/>
+        
         <TabControl Margin="20,60,20,20" Grid.Row="1" BorderThickness="1" BorderBrush="Black">
             <TabItem Header="PC's activas" GotFocus="TabItem_GotFocus">
                 <Grid Background="#FFE5E5E5">
                     <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
                     <TextBox x:Name="tb_BucarPCs" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
+                    <Button Content="Buscar" Width="60" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="280, 20" />
                     <DataGrid x:Name="dg_PCsActivas" Margin="0,60,0,0"/>
                 </Grid>
             </TabItem>
@@ -24,15 +25,40 @@
                 <Grid Background="#FFE5E5E5">
                     <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
                     <TextBox x:Name="tb_BuscarRegistros" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
-                    <DataGrid x:Name="dg_Registros" Margin="0,60,0,0"/>
+                    <Button Content="Buscar" Width="60" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="280, 20" />
+                    <DataGrid x:Name="dg_Registros" Margin="0,60,0,0" SelectionMode="Single" ItemsSource="{Binding}" AutoGenerateColumns="False" CellEditEnding="dg_Registros_CellEditEnding">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="RegId" IsReadOnly="True" Header="Id" Binding="{Binding RegistroId}"/>
+                            <DataGridTextColumn Header="Usuario Id" Binding="{Binding UsuarioId}"/>
+                            <DataGridTextColumn Header="Compu Id" Binding="{Binding CompId}"/>
+                            <DataGridTextColumn Header="Fecha de inicio" Binding="{Binding FechaInicio}"/>
+                            <DataGridTextColumn Header="Duracion de sesion" Binding="{Binding DuracionTiempo}"/>
+                            <DataGridTextColumn Header="Tipo de desconexion" Binding="{Binding TipoDesconexion}"/>
+                            <DataGridTemplateColumn Header="Edit">
+                                <DataGridTemplateColumn.CellTemplate >
+                                    <DataTemplate>
+                                        <Button Content="Edit" Click="Edit_Click" CommandParameter="{Binding RegId}"></Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Delete">
+                                <DataGridTemplateColumn.CellTemplate >
+                                    <DataTemplate>
+                                        <Button Content="Delete" Click="Delete_Click" ></Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </TabItem>
             <TabItem Header="Usuarios">
                 <Grid Background="#FFE5E5E5">
                     <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
                     <TextBox x:Name="tb_BuscarUsuarios" TextChanged="tb_BuscarUsuarios_TextChanged" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
+                    <Button Content="Buscar" Width="60" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="280, 20" />
                     <Button x:Name="bt_CrearUsuario" Click="bt_CrearUsuario_Click" Content="Crear nuevo usuario" Width="140" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,15" />
-                    <DataGrid x:Name="dg_Usuarios" Margin="0,60,0,0" >
+                    <DataGrid x:Name="dg_Usuarios" Margin="0,60,0,0" ItemsSource="{Binding}" AutoGenerateColumns="True" CellEditEnding="dg_Usuarios_CellEditEnding" >
                         <!--
                         <DataGrid.Columns >
                             <DataGridTextColumn Header="id"/>
@@ -55,22 +81,39 @@
                 <Grid Background="#FFE5E5E5">
                     <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
                     <TextBox x:Name="tb_BuscarComp" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
+                    <Button Content="Buscar" Width="60" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="280, 20" />
                     <Button x:Name="bt_CrearComp" Content="Crear nueva Computadora" Width="auto" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,15" Click="bt_CrearComp_Click" />
-                    <DataGrid x:Name="dg_Computadoras" Margin="0,60,0,0" ColumnWidth="*"/>
+                    <DataGrid x:Name="dg_Computadoras" Margin="0,60,0,0" ItemsSource="{Binding}" AutoGenerateColumns="True" ColumnWidth="*">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Edit">
+                                <DataGridTemplateColumn.CellTemplate >
+                                    <DataTemplate>
+                                        <Button Content="Edit" Click="Edit_Click" CommandParameter="{Binding id}"></Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Delete">
+                                <DataGridTemplateColumn.CellTemplate >
+                                    <DataTemplate>
+                                        <Button Content="Delete" Click="Delete_Click" ></Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>    
+                    </DataGrid>
                 </Grid>
             </TabItem>
             <TabItem Header="Salas">
                 <Grid Background="#FFE5E5E5">
                     <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
                     <TextBox x:Name="tb_BuscarSalas" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
+                    <Button Content="Buscar" Width="60" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="280, 20" />
                     <Button x:Name="bt_CrearSalas" Content="Crear nueva sala" Width="140" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,15" />
-                    <DataGrid x:Name="dg_Salas" Margin="0,60,0,0"/>
+                    <DataGrid x:Name="dg_Salas" Margin="0,60,0,0" ItemsSource="{Binding}" AutoGenerateColumns="True"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Configuraciones">
-                <Grid Background="#FFE5E5E5">
-
-                </Grid>
+                <Grid Background="#FFE5E5E5"/>
             </TabItem>
             <TabItem Header="Exportar a Excel/CSB">
                 <Grid Background="#FFE5E5E5" >

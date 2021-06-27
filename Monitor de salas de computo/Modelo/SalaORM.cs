@@ -44,15 +44,15 @@ namespace Monitor_de_salas_de_computo.Modelo
             using (var bd = bdConexion())
             {
                 string sentenciaSQL = "SELECT " +
-                    "  sala_id AS @SalaId" +
-                    ", sala_nombre AS @Nombre" +
-                    ", sala_plantel AS @Plantel " +
-                    ", sala_ip_inicial AS @IpInicial " +
-                    ", sala_ip_final AS @IpFinal " +
-                    ", sala_gateway AS @Gateway" +
-                    ", sala_servidor AS @servidor" +
-                    ", sala_encargado AS @Encargado" +
-                    ", sala_telefono AS @Telefono" +
+                    "  sala_id AS SalaId" +
+                    ", sala_nombre AS Nombre" +
+                    ", sala_plantel AS Plantel " +
+                    ", sala_ip_inicial AS IpInicial " +
+                    ", sala_ip_final AS IpFinal " +
+                    ", sala_gateway AS Gateway" +
+                    ", sala_servidor AS Servidor" +
+                    ", sala_encargado AS Encargado" +
+                    ", sala_telefono AS Telefono" +
                     " FROM public.salas WHERE sala_id = @SalaId";
 
                 return bd.QueryFirstOrDefault<Sala>(sentenciaSQL, new { SalaId = id });
@@ -76,15 +76,15 @@ namespace Monitor_de_salas_de_computo.Modelo
         {
             var bd = bdConexion();
             string sentenciaSQL = "SELECT " +
-                    "  sala_id AS @SalaId" +
-                    ", sala_nombre AS @Nombre" +
-                    ", sala_plantel AS @Plantel " +
-                    ", sala_ip_inicial AS @IpInicial " +
-                    ", sala_ip_final AS @IpFinal " +
-                    ", sala_gateway AS @Gateway" +
-                    ", sala_servidor AS @servidor" +
-                    ", sala_encargado AS @Encargado" +
-                    ", sala_telefono AS @Telefono" +
+                    "  sala_id AS SalaId" +
+                    ", sala_nombre AS Nombre" +
+                    ", sala_plantel AS Plantel " +
+                    ", sala_ip_inicial AS IpInicial " +
+                    ", sala_ip_final AS IpFinal " +
+                    ", sala_gateway AS Gateway" +
+                    ", sala_servidor AS Servidor" +
+                    ", sala_encargado AS Encargado" +
+                    ", sala_telefono AS Telefono" +
                     " FROM public.salas";
 
             return bd.Query<Sala>(sentenciaSQL);

@@ -20,19 +20,35 @@ namespace Monitor_de_salas_de_computo
     /// </summary>
     public partial class Administrador : Window
     {
+        IEnumerable<Registro> _registros;
+        IEnumerable<Modelo.Usuario> _usuarios;
+        IEnumerable<Computadora> _computadoras;
+        IEnumerable<Sala> _salas;
+        IEnumerable<Configuraciones> _configuraciones;
+
         public Administrador()
         {
             InitializeComponent();
+
+            _registros = new RegistroORM().GetAll();
+            dg_Registros.DataContext = _registros;
+            _usuarios = new UsuarioORM().GetAll();
+            dg_Usuarios.DataContext = _usuarios;
+            _computadoras = new ComputadoraORM().GetAll();
+            dg_Computadoras.DataContext = _computadoras;
+            _salas = new SalaORM().GetAll();
+            dg_Salas.DataContext = _salas;
+            _configuraciones = new ConfiguracionesORM().GetAll();
+
         }
 
         private void ActualizarRegistros()
         {
-            UsuarioORM usuarios = new UsuarioORM();
-            dg_Usuarios.ItemsSource = usuarios.GetAll();
-
-            ComputadoraORM computadoras = new ComputadoraORM();
-            dg_Computadoras.ItemsSource = computadoras.GetAll();
-            //dg_Usuarios.Columns[0].Header = "id cambiado";
+            _registros = new RegistroORM().GetAll();
+            _usuarios = new UsuarioORM().GetAll();
+            _configuraciones = new ConfiguracionesORM().GetAll();
+            _salas = new SalaORM().GetAll();
+            _computadoras = new ComputadoraORM().GetAll();
         }
 
        /* bool BuscarUsuario(Object obj)
@@ -106,6 +122,47 @@ namespace Monitor_de_salas_de_computo
 
             //dg_Usuarios.ItemsSource = dg_Usuarios.Items.Filter(new Predicate<ItemsControl> (usu => usutb_BuscarUsuarios.Text));
             //dg_Usuarios.fil
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            var compORM = new ComputadoraORM();
+            //compORM.Eliminar(_computadoras[]);
+
+            //dg_Usuarios.ItemsSource = dg_Usuarios.Items.Filter(new Predicate<ItemsControl> (usu => usutb_BuscarUsuarios.Text));
+            //dg_Usuarios.fil
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            var compORM = new ComputadoraORM();
+            //compORM.Eliminar(_computadoras[]);
+
+            //dg_Usuarios.ItemsSource = dg_Usuarios.Items.Filter(new Predicate<ItemsControl> (usu => usutb_BuscarUsuarios.Text));
+            //dg_Usuarios.fil
+        }
+
+        private void dg_Registros_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            MessageBox.Show($"{e.Row.GetIndex()} es el id de objeto actualizado\n" +
+                $"{""}");
+            var regORM = new RegistroORM();
+            regORM.Actualizar(_registros.ElementAt(e.Row.GetIndex()));
+            MessageBox.Show($"{_registros.ElementAt(e.Row.GetIndex())} es el id de objeto actualizado");
+        }
+
+        private void dg_Usuarios_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            var usuORM = new UsuarioORM();
+            int fila = e.Row.GetIndex();
+            Modelo.Usuario usu = _usuarios.ElementAt(e.Row.GetIndex());
+            dg_Usuarios.Items.IndexOf(fila);//Header = e.Column.GetCellContent;
+            MessageBox.Show($"{e.Row.GetIndex()} es el id de objeto actualizado\n" +
+                $"{_usuarios.ElementAt(e.Row.GetIndex()).UsuarioId} es su id\n" +
+                $"{_usuarios.ElementAt(e.Row.GetIndex()).ApeMaterno} es su toString");
+            usuORM.Actualizar(_usuarios.ElementAt(e.Row.GetIndex()));
+            
+
         }
     }
 }
