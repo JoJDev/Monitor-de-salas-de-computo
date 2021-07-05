@@ -138,5 +138,30 @@ namespace Monitor_de_salas_de_computo.Modelo
                 return result > 0;
             }
         }
+
+        public Usuario Buscar(string usu, string pass)
+        {
+            using (var bd = bdConexion())
+            {
+                string sentenciaSQL = "SELECT " +
+                    "  usuario_id AS UsuarioId" +
+                    ", usuario_nombre AS Nombre" +
+                    ", usuario_ape_paterno AS ApePaterno" +
+                    ", usuario_ape_materno AS ApeMaterno" +
+                    ", usuario_nickname AS Nickname" +
+                    ", usuario_contrasena As Contrasena" +
+                    ", usuario_email AS Email" +
+                    ", usuario_tipo AS Tipo" +
+                    ", usuario_numero_cuenta AS NumCuenta" +
+                    ", usuario_carrera AS Carrera" +
+                    ", usuario_fecha_inicio AS FechaInicio" +
+                    ", usuario_fecha_nacimiento AS FechaNacimiento" +
+                    " FROM public.usuarios " +
+                    "WHERE usuario_nickname = @Nickname " +
+                    " AND usuario_contrasena = @Contrasena";
+
+                return bd.QueryFirstOrDefault<Usuario>(sentenciaSQL, new { @Nickname = usu, @Contrasena = pass });
+            }
+        }
     }
 }

@@ -30,6 +30,16 @@ namespace Monitor_de_salas_de_computo
             string usu = txt_usu.Text;
             string pass = txt_psw.Password.ToString();
 
+            try
+            {
+                Controlador.InicioSesionControl.AccederSesion(usu, pass, this);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Usuario o contraseña incorrecta\n{ex.Message}", " Error de ");
+            }
+
+            /*
             switch (usu)
             {
                 case "admin":
@@ -74,7 +84,7 @@ namespace Monitor_de_salas_de_computo
                 default:
                     MessageBox.Show("Usuario o contraseña incorrecta", " Error de ");
                     break;
-            }
+            }*/
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
