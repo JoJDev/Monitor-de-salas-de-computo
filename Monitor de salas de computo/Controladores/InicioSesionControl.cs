@@ -39,7 +39,11 @@ namespace Monitor_de_salas_de_computo.Controladores
                 
                 case "2":
                     Usuario windowUsuario = new Usuario();
-                    windowUsuario.
+                    
+                    windowUsuario.PrepararVentana(usuario, computadora, own);
+                    
+                    windowUsuario.Show();
+                    own.Close();
                     break;
                 
                 default:

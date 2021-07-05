@@ -11,8 +11,8 @@ namespace Monitor_de_salas_de_computo.Controladores
         public Modelo.Usuario usu { get; set; }
         public Computadora comp { get; set; }
         public Sala sala { get; set; }
-        DateTime fechaInicioSesion{ get; set; }
-        TimeSpan duracionSesion { get; set; }
+        public DateTime fechaInicioSesion{ get; set; }
+        public TimeSpan duracionSesion { get; set; }
 
         public void PrepararVentana(Modelo.Usuario usuario,Computadora computadora , Window own)
         {
@@ -24,7 +24,7 @@ namespace Monitor_de_salas_de_computo.Controladores
                 SalaORM salaORM = new SalaORM();
                 sala = salaORM.Detalle(comp.SalaId);
             }
-            fechaInicioSesion = new DateTime();
+            fechaInicioSesion = DateTime.Now;
             duracionSesion = new TimeSpan(0);
         }
 

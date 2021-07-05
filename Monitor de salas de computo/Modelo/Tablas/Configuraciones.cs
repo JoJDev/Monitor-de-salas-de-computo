@@ -2,7 +2,7 @@
 
 namespace Monitor_de_salas_de_computo.Modelo
 {
-    class Configuraciones
+    public class Configuraciones
     {
         public Configuraciones()
         {

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Monitor de salas de computo - Usuario" Height="380" Width="680" ResizeMode="CanMinimize" ContentRendered="Window_ContentRendered">
+        Title="Monitor de salas de computo - Usuario" Height="380" Width="759" ResizeMode="CanMinimize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="8*"/>
@@ -14,7 +14,7 @@
         <Button Content="Cerrar sesión y apagar" Margin="0,10,20,0" VerticalAlignment="Top" Click="ButtonSalir_Click" Height="30"  HorizontalAlignment="Right" Width="140" Grid.Column="1"/>
         <Label Content="Monitor de salas de computo UAEMex" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" FontSize="18" Grid.ColumnSpan="2" />
 
-        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="180" Height="280" Margin="10,0,0,10" >
+        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="190" Height="280" Margin="10,0,0,10" >
             <Border BorderBrush="Black" BorderThickness="1"/>
             <Grid>
                 <Grid.RowDefinitions>
@@ -25,16 +25,16 @@
                     <RowDefinition/>
                     <RowDefinition Height="80"/>
                 </Grid.RowDefinitions>
-                <Label x:Name="lab_usuario" Content="Usuario: __" Grid.Row="1"/>
-                <Label x:Name="lab_plantel" Content="Plantel: __" Grid.Row="2"/>
-                <Label x:Name="lab_carrera" Content="Carrera: __" Grid.Row="3"/>
-                <Label x:Name="lab_Semstre" Content="Semestre: __" Grid.Row="4"/>
-                <Label Content="Reportar algun error:" Grid.Row="5" VerticalAlignment="Top" HorizontalAlignment="Center" />
+                <Label x:Name="lab_usuario" Content="Usuario: __" Grid.Row="1" FontSize="14" />
+                <Label x:Name="lab_plantel" Content="Plantel: __" Grid.Row="2" FontSize="14"/>
+                <Label x:Name="lab_carrera" Content="Carrera: __" Grid.Row="3" FontSize="14"/>
+                <Label x:Name="lab_Semstre" Content="Semestre: __" Grid.Row="4" FontSize="14" />
+                <Label Content="Reportar algun error:" Grid.Row="5" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="14" />
                 <Button Content="Reportar" Grid.Row="5" VerticalAlignment="Bottom" Margin="20,10" Height="30" />
 
             </Grid>
         </Grid>
-        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="460" Height="280" Margin="0,0,10,10" Grid.ColumnSpan="2">
+        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="524" Height="280" Margin="0,0,10,10" Grid.ColumnSpan="2">
             <Border BorderBrush="Black" BorderThickness="1"/>
             <Grid >
                 <Grid.ColumnDefinitions>
@@ -42,7 +42,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Grid HorizontalAlignment="Stretch" Width="220">
+                <Grid HorizontalAlignment="Stretch" Width="auto">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="4*"/>
@@ -55,14 +55,14 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Label Content="Nombre del PC: "  HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Left" Height="26" Width="96"/>
-                    <Label x:Name="lab_nombrePC" Content="Comp1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Width="48"/>
-                    <Label Content="Direccion IP: " Grid.Row="1"  HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Width="78" />
-                    <Label x:Name="lab_ip" Content="192.168.1.2" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Width="70"/>
-                    <Label Content="Submascara de red: " Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Width="118"  />
-                    <Label x:Name="lab_submascara" Content="255.255.255.0" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Width="82"/>
-                    <Label Content="Gateway: " Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Width="62"  />
-                    <Label x:Name="lab_gateway" Content="192.168.1.200" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Width="82"/>
+                    <Label Content="Nombre del PC: "  HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Left" Height="26" Width="96" FontSize="14"/>
+                    <Label x:Name="lab_nombrePC" Content="Comp1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" FontSize="14"/>
+                    <Label Content="Direccion IP: " Grid.Row="1"  HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Width="78" FontSize="14"/>
+                    <Label x:Name="lab_ip" Content="192.168.1.2" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" FontSize="14"/>
+                    <Label Content="Submascara de red: " Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Width="118" FontSize="14" />
+                    <Label x:Name="lab_submascara" Content="255.255.255.0" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" FontSize="14"/>
+                    <Label Content="Gateway: " Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Width="62"  FontSize="14"/>
+                    <Label x:Name="lab_gateway" Content="192.168.1.200" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" FontSize="14"/>
                 </Grid>
                 <Grid HorizontalAlignment="Stretch" Grid.Column="1" >
                     <Grid.RowDefinitions>
@@ -74,7 +74,7 @@
                     <Label Content="Fecha de inicio de sesión" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="0"/>
                     <Label x:Name="lab_fechaInicioSesion" Content="27/03/2019  10:10:10" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1"/>
                     <Label Content="Duración de la sesión" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="2"/>
-                    <Label x:Name="lab_daracionSesion" Content="00 : 00 : 50" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="2"/>
+                    <Label x:Name="lab_duracionSesion" Content="00 : 00 : 50" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="2"/>
                 </Grid>
             </Grid>
         </Grid>

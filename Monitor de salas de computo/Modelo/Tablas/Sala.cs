@@ -1,6 +1,6 @@
 ﻿namespace Monitor_de_salas_de_computo.Modelo
 {
-    class Sala
+    public class Sala
     {
         public Sala()
         {

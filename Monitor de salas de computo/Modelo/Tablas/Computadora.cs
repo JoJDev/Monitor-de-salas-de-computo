@@ -2,7 +2,7 @@
 
 namespace Monitor_de_salas_de_computo.Modelo
 {
-    class Computadora
+    public class Computadora
     {
         //id, idSala, nombre, ip, submascara, fechaAdqui
         

@@ -2,7 +2,7 @@
 
 namespace Monitor_de_salas_de_computo.Modelo
 {
-    class Registro
+    public class Registro
     {
         //id, idUsuario, idCompu, fechaIncio, duracionTiempo, tipoDesconexion, 
 
