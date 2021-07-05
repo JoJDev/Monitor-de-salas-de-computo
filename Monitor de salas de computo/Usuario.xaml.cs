@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Monitor_de_salas_de_computo.Controladores;
 
 namespace Monitor_de_salas_de_computo
 {
@@ -17,6 +18,7 @@ namespace Monitor_de_salas_de_computo
     /// </summary>
     public partial class Usuario : Window
     {
+        UsuarioControl controlador = new UsuarioControl();
         public Usuario()
         {
             InitializeComponent();
@@ -32,6 +34,11 @@ namespace Monitor_de_salas_de_computo
             MainWindow iniSesion = new MainWindow();
             iniSesion.Show();
             Close();
+        }
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+             controlador
         }
     }
 }

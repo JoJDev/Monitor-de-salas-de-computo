@@ -32,7 +32,7 @@ namespace Monitor_de_salas_de_computo
 
             try
             {
-                Controlador.InicioSesionControl.AccederSesion(usu, pass, this);
+                Controladores.InicioSesionControl.AccederSesion(usu, pass, this);
             }
             catch(Exception ex)
             {

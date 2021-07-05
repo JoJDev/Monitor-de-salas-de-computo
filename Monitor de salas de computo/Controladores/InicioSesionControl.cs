@@ -3,12 +3,13 @@ using System.Net;
 using System.Collections.Generic;
 using System.Text;
 using Monitor_de_salas_de_computo.Modelo;
+using System.Windows;
 
-namespace Monitor_de_salas_de_computo.Controlador
+namespace Monitor_de_salas_de_computo.Controladores
 {
     class InicioSesionControl
     {
-        public static void AccederSesion(string usu, string pass)
+        public static void AccederSesion(string usu, string pass, Window own)
         {
             Modelo.Usuario usuario;
             Computadora computadora;
@@ -19,7 +20,7 @@ namespace Monitor_de_salas_de_computo.Controlador
 
             if (computadora == null)
             {
-                
+                MessageBox.Show(own,"Error al encontrar los datos de la compu");
             }
             
             switch (usuario.Tipo)
@@ -27,16 +28,18 @@ namespace Monitor_de_salas_de_computo.Controlador
                 case "0":
                     Administrador windowAdm = new Administrador();
 
-                    //windowAdm.AdministradorController.PedirDatos(usuario,computadora);
+                    AdministradorControl.PrepararVentana(usuario,own);
                     windowAdm.Show();
                     
-                    //this.Close();
+                    own.Close();
                     break;
                 
                 case "1":
                     break;
                 
                 case "2":
+                    Usuario windowUsuario = new Usuario();
+                    windowUsuario.
                     break;
                 
                 default:
