@@ -9,9 +9,9 @@ namespace Monitor_de_salas_de_computo.Modelo
         public int RegistroId { get; set; }
         public int UsuarioId { get; set; }
         public int CompId { get; set; }
-        public DateTime FechaIncio { get; set; }
+        public DateTime FechaInicio { get; set; }
         public DateTime DuracionTiempo { get; set; }
-        public int TipoDesconexion { get; set; }
+        public string TipoDesconexion { get; set; }
 
 
         //Tipos de desconexion:
@@ -20,21 +20,21 @@ namespace Monitor_de_salas_de_computo.Modelo
         // desconexionInesperada = desconexion por apagado de maqui repentino
         // desconexionInactivo = desconexion por tiempo en espera escesivo
         // desconexionAdministrada = desconexion por admin (en desarrollo)
-        enum desconecciones
+        public enum Desconecciones
         {
-            conecado,
-            desconexionNormal,
-            desconexionInesperada,
-            desconexionInactivo,
-            desconexionAdministrada
+            Conectado,
+            DesconexionNormal,
+            DesconexionInesperada,
+            DesconexionInactivo,
+            DesconexionAdministrada
         }
 
-        public Registro(int id, int idUsuario, int idCompu, DateTime fechaIncio, DateTime duracionTiempo, int tipoDesconexion)
+        public Registro(int id, int idUsuario, int idCompu, DateTime fechaIncio, DateTime duracionTiempo, string tipoDesconexion)
         {
             RegistroId = id;
             UsuarioId = idUsuario;
             CompId = idCompu;
-            FechaIncio = fechaIncio;
+            FechaInicio = fechaIncio;
             DuracionTiempo = duracionTiempo;
             TipoDesconexion = tipoDesconexion;
         }

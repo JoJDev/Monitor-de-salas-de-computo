@@ -21,14 +21,15 @@ namespace Monitor_de_salas_de_computo
     public partial class Usuario : Window
     {
         UsuarioControl controlador;
+        DispatcherTimer timer;
         public Usuario()
         {
             InitializeComponent();
             controlador = new UsuarioControl();
-            DispatcherTimer timer = new DispatcherTimer();
+            timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
-            timer.Start();
+            
         }
 
         public void PrepararVentana(Modelo.Usuario usu, Computadora comp, Window own)
@@ -48,21 +49,23 @@ namespace Monitor_de_salas_de_computo
 
             lab_fechaInicioSesion.Content = controlador.fechaInicioSesion;
             lab_duracionSesion.Content = controlador.duracionSesion;
+            timer.Start();
         }
         void timer_Tick(object sender, EventArgs e)
         {
-            controlador.duracionSesion += TimeSpan.FromSeconds(1.0);
-            lab_duracionSesion.Content = controlador.duracionSesion;
+            controlador.Reloj(lab_duracionSesion);
         }
 
         private void ButtonSalir_Click(object sender, RoutedEventArgs e)
         {
+            controlador.CerrarSesion();
             Close();
         }
 
         private void ButtonCerrar_Click(object sender, RoutedEventArgs e)
         {
             MainWindow iniSesion = new MainWindow();
+            controlador.CerrarSesion();
             iniSesion.Show();
             Close();
         }

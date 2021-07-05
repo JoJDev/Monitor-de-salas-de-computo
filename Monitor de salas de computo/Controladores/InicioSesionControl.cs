@@ -22,33 +22,41 @@ namespace Monitor_de_salas_de_computo.Controladores
             {
                 MessageBox.Show(own,"Error al encontrar los datos de la compu");
             }
-            
-            switch (usuario.Tipo)
+            if (usuario != null)
             {
-                case "0":
-                    Administrador windowAdm = new Administrador();
+                switch (usuario.Tipo)
+                {
+                    case "0":
 
-                    AdministradorControl.PrepararVentana(usuario,own);
-                    windowAdm.Show();
-                    
-                    own.Close();
-                    break;
-                
-                case "1":
-                    break;
-                
-                case "2":
-                    Usuario windowUsuario = new Usuario();
-                    
-                    windowUsuario.PrepararVentana(usuario, computadora, own);
-                    
-                    windowUsuario.Show();
-                    own.Close();
-                    break;
-                
-                default:
-                    break;
+                        Administrador windowAdm = new Administrador();
+
+                        AdministradorControl.PrepararVentana(usuario, own);
+                        windowAdm.Show();
+
+                        own.Close();
+                        break;
+
+                    case "1":
+                        break;
+
+                    case "2":
+                        Usuario windowUsuario = new Usuario();
+
+                        windowUsuario.PrepararVentana(usuario, computadora, own);
+
+                        windowUsuario.Show();
+                        own.Close();
+                        break;
+
+                    default:
+                        break;
+                }
             }
+            else
+            {
+                MessageBox.Show("usuario esta no encontrado");
+            }
+
 
         }
         private static Modelo.Usuario ObtenerUsuario(string usu, string pass)

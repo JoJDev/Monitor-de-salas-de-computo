@@ -28,7 +28,7 @@ namespace Monitor_de_salas_de_computo.Modelo
                 {
                     obj.UsuarioId,
                     obj.CompId,
-                    obj.FechaIncio,
+                    obj.FechaInicio,
                     obj.DuracionTiempo,
                     obj.TipoDesconexion,
                     obj.RegistroId,
@@ -54,11 +54,31 @@ namespace Monitor_de_salas_de_computo.Modelo
             }
         }
 
+        public Registro RegresarRegistro(int usuarioId, int compId, DateTime fechaIniSes)
+        {
+            using (var bd = bdConexion())
+            {
+                string sentenciaSQL = "SELECT " +
+                    "  registro_id AS RegistroId" +
+                    ", usuario_id AS UsuarioId" +
+                    ", comp_id AS CompId" +
+                    ", registro_fecha_inicio AS FechaInicio" +
+                    ", registro_duracion_tiempo AS DuracionTiempo" +
+                    ", registro_tipo_desconexion AS TipoDesconexion" +
+                    " FROM public.registros WHERE " +
+                    " usuario_id = @UsuarioId AND " +
+                    " comp_id = @CompId AND " +
+                    " registro_fecha_inicio = @FechaIniSes";
+
+                return bd.QueryFirstOrDefault<Registro>(sentenciaSQL, new { UsuarioId = usuarioId, CompId = compId, FechaIniSes = fechaIniSes.ToString() });
+            }
+        }
+
         public bool Eliminar(Registro obj)
         {
             using (var bd = bdConexion())
             {
-                string sentenciaSQL = "DELETE FROM public.registros WHERE registros_id = @RegistrosId";
+                string sentenciaSQL = "DELETE FROM public.registros WHERE registro_id = @RegistroId";
                 int result = bd.Execute(sentenciaSQL, new
                 {
                     obj.RegistroId
@@ -86,19 +106,19 @@ namespace Monitor_de_salas_de_computo.Modelo
         {
             using (var bd = bdConexion())
             {
-                string sentenciaSQL = "INSERT INTO public.computadoras " +
+                string sentenciaSQL = "INSERT INTO public.registros (" +
                     " usuario_id " +
                     ", comp_id " +
                     ", registro_fecha_inicio " +
                     ", registro_duracion_tiempo " +
-                    ", registro_tipo_desconexion " +
-                    " VALUES (@UsuarioId,@CompId,@FechInicio,@DuracionTiempo,@TipoDesconexion)";
+                    ", registro_tipo_desconexion) " +
+                    " VALUES (@UsuarioId,@CompId,@FechaInicio,@DuracionTiempo,@TipoDesconexion)";
 
                 int result = bd.Execute(sentenciaSQL, new
                 {
                     obj.UsuarioId,
                     obj.CompId,
-                    obj.FechaIncio,
+                    obj.FechaInicio,
                     obj.DuracionTiempo,
                     obj.TipoDesconexion
                 });
