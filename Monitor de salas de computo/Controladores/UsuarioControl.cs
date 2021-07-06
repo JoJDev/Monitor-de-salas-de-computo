@@ -26,7 +26,7 @@ namespace Monitor_de_salas_de_computo.Controladores
                 SalaORM salaORM = new SalaORM();
                 sala = salaORM.Detalle(comp.SalaId);
             }
-            fechaInicioSesion =  DateTime.Now;
+            fechaInicioSesion = DateTime.Now;           
             duracionSesion = new TimeSpan(0);
 
             CrearRegistro();
@@ -40,7 +40,8 @@ namespace Monitor_de_salas_de_computo.Controladores
             registroORM.Insertar(registro);
             try
             {
-                registro.RegistroId = registroORM.RegresarRegistro(usu.UsuarioId, comp.CompId, fechaInicioSesion.).RegistroId;
+                registro.RegistroId = registroORM.RegresarIdRegistro(registro);
+                
             }
             catch (Exception ex)
             {
@@ -53,7 +54,7 @@ namespace Monitor_de_salas_de_computo.Controladores
         public void CerrarSesion()
         {
             registro.TipoDesconexion = ((int)Registro.Desconecciones.DesconexionNormal).ToString();
-            registro.DuracionTiempo.AddSeconds(duracionSesion.Seconds);
+            registro.DuracionTiempo = registro.DuracionTiempo.AddSeconds(duracionSesion.Seconds);
             try
             {
                 RegistroORM regORM = new RegistroORM();
