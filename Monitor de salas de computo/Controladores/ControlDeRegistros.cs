@@ -18,6 +18,7 @@ namespace Monitor_de_salas_de_computo.Controladores
 
         public ControlDeRegistros(Modelo.Usuario usu, Computadora comp)
         {
+            fechaInicioSesion = DateTime.Now;
             CrearRegistro(usu, comp);
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -45,7 +46,7 @@ namespace Monitor_de_salas_de_computo.Controladores
         void timer_Tick(object sender, EventArgs e)
         {
             duracionSesion += TimeSpan.FromSeconds(1.0);
-            string tiempoDeDuracionSesion = duracionSesion.ToString("HH:mm:ss");
+            //string tiempoDeDuracionSesion = duracionSesion.ToString("HH:mm:ss");
 
             if ((duracionSesion.Minutes % 5 == 0) && (duracionSesion.Seconds == 0))
             {

@@ -47,8 +47,8 @@ namespace Monitor_de_salas_de_computo
             lab_submascara.Content = controlador.comp.Submascara;
             lab_gateway.Content = "TODO: corregir este campo inexistente (crearlo)";
 
-            lab_fechaInicioSesion.Content = controlador.fechaInicioSesion;
-            lab_duracionSesion.Content = controlador.duracionSesion;
+            lab_fechaInicioSesion.Content = DateTime.Now.ToString("yyyy/MM/dd    HH:mm:ss");
+            lab_duracionSesion.Content = "00:00:00";
             timer.Start();
         }
         void timer_Tick(object sender, EventArgs e)

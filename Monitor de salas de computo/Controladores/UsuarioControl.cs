@@ -70,7 +70,7 @@ namespace Monitor_de_salas_de_computo.Controladores
 
         public void Reloj(Label lab)
         {
-            lab.Content = elRegistro.duracionSesion.ToString("HH : mm : ss");
+            lab.Content = elRegistro.duracionSesion.ToString();
         }
 
     }

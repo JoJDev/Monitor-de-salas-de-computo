@@ -30,7 +30,7 @@ namespace Monitor_de_salas_de_computo.Controladores
                 {
                     case "0":
                         Administrador windowAdm = new Administrador();
-                        windowAdm.PrepararVentana(usuario, computadora, own);
+                       // windowAdm.PrepararVentana(usuario, computadora, own);
 
                         windowAdm.Show();
                         own.Close();
@@ -38,7 +38,7 @@ namespace Monitor_de_salas_de_computo.Controladores
 
                     case "1":
                         Ayudante windowAyudante = new Ayudante();
-                        windowAyudante.PrepararVentana(usuario, computadora, own);
+                      // windowAyudante.PrepararVentana(usuario, computadora, own);
 
                         windowAyudante.Show();
                         own.Close();
