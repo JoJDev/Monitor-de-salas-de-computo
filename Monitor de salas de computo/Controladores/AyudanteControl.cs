@@ -1,18 +1,18 @@
-﻿using System;
+﻿using Monitor_de_salas_de_computo.Modelo;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
-using Monitor_de_salas_de_computo.Modelo;
 
 namespace Monitor_de_salas_de_computo.Controladores
 {
-    class AdministradorControl
+    class AyudanteControl
     {
         public Modelo.Usuario Usu { get; set; }
         public Computadora Comp { get; set; }
-        //public Sala sala { get; set; }
-       // public DateTime fechaInicioSesion { get; set; }
-//        public TimeSpan duracionSesion { get; set; }
+
+        private ControlDeRegistros registrador;
+
 
         IEnumerable<Registro> _registros;
         IEnumerable<Modelo.Usuario> _usuarios;
@@ -21,12 +21,11 @@ namespace Monitor_de_salas_de_computo.Controladores
         IEnumerable<Configuraciones> _configuraciones;
         public IEnumerable<Registro> Registros { get => _registros; }
         public IEnumerable<Modelo.Usuario> Usuarios { get => _usuarios; }
-        public IEnumerable<Computadora> Computadoras { get => _computadoras;  }
-        public IEnumerable<Sala> Salas { get => _salas;}
-        public IEnumerable<Configuraciones> Configuraciones { get => _configuraciones;}
+        public IEnumerable<Computadora> Computadoras { get => _computadoras; }
+        public IEnumerable<Sala> Salas { get => _salas; }
+        public IEnumerable<Configuraciones> Configuraciones { get => _configuraciones; }
 
-        private ControlDeRegistros registrador;
-       
+
         public void PrepararVentana(Modelo.Usuario usuario, Computadora computadora, Window own)
         {
             Usu = usuario;
@@ -37,7 +36,7 @@ namespace Monitor_de_salas_de_computo.Controladores
             _registros = new RegistroORM().GetAll();
             _usuarios = new UsuarioORM().GetAll();
             _computadoras = new ComputadoraORM().GetAll();
-            _salas = new SalaORM().GetAll();            
+            _salas = new SalaORM().GetAll();
             _configuraciones = new ConfiguracionesORM().GetAll();
         }
 
@@ -54,5 +53,6 @@ namespace Monitor_de_salas_de_computo.Controladores
         {
             registrador.CerrarSesion();
         }
+
     }
 }
