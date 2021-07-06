@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
+using Monitor_de_salas_de_computo.Controladores;
 
 namespace Monitor_de_salas_de_computo
 {
@@ -20,17 +21,18 @@ namespace Monitor_de_salas_de_computo
     /// </summary>
     public partial class Administrador : Window
     {
-        IEnumerable<Registro> _registros;
+        /*IEnumerable<Registro> _registros;
         IEnumerable<Modelo.Usuario> _usuarios;
         IEnumerable<Computadora> _computadoras;
         IEnumerable<Sala> _salas;
-        IEnumerable<Configuraciones> _configuraciones;
+        IEnumerable<Configuraciones> _configuraciones;*/
+        AdministradorControl controlador;
 
         public Administrador()
         {
             InitializeComponent();
 
-            _registros = new RegistroORM().GetAll();
+            /*_registros = new RegistroORM().GetAll();
             dg_Registros.DataContext = _registros;
             _usuarios = new UsuarioORM().GetAll();
             dg_Usuarios.DataContext = _usuarios;
@@ -38,18 +40,29 @@ namespace Monitor_de_salas_de_computo
             dg_Computadoras.DataContext = _computadoras;
             _salas = new SalaORM().GetAll();
             dg_Salas.DataContext = _salas;
-            _configuraciones = new ConfiguracionesORM().GetAll();
+            _configuraciones = new ConfiguracionesORM().GetAll();*/
 
         }
 
-        private void ActualizarRegistros()
+        public void PreparaVentana(Modelo.Usuario usuario, Computadora computadora, Window own)
+        {
+            controlador.PrepararVentana(usuario, computadora, this);
+          
+            dg_Registros.DataContext = controlador.Registros;           
+            dg_Usuarios.DataContext = controlador.Usuarios;      
+            dg_Computadoras.DataContext = controlador.Computadoras;
+            dg_Salas.DataContext = controlador.Salas;
+            
+        }
+
+        /*private void ActualizarRegistros()
         {
             _registros = new RegistroORM().GetAll();
             _usuarios = new UsuarioORM().GetAll();
             _configuraciones = new ConfiguracionesORM().GetAll();
             _salas = new SalaORM().GetAll();
             _computadoras = new ComputadoraORM().GetAll();
-        }
+        }*/
 
        /* bool BuscarUsuario(Object obj)
         {
@@ -67,17 +80,19 @@ namespace Monitor_de_salas_de_computo
 
         private void ButtonActualizar_Click(object sender, RoutedEventArgs e)
         {
-            this.ActualizarRegistros();
+            controlador.ActualizarRegistros();
         }
 
         private void ButtonCerrar_Click(object sender, RoutedEventArgs e)
         {
+            controlador.RegistrarCerrarSesion();
             MainWindow iniSesion = new MainWindow();
             iniSesion.Show();
             this.Close();
         }
         private void ButtonSalir_Click(object sender, RoutedEventArgs e)
         {
+            controlador.RegistrarCerrarSesion();
             this.Close();
         }
 
@@ -113,7 +128,7 @@ namespace Monitor_de_salas_de_computo
             UsuarioORM nuevoUsuario = new UsuarioORM();
             nuevoUsuario.Insertar(new Modelo.Usuario(2,"Maria","Mendez", "MArtinez", "MarAdmin", "MarAdmin", "1478522","email@gmail.com"
                 ,"0","ICO", new DateTime(2016,03,04), new DateTime(2000,10,14)));
-            ActualizarRegistros();
+            controlador.ActualizarRegistros();
         }
 
         private void tb_BuscarUsuarios_TextChanged(object sender, TextChangedEventArgs e)
