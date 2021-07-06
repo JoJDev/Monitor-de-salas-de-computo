@@ -55,13 +55,13 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Label Content="Nombre del PC: "  HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Left" Height="26" Width="96" FontSize="14"/>
+                    <Label Content="Nombre del PC: "  HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Left" Height="26" FontSize="14"/>
                     <Label x:Name="lab_nombrePC" Content="Comp1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" FontSize="14"/>
-                    <Label Content="Direccion IP: " Grid.Row="1"  HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Width="78" FontSize="14"/>
+                    <Label Content="Direccion IP: " Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" FontSize="14"/>
                     <Label x:Name="lab_ip" Content="192.168.1.2" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" FontSize="14"/>
-                    <Label Content="Submascara de red: " Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Width="118" FontSize="14" />
+                    <Label Content="Submascara de red: " Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" FontSize="14" />
                     <Label x:Name="lab_submascara" Content="255.255.255.0" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" FontSize="14"/>
-                    <Label Content="Gateway: " Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Height="26" Width="62"  FontSize="14"/>
+                    <Label Content="Gateway: " Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26"  FontSize="14"/>
                     <Label x:Name="lab_gateway" Content="192.168.1.200" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" FontSize="14"/>
                 </Grid>
                 <Grid HorizontalAlignment="Stretch" Grid.Column="1" >

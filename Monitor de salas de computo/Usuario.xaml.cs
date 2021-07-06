@@ -25,16 +25,18 @@ namespace Monitor_de_salas_de_computo
         public Usuario()
         {
             InitializeComponent();
+            
             controlador = new UsuarioControl();
+            
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
-            
         }
 
         public void PrepararVentana(Modelo.Usuario usu, Computadora comp, Window own)
         {
             controlador.PrepararVentana(usu, comp, own);
+            
             lab_usuario.Content = "Usuario: " + controlador.usu.Nombre + " "
                 + controlador.usu.ApePaterno.Substring(0, 1)
                 + controlador.usu.ApeMaterno.Substring(0, 1);
@@ -45,10 +47,11 @@ namespace Monitor_de_salas_de_computo
             lab_nombrePC.Content = controlador.comp.Nombre;
             lab_ip.Content = controlador.comp.Ip;
             lab_submascara.Content = controlador.comp.Submascara;
-            lab_gateway.Content = "TODO: corregir este campo inexistente (crearlo)";
+            lab_gateway.Content = controlador.sala.Gateway;
 
             lab_fechaInicioSesion.Content = DateTime.Now.ToString("yyyy/MM/dd    HH:mm:ss");
             lab_duracionSesion.Content = "00:00:00";
+            
             timer.Start();
         }
         void timer_Tick(object sender, EventArgs e)
@@ -64,12 +67,11 @@ namespace Monitor_de_salas_de_computo
 
         private void ButtonCerrar_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow iniSesion = new MainWindow();
             controlador.CerrarSesion();
+            
+            MainWindow iniSesion = new MainWindow();
             iniSesion.Show();
             Close();
         }
-
-
     }
 }

@@ -19,12 +19,12 @@ CREATE TABLE usuarios (
 CREATE TABLE salas (
   sala_id SERIAL PRIMARY KEY NOT NULL,
   sala_nombre VARCHAR(20) NOT NULL,
-  sala_plantel VARCHAR(30) NULL,
+  sala_plantel VARCHAR(30) NOT NULL,
   sala_ip_inicial VARCHAR(16) NULL,
   sala_ip_final VARCHAR(16) NULL,
   sala_gateway VARCHAR(16) NOT NULL,
-  sala_servidor VARCHAR(16), 
-  sala_encargado VARCHAR(40),
+  sala_servidor VARCHAR(16) NOT NULL, 
+  sala_encargado VARCHAR(40) NOT NULL,
   sala_telefono VARCHAR(16)
   );
 
@@ -32,9 +32,9 @@ CREATE TABLE computadoras (
   comp_id SERIAL PRIMARY KEY NOT NULL,
   sala_id SMALLINT REFERENCES salas(sala_id), 
   comp_nombre VARCHAR(25) NOT NULL,
-  comp_ip VARCHAR(15) NULL,
+  comp_ip VARCHAR(15) NOT NULL,
   comp_submascara VARCHAR(15) NULL,
-  comp_fecha_adquisicion TIMESTAMP  NOT NULL
+  comp_fecha_adquisicion TIMESTAMP NULL
   );
 
 CREATE TABLE registros (

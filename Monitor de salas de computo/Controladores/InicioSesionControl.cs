@@ -20,6 +20,7 @@ namespace Monitor_de_salas_de_computo.Controladores
 
             if (computadora == null)
             {
+                // TO DO: crear un registro general de operaciones
                 MessageBox.Show(own,"Error al encontrar los datos de la compu");
             }
             
