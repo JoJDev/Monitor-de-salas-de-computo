@@ -72,7 +72,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Label Content="Fecha de inicio de sesión" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="0"/>
-                    <Label x:Name="lab_fechaInicioSesion" Content="27/03/2019  10:10:10" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1"/>
+                    <Label x:Name="lab_fechaInicioSesion" Content="27/03/2019  10:10:10" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1"/>
                     <Label Content="Duración de la sesión" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="2"/>
                     <Label x:Name="lab_duracionSesion" Content="00 : 00 : 50" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="2"/>
                 </Grid>

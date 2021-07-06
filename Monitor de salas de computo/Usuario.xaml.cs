@@ -42,7 +42,7 @@ namespace Monitor_de_salas_de_computo
                 + controlador.usu.ApeMaterno.Substring(0, 1);
             lab_plantel.Content = "Plantel: " + controlador.sala.Nombre;
             lab_carrera.Content = "Carrera: " + controlador.usu.Carrera;
-            lab_Semstre.Content = "Semestre: " + controlador.usu.FechaInicio.Date;
+            lab_Semstre.Content = "Semestre: " + controlador.CalcularSemestre(usu.FechaInicio);
 
             lab_nombrePC.Content = controlador.comp.Nombre;
             lab_ip.Content = controlador.comp.Ip;
