@@ -12,9 +12,8 @@ namespace Monitor_de_salas_de_computo.Controladores
         public Modelo.Usuario usu { get; set; }
         public Computadora comp { get; set; }
         public Sala sala { get; set; }
-        public DateTime fechaInicioSesion { get; set; }
-        public TimeSpan duracionSesion { get; set; }
-        Registro registro;
+
+        ControlDeRegistros elRegistro;
 
         public void PrepararVentana(Modelo.Usuario usuario, Computadora computadora, Window own)
         {
@@ -26,13 +25,14 @@ namespace Monitor_de_salas_de_computo.Controladores
                 SalaORM salaORM = new SalaORM();
                 sala = salaORM.Detalle(comp.SalaId);
             }
-            fechaInicioSesion = DateTime.Now;           
-            duracionSesion = new TimeSpan(0);
+            /*fechaInicioSesion = DateTime.Now;           
+            duracionSesion = new TimeSpan(0);*/
 
-            CrearRegistro();
+            elRegistro = new ControlDeRegistros(usu, comp);
+
         }
 
-        private void CrearRegistro()
+        /*private void CrearRegistro()
         {
             registro = new Registro(1, usu.UsuarioId, comp.CompId, fechaInicioSesion, new DateTime(0), ((int)Registro.Desconecciones.Conectado).ToString());
             RegistroORM registroORM = new RegistroORM();
@@ -49,11 +49,13 @@ namespace Monitor_de_salas_de_computo.Controladores
             }
 
             //return registro;
-        }
+        }*/
 
         public void CerrarSesion()
         {
-            registro.TipoDesconexion = ((int)Registro.Desconecciones.DesconexionNormal).ToString();
+            elRegistro.CerrarSesion();
+            
+            /*registro.TipoDesconexion = ((int)Registro.Desconecciones.DesconexionNormal).ToString();
             registro.DuracionTiempo = registro.DuracionTiempo.AddSeconds(duracionSesion.Seconds);
             try
             {
@@ -63,19 +65,12 @@ namespace Monitor_de_salas_de_computo.Controladores
             catch (Exception e)
             {
                 MessageBox.Show("Error: No se pudo registrar correctamente la desconexion del usuario");
-            }
+            }*/
         }
 
         public void Reloj(Label lab)
         {
-            duracionSesion += TimeSpan.FromSeconds(1.0);
-            lab.Content = duracionSesion;
-
-            if ((duracionSesion.Minutes % 5 == 0) && (duracionSesion.Seconds == 0))
-            {
-                RegistroORM regORM = new RegistroORM();
-                regORM.Actualizar(registro);
-            }
+            lab.Content = elRegistro.duracionSesion.ToString("HH : mm : ss");
         }
 
     }

@@ -22,26 +22,30 @@ namespace Monitor_de_salas_de_computo.Controladores
             {
                 MessageBox.Show(own,"Error al encontrar los datos de la compu");
             }
+            
+            // seccion para acceder a la ventana correspondiente
             if (usuario != null)
             {
                 switch (usuario.Tipo)
                 {
                     case "0":
-
                         Administrador windowAdm = new Administrador();
+                        windowAdm.PrepararVentana(usuario, computadora, own);
 
-                        AdministradorControl.PrepararVentana(usuario, own);
                         windowAdm.Show();
-
                         own.Close();
                         break;
 
                     case "1":
+                        Ayudante windowAyudante = new Ayudante();
+                        windowAyudante.PrepararVentana(usuario, computadora, own);
+
+                        windowAyudante.Show();
+                        own.Close();
                         break;
 
                     case "2":
                         Usuario windowUsuario = new Usuario();
-
                         windowUsuario.PrepararVentana(usuario, computadora, own);
 
                         windowUsuario.Show();
@@ -54,10 +58,8 @@ namespace Monitor_de_salas_de_computo.Controladores
             }
             else
             {
-                MessageBox.Show("usuario esta no encontrado");
+                MessageBox.Show("usuario o contraseña incorrectos");
             }
-
-
         }
         private static Modelo.Usuario ObtenerUsuario(string usu, string pass)
         {
@@ -77,28 +79,10 @@ namespace Monitor_de_salas_de_computo.Controladores
                 
             }
         }
-        /*Computadora ObtenerComputadoras(string ip, string nombreHost)
-        {
-            try
-            {
-                ComputadoraORM compORM = new ComputadoraORM();
-                Computadora obtCompu = compORM.Buscar(ip, nombreHost);
-                if (obtCompu == null)
-                {
-                    throw Exception;
-                }
-                return obtCompu;
-            }
-            catch (Exception)
-            {
-                throw Exception;
 
-            }
-        }*/
-
+        // TO DO: optimizar la verificacion de la compu
         private static Computadora VerificarComputadora()
         {
-            string strIp = "";
             string strHostName = string.Empty;
             // Getting Ip address of local machine…
             // First get the host name of local machine.

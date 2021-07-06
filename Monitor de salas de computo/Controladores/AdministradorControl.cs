@@ -8,8 +8,13 @@ namespace Monitor_de_salas_de_computo.Controladores
 {
     class AdministradorControl
     {
-
-        public static void PrepararVentana(Modelo.Usuario usuario, Window own)
+        public Modelo.Usuario usu { get; set; }
+        public Computadora comp { get; set; }
+        public Sala sala { get; set; }
+        public DateTime fechaInicioSesion { get; set; }
+        public TimeSpan duracionSesion { get; set; }
+        Registro registro;
+        public void PrepararVentana(Modelo.Usuario usuario,Computadora computadora, Window own)
         {
 
         }
