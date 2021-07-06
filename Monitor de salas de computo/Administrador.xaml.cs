@@ -31,7 +31,7 @@ namespace Monitor_de_salas_de_computo
         public Administrador()
         {
             InitializeComponent();
-
+            controlador = new AdministradorControl();
             /*_registros = new RegistroORM().GetAll();
             dg_Registros.DataContext = _registros;
             _usuarios = new UsuarioORM().GetAll();
@@ -44,7 +44,7 @@ namespace Monitor_de_salas_de_computo
 
         }
 
-        public void PreparaVentana(Modelo.Usuario usuario, Computadora computadora, Window own)
+        public void PrepararVentana(Modelo.Usuario usuario, Computadora computadora, Window own)
         {
             controlador.PrepararVentana(usuario, computadora, this);
           
@@ -55,32 +55,32 @@ namespace Monitor_de_salas_de_computo
             
         }
 
-        /*private void ActualizarRegistros()
+        private void ActualizarDatos()
         {
-            _registros = new RegistroORM().GetAll();
-            _usuarios = new UsuarioORM().GetAll();
-            _configuraciones = new ConfiguracionesORM().GetAll();
-            _salas = new SalaORM().GetAll();
-            _computadoras = new ComputadoraORM().GetAll();
-        }*/
+            controlador.ActualizarRegistros();
+            dg_Registros.DataContext = controlador.Registros;           
+            dg_Usuarios.DataContext = controlador.Usuarios;      
+            dg_Computadoras.DataContext = controlador.Computadoras;
+            dg_Salas.DataContext = controlador.Salas;
+        }
 
-       /* bool BuscarUsuario(Object obj)
-        {
-            
-            switch (tb_BuscarComp.Text)
-            {
-                case obj.ToString():
-                    break;
-                default:
-                    break;
+        /* bool BuscarUsuario(Object obj)
+         {
 
-            }
-            return false;//if obj.
-        }*/
+             switch (tb_BuscarComp.Text)
+             {
+                 case obj.ToString():
+                     break;
+                 default:
+                     break;
+
+             }
+             return false;//if obj.
+         }*/
 
         private void ButtonActualizar_Click(object sender, RoutedEventArgs e)
         {
-            controlador.ActualizarRegistros();
+            ActualizarDatos();
         }
 
         private void ButtonCerrar_Click(object sender, RoutedEventArgs e)
@@ -126,7 +126,7 @@ namespace Monitor_de_salas_de_computo
         private void bt_CrearUsuario_Click(object sender, RoutedEventArgs e)
         {
             UsuarioORM nuevoUsuario = new UsuarioORM();
-            nuevoUsuario.Insertar(new Modelo.Usuario(2,"Maria","Mendez", "MArtinez", "MarAdmin", "MarAdmin", "1478522","email@gmail.com"
+            nuevoUsuario.Insertar(new Modelo.Usuario(2,"Maria","Mendez", "Martinez", "MarAdmin", "MarAdmin", "1478522","email@gmail.com"
                 ,"0","ICO", new DateTime(2016,03,04), new DateTime(2000,10,14)));
             controlador.ActualizarRegistros();
         }
@@ -151,7 +151,7 @@ namespace Monitor_de_salas_de_computo
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             var compORM = new ComputadoraORM();
-            //compORM.Eliminar(_computadoras[]);
+            //compORM.Eliminar(_computadoras]);
 
             //dg_Usuarios.ItemsSource = dg_Usuarios.Items.Filter(new Predicate<ItemsControl> (usu => usutb_BuscarUsuarios.Text));
             //dg_Usuarios.fil
@@ -160,15 +160,17 @@ namespace Monitor_de_salas_de_computo
         private void dg_Registros_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             MessageBox.Show($"{e.Row.GetIndex()} es el id de objeto actualizado\n" +
-                $"{""}");
-            var regORM = new RegistroORM();
-            regORM.Actualizar(_registros.ElementAt(e.Row.GetIndex()));
-            MessageBox.Show($"{_registros.ElementAt(e.Row.GetIndex())} es el id de objeto actualizado");
+                $"{e.ToString()}");
+
+            //var items = e.Row.Item.ToString();
+           /* var regORM = new RegistroORM();
+            regORM.Actualizar(new Registro(sender.)); //_registros.ElementAt(e.Row.GetIndex()));
+            MessageBox.Show($"{_registros.ElementAt(e.Row.GetIndex())} es el id de objeto actualizado");*/
         }
 
         private void dg_Usuarios_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            var usuORM = new UsuarioORM();
+            /*var usuORM = new UsuarioORM();
             int fila = e.Row.GetIndex();
             Modelo.Usuario usu = _usuarios.ElementAt(e.Row.GetIndex());
             dg_Usuarios.Items.IndexOf(fila);//Header = e.Column.GetCellContent;
@@ -176,7 +178,7 @@ namespace Monitor_de_salas_de_computo
                 $"{_usuarios.ElementAt(e.Row.GetIndex()).UsuarioId} es su id\n" +
                 $"{_usuarios.ElementAt(e.Row.GetIndex()).ApeMaterno} es su toString");
             usuORM.Actualizar(_usuarios.ElementAt(e.Row.GetIndex()));
-            
+            */
 
         }
     }

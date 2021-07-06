@@ -26,6 +26,7 @@ namespace Monitor_de_salas_de_computo.Controladores
         public IEnumerable<Configuraciones> Configuraciones { get => _configuraciones;}
 
         ControlDeRegistros registrador;
+       
         public void PrepararVentana(Modelo.Usuario usuario, Computadora computadora, Window own)
         {
             usu = usuario;

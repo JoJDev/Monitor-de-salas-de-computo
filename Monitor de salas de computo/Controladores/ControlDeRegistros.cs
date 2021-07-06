@@ -28,7 +28,7 @@ namespace Monitor_de_salas_de_computo.Controladores
 
         void CrearRegistro(Modelo.Usuario usu, Computadora comp)
         {
-            registro = new Registro(1, usu.UsuarioId, comp.CompId, fechaInicioSesion, new DateTime(0), ((int)Registro.Desconecciones.Conectado).ToString());
+            registro = new Registro(1, usu.UsuarioId, comp.CompId, fechaInicioSesion, new TimeSpan(0), ((int)Registro.Desconecciones.Conectado).ToString());
             RegistroORM registroORM = new RegistroORM();
 
             registroORM.Insertar(registro);
@@ -58,7 +58,7 @@ namespace Monitor_de_salas_de_computo.Controladores
         public void CerrarSesion()
         {
             registro.TipoDesconexion = ((int)Registro.Desconecciones.DesconexionNormal).ToString();
-            registro.DuracionTiempo = registro.DuracionTiempo.AddSeconds(duracionSesion.Seconds);
+            registro.DuracionTiempo = registro.DuracionTiempo + duracionSesion;
             try
             {
                 RegistroORM regORM = new RegistroORM();

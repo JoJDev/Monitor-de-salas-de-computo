@@ -10,7 +10,7 @@ namespace Monitor_de_salas_de_computo.Modelo
         public int UsuarioId { get; set; }
         public int CompId { get; set; }
         public DateTime FechaInicio { get; set; }
-        public DateTime DuracionTiempo { get; set; }
+        public TimeSpan DuracionTiempo { get; set; }
         public string TipoDesconexion { get; set; }
 
 
@@ -29,7 +29,7 @@ namespace Monitor_de_salas_de_computo.Modelo
             DesconexionAdministrada
         }
 
-        public Registro(int id, int idUsuario, int idCompu, DateTime fechaIncio, DateTime duracionTiempo, string tipoDesconexion)
+        public Registro(int id, int idUsuario, int idCompu, DateTime fechaIncio, TimeSpan duracionTiempo, string tipoDesconexion)
         {
             RegistroId = id;
             UsuarioId = idUsuario;
