@@ -11,7 +11,7 @@
         <Button Content="Actualizar registros" Margin="0,20,300,0" VerticalAlignment="Top" Click="ButtonActualizar_Click" Height="30" HorizontalAlignment="Right" Width="120"/>
         <Button Content="Cerrar sesión" Margin="0,20,180,0" VerticalAlignment="Top" Click="ButtonCerrar_Click" Height="30"  HorizontalAlignment="Right" Width="100"/>
         <Button Content="Cerrar sesión y apagar" Margin="0,20,20,0" VerticalAlignment="Top" Click="ButtonSalir_Click" Height="30" HorizontalAlignment="Right" Width="140"/>
-        
+
         <TabControl Margin="20,60,20,20" Grid.Row="1" BorderThickness="1" BorderBrush="Black">
             <TabItem Header="PC's activas" GotFocus="TabItem_GotFocus">
                 <Grid Background="#FFE5E5E5">
@@ -34,8 +34,9 @@
                             <DataGridTextColumn Header="Fecha de inicio" Binding="{Binding FechaInicio, Mode=TwoWay}"/>
                             <DataGridTextColumn Header="Duracion de sesion" Binding="{Binding DuracionTiempo, Mode=TwoWay}"/>
                             <DataGridTextColumn Header="Tipo de desconexion" Binding="{Binding TipoDesconexion, Mode=TwoWay}"/>
+                            <!--
                             <DataGridTemplateColumn Header="Edit">
-                                <DataGridTemplateColumn.CellTemplate >
+                                DataGridTemplateColumn.CellTemplate >
                                     <DataTemplate>
                                         <Button Content="Edit" Click="Edit_Click" CommandParameter="{Binding RegId}"></Button>
                                     </DataTemplate>
@@ -48,6 +49,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
+                            -->
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -58,22 +60,21 @@
                     <TextBox x:Name="tb_BuscarUsuarios" TextChanged="tb_BuscarUsuarios_TextChanged" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
                     <Button Content="Buscar" Width="60" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="280, 20" />
                     <Button x:Name="bt_CrearUsuario" Click="bt_CrearUsuario_Click" Content="Crear nuevo usuario" Width="140" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,15" />
-                    <DataGrid x:Name="dg_Usuarios" Margin="0,60,0,0" ItemsSource="{Binding}" AutoGenerateColumns="True" CellEditEnding="dg_Usuarios_CellEditEnding" >
-                        <!--
+                    <DataGrid x:Name="dg_Usuarios" Margin="0,60,0,0" ItemsSource="{Binding}" AutoGenerateColumns="False" CellEditEnding="dg_Usuarios_CellEditEnding" >
                         <DataGrid.Columns >
-                            <DataGridTextColumn Header="id"/>
-                            <DataGridTextColumn Header="Nombre" />
-                            <DataGridTextColumn Header="Ape Materno" />
-                            <DataGridTextColumn Header="Ape Paterno" />
-                            <DataGridTextColumn Header="Nickname"/>
-                            <DataGridTextColumn Header="Contraseña"/>
-                            <DataGridTextColumn Header="Email" />
-                            <DataGridTextColumn Header="Tipo" />
-                            <DataGridTextColumn Header="Num de cuenta" />
-                            <DataGridTextColumn Header="Carrera" />
-                            <DataGridTextColumn Header="Semestre" />
-                            <DataGridTextColumn Header="Fecha de nacimiento" />
-                        </DataGrid.Columns>-->
+                            <DataGridTextColumn Header="Id" IsReadOnly="True" Binding="{Binding UsuarioId, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Ape Paterno" Binding="{Binding ApePaterno, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Ape Materno" Binding="{Binding ApeMaterno, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Nickname" Binding="{Binding Nickname, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Contraseña" Binding="{Binding Contrasena, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Tipo" Binding="{Binding Tipo, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Num de cuenta" Binding="{Binding NumCuenta, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Carrera" Binding="{Binding Carrera, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Fecha de inicio" Binding="{Binding FechaInicio, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Fecha de nacimiento" Binding="{Binding FechaNacimiento, Mode=TwoWay}"/>
+                        </DataGrid.Columns> 
                     </DataGrid>
                 </Grid>
             </TabItem>
@@ -83,8 +84,15 @@
                     <TextBox x:Name="tb_BuscarComp" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
                     <Button Content="Buscar" Width="60" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="280, 20" />
                     <Button x:Name="bt_CrearComp" Content="Crear nueva Computadora" Width="auto" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,15" Click="bt_CrearComp_Click" />
-                    <DataGrid x:Name="dg_Computadoras" Margin="0,60,0,0" ItemsSource="{Binding}" AutoGenerateColumns="True" ColumnWidth="*">
+                    <DataGrid x:Name="dg_Computadoras" Margin="0,60,0,0" ItemsSource="{Binding}" AutoGenerateColumns="False" ColumnWidth="*">
                         <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" IsReadOnly="True" Binding="{Binding ComputadoraId, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Id Sala" Binding="{Binding SalaId, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Dirección Ip" Binding="{Binding Ip, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Submascara" Binding="{Binding Submascara, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Fecha de Adquisición" Binding="{Binding FechaAdqui, Mode=TwoWay}"/>
+                            <!--
                             <DataGridTemplateColumn Header="Edit">
                                 <DataGridTemplateColumn.CellTemplate >
                                     <DataTemplate>
@@ -99,7 +107,8 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                        </DataGrid.Columns>    
+                            -->
+                        </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </TabItem>
@@ -109,7 +118,19 @@
                     <TextBox x:Name="tb_BuscarSalas" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
                     <Button Content="Buscar" Width="60" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="280, 20" />
                     <Button x:Name="bt_CrearSalas" Content="Crear nueva sala" Width="140" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,15" />
-                    <DataGrid x:Name="dg_Salas" Margin="0,60,0,0" ItemsSource="{Binding}" AutoGenerateColumns="True"/>
+                    <DataGrid x:Name="dg_Salas" Margin="0,60,0,0" ItemsSource="{Binding}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" IsReadOnly="True" Binding="{Binding SalaId, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Plantel" Binding="{Binding Plantel, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Ip Inicial" Binding="{Binding IpInicial, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Ip Final" Binding="{Binding IpFinal, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Gateway" Binding="{Binding Gateway, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Servidor" Binding="{Binding Servidor, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Encargado" Binding="{Binding Encargado, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Telefono" Binding="{Binding Telefono, Mode=TwoWay}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </TabItem>
             <TabItem Header="Configuraciones">

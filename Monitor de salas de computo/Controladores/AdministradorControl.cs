@@ -37,7 +37,7 @@ namespace Monitor_de_salas_de_computo.Controladores
             _registros = new RegistroORM().GetAll();
             _usuarios = new UsuarioORM().GetAll();
             _computadoras = new ComputadoraORM().GetAll();
-            _salas = new SalaORM().GetAll();            
+            _salas = new SalaORM().GetAll();
             _configuraciones = new ConfiguracionesORM().GetAll();
         }
 
