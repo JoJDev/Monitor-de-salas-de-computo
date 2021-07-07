@@ -160,7 +160,10 @@ namespace Monitor_de_salas_de_computo
         private void dg_Registros_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             MessageBox.Show($"{e.Row.GetIndex()} es el id de objeto actualizado\n" +
-                $"{e.ToString()}");
+                $" y la celda es : {controlador.Registros.ToArray()[e.Row.GetIndex()]}" +
+                $" columna: { e.Column.DisplayIndex}");
+            
+            //dg_Registros.Columns[0].GetCellContent(e.Row.GetIndex());
 
             //var items = e.Row.Item.ToString();
            /* var regORM = new RegistroORM();

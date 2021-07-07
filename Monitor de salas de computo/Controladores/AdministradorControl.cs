@@ -19,11 +19,11 @@ namespace Monitor_de_salas_de_computo.Controladores
         IEnumerable<Computadora> _computadoras;
         IEnumerable<Sala> _salas;
         IEnumerable<Configuraciones> _configuraciones;
-        public IEnumerable<Registro> Registros { get => _registros; }
-        public IEnumerable<Modelo.Usuario> Usuarios { get => _usuarios; }
-        public IEnumerable<Computadora> Computadoras { get => _computadoras;  }
-        public IEnumerable<Sala> Salas { get => _salas;}
-        public IEnumerable<Configuraciones> Configuraciones { get => _configuraciones;}
+        public IEnumerable<Registro> Registros { get => _registros; set => _registros = value; }
+        public IEnumerable<Modelo.Usuario> Usuarios { get => _usuarios; set => _usuarios = value; }
+        public IEnumerable<Computadora> Computadoras { get => _computadoras; set => _computadoras = value; }
+        public IEnumerable<Sala> Salas { get => _salas; set => _salas = value; }
+        public IEnumerable<Configuraciones> Configuraciones { get => _configuraciones; set => _configuraciones = value; }
 
         private ControlDeRegistros registrador;
        

@@ -95,6 +95,7 @@ namespace Monitor_de_salas_de_computo.Controladores
             IEnumerable<Computadora> compus = compORM.GetAll();
             for (int i = 0; i < hostIPs.Length; i++)
             {
+                if (hostIPs[i].IsIPv4MappedToIPv6) continue;
                 foreach(Computadora comp in compus)
                 {
                     if (comp.Ip.Equals(hostIPs[i].ToString())

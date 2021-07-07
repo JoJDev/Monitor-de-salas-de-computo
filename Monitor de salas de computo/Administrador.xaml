@@ -26,14 +26,14 @@
                     <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
                     <TextBox x:Name="tb_BuscarRegistros" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
                     <Button Content="Buscar" Width="60" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="280, 20" />
-                    <DataGrid x:Name="dg_Registros" Margin="0,60,0,0" SelectionMode="Single" ItemsSource="{Binding}" AutoGenerateColumns="False" CellEditEnding="dg_Registros_CellEditEnding">
+                    <DataGrid x:Name="dg_Registros" Margin="0,60,0,0" SelectionMode="Single" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserDeleteRows="True" CellEditEnding="dg_Registros_CellEditEnding">
                         <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="RegId" IsReadOnly="True" Header="Id" Binding="{Binding RegistroId}"/>
-                            <DataGridTextColumn Header="Usuario Id" Binding="{Binding UsuarioId}"/>
-                            <DataGridTextColumn Header="Compu Id" Binding="{Binding CompId}"/>
-                            <DataGridTextColumn Header="Fecha de inicio" Binding="{Binding FechaInicio}"/>
-                            <DataGridTextColumn Header="Duracion de sesion" Binding="{Binding DuracionTiempo}"/>
-                            <DataGridTextColumn Header="Tipo de desconexion" Binding="{Binding TipoDesconexion}"/>
+                            <DataGridTextColumn x:Name="RegId" IsReadOnly="True" Header="Id" Binding="{Binding RegistroId, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Usuario Id" Binding="{Binding UsuarioId, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Compu Id" Binding="{Binding CompId, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Fecha de inicio" Binding="{Binding FechaInicio, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Duracion de sesion" Binding="{Binding DuracionTiempo, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Tipo de desconexion" Binding="{Binding TipoDesconexion, Mode=TwoWay}"/>
                             <DataGridTemplateColumn Header="Edit">
                                 <DataGridTemplateColumn.CellTemplate >
                                     <DataTemplate>
