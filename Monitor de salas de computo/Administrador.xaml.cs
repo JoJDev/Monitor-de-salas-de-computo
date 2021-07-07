@@ -163,12 +163,6 @@ namespace Monitor_de_salas_de_computo
                 $" y la celda es : {controlador.Registros.ToArray()[e.Row.GetIndex()]}" +
                 $" columna: { e.Column.DisplayIndex}");
             
-            //dg_Registros.Columns[0].GetCellContent(e.Row.GetIndex());
-
-            //var items = e.Row.Item.ToString();
-           /* var regORM = new RegistroORM();
-            regORM.Actualizar(new Registro(sender.)); //_registros.ElementAt(e.Row.GetIndex()));
-            MessageBox.Show($"{_registros.ElementAt(e.Row.GetIndex())} es el id de objeto actualizado");*/
         }
 
         private void dg_Usuarios_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
