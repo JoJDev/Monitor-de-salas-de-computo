@@ -28,5 +28,75 @@
         public string Servidor { get; set; }
         public string Encargado { get; set; }
         public string Telefono { get; set; }
+
+        public object getPropiedadNum(int index)
+        {
+            switch (index)
+            {
+                case 0:
+                    return SalaId;
+
+                case 1:
+                    return Nombre;
+
+                case 2:
+                    return Plantel;
+
+                case 3:
+                    return IpInicial;
+
+                case 4:
+                    return IpFinal;
+
+                case 5:
+                    return Gateway;
+
+                case 6:
+                    return Servidor;
+
+                case 7:
+                    return Encargado;
+
+                case 8:
+                    return Telefono;
+
+                default:
+                    return null;
+            }
+        }
+
+        public void setPropiedadNum(int index, object valor)
+        {
+            switch (index)
+            {
+                case 0:
+                    SalaId = (int)valor;
+                    break;
+                case 1:
+                    Nombre = (string)valor;
+                    break;
+                case 2:
+                    Plantel = (string)valor;
+                    break;
+                case 3:
+                    IpInicial = (string)valor;
+                    break;
+                case 4:
+                    IpFinal = (string)valor;
+                    break;
+                case 5:
+                    Gateway = (string)valor;
+                    break;
+                case 6:
+                    Servidor = (string)valor;
+                    break;
+                case 7:
+                    Encargado = (string)valor;
+                    break;
+                case 8:
+                    Telefono = (string)valor;
+                    break;
+            }
+        }
     }
 }

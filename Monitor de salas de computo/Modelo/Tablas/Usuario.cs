@@ -49,27 +49,93 @@ namespace Monitor_de_salas_de_computo.Modelo
         public DateTime FechaInicio { get; set; }
         public DateTime FechaNacimiento { get; set; }
 
+        public object getPropiedadNum(int index)
+        {
+            switch (index)
+            {
+                case 0:
+                    return UsuarioId;
 
-        /* public DataTable GetTablaUsuario(int id = 0)
-         {
-             ConexionBD conn = new ConexionBD(w);
-             string query = "SELECT * FROM \"usuarios\"";
-             try
-             {
-                 NpgsqlCommand conector = new NpgsqlCommand(query, conn.conectar());
-                 NpgsqlDataAdapter datos = new NpgsqlDataAdapter(conector);
-                 DataTable table = new DataTable("tabla");
-                 datos.Fill(table);
-                 return table;
-             }catch(Exception ex)
-             {
-                 MessageBox.Show("Error al rellenar la tabla con los datos\n" + ex.Message);
-                 return null;
+                case 1:
+                    return Nombre;
 
-             }
-             return null;
-             //Id = from celda in table.AsEnumerable() select * ;
+                case 2:
+                    return ApePaterno;
 
-         }*/
+                case 3:
+                    return ApeMaterno;
+
+                case 4:
+                    return Nickname;
+
+                case 5:
+                    return Contrasena;
+
+                case 6:
+                    return NumCuenta;
+
+                case 7:
+                    return Email;
+
+                case 8:
+                    return Tipo;
+
+                case 9:
+                    return Carrera;
+
+                case 10:
+                    return FechaInicio;
+
+                case 11:
+                    return FechaNacimiento;
+
+                default:
+                    return null;
+            }
+        }
+
+        public void setPropiedadNum(int index, object valor)
+        {
+            switch (index)
+            {
+                case 0:
+                    UsuarioId = (int)valor;
+                    break;
+                case 1:
+                    Nombre = (string)valor;
+                    break;
+                case 2:
+                    ApePaterno = (string)valor;
+                    break;
+                case 3:
+                    ApeMaterno = (string)valor;
+                    break;
+                case 4:
+                    Nickname = (string)valor;
+                    break;
+                case 5:
+                    Contrasena = (string)valor;
+                    break;
+                case 6:
+                    NumCuenta = (string)valor;
+                    break;
+                case 7:
+                    Email = (string)valor;
+                    break;
+                case 8:
+                    Tipo = (string)valor;
+                    break;
+                case 9:
+                    Carrera = (string)valor;
+                    break;
+                case 10:
+                    FechaInicio = (DateTime)valor;
+                    break;
+                case 11:
+                    FechaNacimiento = (DateTime)valor;
+                    break;
+            }
+        }
+
     }
 }

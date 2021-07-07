@@ -24,5 +24,57 @@ namespace Monitor_de_salas_de_computo.Modelo
         public bool PermitirUSB { get; set; }
         public DateTime TiempoDeActalizacion { get; set; }
         public int NumRegistrosMostrados { get; set; }
+
+        public object getPropiedadNum(int index)
+        {
+            switch (index)
+            {
+                case 0:
+                    return ConfId;
+
+                case 1:
+                    return SalaId;
+
+                case 2:
+                    return TiempoEnEspera;
+
+                case 3:
+                    return PermitirUSB;
+
+                case 4:
+                    return TiempoDeActalizacion;
+
+                case 5:
+                    return NumRegistrosMostrados;
+
+                default:
+                    return null;
+            }
+        }
+
+        public void setPropiedadNum(int index, object valor)
+        {
+            switch (index)
+            {
+                case 0:
+                    ConfId = (int)valor;
+                    break;
+                case 1:
+                    SalaId = (int)valor;
+                    break;
+                case 2:
+                    TiempoEnEspera = (DateTime)valor;
+                    break;
+                case 3:
+                    PermitirUSB = (bool)valor;
+                    break;
+                case 4:
+                    TiempoDeActalizacion = (DateTime)valor;
+                    break;
+                case 5:
+                    NumRegistrosMostrados = (int)valor;
+                    break;
+            }
+        }
     }
 }
