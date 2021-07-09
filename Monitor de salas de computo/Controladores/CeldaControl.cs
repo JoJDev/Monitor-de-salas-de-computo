@@ -24,7 +24,7 @@ namespace Monitor_de_salas_de_computo.Controladores
             IdElemento = idElemento;
         }
 
-        public CeldaControl(Usuario datoOriginal, string operacion, int idElemento)
+        public CeldaControl(Modelo.Usuario datoOriginal, string operacion, int idElemento)
         {
             DatoOriginal = datoOriginal;
             Operacion = operacion;
