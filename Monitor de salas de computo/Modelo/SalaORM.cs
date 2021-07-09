@@ -20,8 +20,8 @@ namespace Monitor_de_salas_de_computo.Modelo
                     "sala_nombre = @Nombre, sala_plantel = @Plantel" +
                     ",sala_ip_inicial = @IpInicial, sala_ip_final = @IpFinal" +
                     ",sala_gateway = @Gateway, sala_servidor = @Servidor" +
-                    ",sala_encargado = @Encargado, sala_telefono = @Telefono" +
-                    "WHERE sala_id = @Id";
+                    ",sala_encargado = @Encargado, sala_telefono = @Telefono " +
+                    "WHERE sala_id = @SalaId";
 
                 int result = bd.Execute(sentenciaSQL, new
                 {

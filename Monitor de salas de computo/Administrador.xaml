@@ -13,7 +13,7 @@
         <Button Content="Cerrar sesión y apagar" Margin="0,20,20,0" VerticalAlignment="Top" Click="ButtonSalir_Click" Height="30" HorizontalAlignment="Right" Width="140"/>
 
         <TabControl Margin="20,60,20,20" Grid.Row="1" BorderThickness="1" BorderBrush="Black">
-            <TabItem Header="PC's activas">
+            <TabItem Header="PC's activas" GotFocus="TabItem_GotFocus">
                 <Grid Background="#FFE5E5E5">
                     <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
                     <TextBox x:Name="tb_BucarPCs" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
@@ -21,7 +21,7 @@
                     <DataGrid x:Name="dg_PCsActivas" Margin="0,60,0,0"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Registros">
+            <TabItem Header="Registros" GotFocus="TabItem_GotFocus">
                 <Grid Background="#FFE5E5E5">
                     <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
                     <TextBox x:Name="tb_BuscarRegistros" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
@@ -40,7 +40,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Usuarios">
+            <TabItem Header="Usuarios" GotFocus="TabItem_GotFocus">
                 <Grid Background="#FFE5E5E5">
                     <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
                     <TextBox x:Name="tb_BuscarUsuarios" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
@@ -66,7 +66,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Computadoras">
+            <TabItem Header="Computadoras" GotFocus="TabItem_GotFocus">
                 <Grid Background="#FFE5E5E5">
                     <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
                     <TextBox x:Name="tb_BuscarComp" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
@@ -76,7 +76,7 @@
                     <DataGrid x:Name="dg_Computadoras" Margin="0,60,0,0" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserDeleteRows="False" SelectionMode="Single" ColumnWidth="*"
                               BeginningEdit="dg_BeginningEdit" CellEditEnding="dg_Computadoras_CellEditEnding" KeyUp="dg_Computadoras_KeyUp" RowEditEnding="dg_Computadoras_RowEditEnding">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Id" IsReadOnly="True" Binding="{Binding ComputadoraId, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Id" IsReadOnly="True" Binding="{Binding CompId, Mode=TwoWay}"/>
                             <DataGridTextColumn Header="Id Sala" Binding="{Binding SalaId, Mode=TwoWay}"/>
                             <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre, Mode=TwoWay}"/>
                             <DataGridTextColumn Header="Dirección Ip" Binding="{Binding Ip, Mode=TwoWay}"/>
@@ -86,7 +86,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Salas">
+            <TabItem Header="Salas" GotFocus="TabItem_GotFocus">
                 <Grid Background="#FFE5E5E5">
                     <Label Content="Buscar:" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="13,17,0,0"/>
                     <TextBox x:Name="tb_BuscarSalas" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
@@ -109,15 +109,16 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Configuraciones">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="Exportar a Excel/CSB">
+            <TabItem Header="Exportar a Excel/CSB" GotFocus="TabItem_GotFocus">
                 <Grid Background="#FFE5E5E5" >
                     <Button Content="Exportar a Excel" Width="140" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="200,20"/>
                     <Button Content="Exportar a CSV" Width="140" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="Configuraciones" GotFocus="TabItem_GotFocus">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+           
         </TabControl>
     </Grid>
 </Window>

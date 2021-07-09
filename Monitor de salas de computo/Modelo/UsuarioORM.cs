@@ -18,12 +18,12 @@ namespace Monitor_de_salas_de_computo.Modelo
             using (var bd = bdConexion())
             {
                 string sentenciaSQL = "UPDATE public.usuarios SET " +
-                    "usuario_nombre = @Nombre, usuario_ape_paterno = @ApePaterno" +
+                    " usuario_nombre = @Nombre, usuario_ape_paterno = @ApePaterno" +
                     ",usuario_ape_materno = @ApeMaterno, usuario_nickname = @Nickname" +
-                    ", usuario_contrasena = @Contrasena, usuario_email = @Email" +
+                    ",usuario_contrasena = @Contrasena, usuario_email = @Email" +
                     ",usuario_tipo = @Tipo, usuario_numero_cuenta = @NumCuenta" +
                     ",usuario_carrera = @Carrera, usuario_fecha_inicio = @FechaInicio" +
-                    ",usuario_fecha_nacimiento = @FechaNacimiento)" +
+                    ",usuario_fecha_nacimiento = @FechaNacimiento " +
                     "WHERE usuario_id = @UsuarioId";
 
                 

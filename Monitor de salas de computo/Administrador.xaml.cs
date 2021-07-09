@@ -191,7 +191,7 @@ namespace Monitor_de_salas_de_computo
 
             if (!e.Row.IsNewItem)
             {
-                celdaAuxiliar = new CeldaControl(controlador.Usuarios.ElementAt(numFila), "edi", numFila);
+                celdaAuxiliar = new CeldaControl(controlador.Usuarios.ElementAt<Modelo.Usuario>(numFila), "edi", numFila);
 
                 // TO DO: optimizar con una instruccion de predicados
                 bool edicionDuplicada = false;
@@ -245,6 +245,7 @@ namespace Monitor_de_salas_de_computo
                 //Registro nuevoReg = new Registro(-1, e.Row.Item);
                 celdaAuxiliar = new CeldaControl((Modelo.Usuario)e.Row.Item, "cre", numFila);
                 e.Row.Background = Brushes.Green;
+                bt_AplicarCambiosUsu.IsEnabled = true;
             }
         }
 
@@ -270,7 +271,7 @@ namespace Monitor_de_salas_de_computo
             }
             ActualizarDatos();
             celdas.Clear();
-            bt_aplicarCambiosReg.IsEnabled = false;
+            bt_AplicarCambiosUsu.IsEnabled = false;
         }
         /*----------------------------- Fin de seccion de: Usuarios -----------------------------*/
 
@@ -290,8 +291,7 @@ namespace Monitor_de_salas_de_computo
                 bool edicionDuplicada = false;
                 foreach (CeldaControl celda in celdas)
                 {
-                    if (celda.IdElemento.Equals(celdaAuxiliar.IdElemento)
-                        && celda.Operacion.Equals(celdaAuxiliar.Operacion))
+                    if (celda.IdElemento.Equals(celdaAuxiliar.IdElemento) && celda.Operacion.Equals(celdaAuxiliar.Operacion))
                         edicionDuplicada = true;
                 }
 
@@ -333,15 +333,14 @@ namespace Monitor_de_salas_de_computo
         {
             int numFila = e.Row.GetIndex();
             CeldaControl celdaAuxiliar;
-            MessageBox.Show("El item  es:" + e.Row.Item + "");
             editando = false;
 
             if (e.Row.IsNewItem)
             {
                 //Registro nuevoReg = new Registro(-1, e.Row.Item);
                 celdaAuxiliar = new CeldaControl((Computadora)e.Row.Item, "cre", numFila);
-                MessageBox.Show("El item  es:" + e.Row.Item.ToString() + "\n" + ((Computadora)e.Row.Item).CompId);
                 e.Row.Background = Brushes.Green;
+                bt_AplicarCambiosComp.IsEnabled = true;
             }
         }
         private void bt_AplicarCambiosComp_Click(object sender, RoutedEventArgs e)
@@ -366,7 +365,7 @@ namespace Monitor_de_salas_de_computo
             }
             ActualizarDatos();
             celdas.Clear();
-            bt_aplicarCambiosReg.IsEnabled = false;
+            bt_AplicarCambiosComp.IsEnabled = false;
         }
         /*----------------------------- Fin de seccion de: Computadoras -----------------------------*/
 
@@ -394,7 +393,7 @@ namespace Monitor_de_salas_de_computo
                 {
                     celdas.Add(celdaAuxiliar);
                     //((DataGrid)sender).SelectedCells. Background = Brushes.Yellow;
-                    bt_aplicarCambiosReg.IsEnabled = true;
+                    bt_AplicarCambiosSal.IsEnabled = true;
 
                 }
             }
@@ -434,6 +433,7 @@ namespace Monitor_de_salas_de_computo
                 //Registro nuevoReg = new Registro(-1, e.Row.Item);
                 celdaAuxiliar = new CeldaControl((Sala)e.Row.Item, "cre", numFila);
                 e.Row.Background = Brushes.Green;
+                bt_AplicarCambiosSal.IsEnabled = true;
             }
         }
 
@@ -459,11 +459,9 @@ namespace Monitor_de_salas_de_computo
             }
             ActualizarDatos();
             celdas.Clear();
-            bt_aplicarCambiosReg.IsEnabled = false;
+            bt_AplicarCambiosSal.IsEnabled = false;
 
         }
-
-
         /*----------------------------- Fin de seccion de: Salas -----------------------------*/
 
         /*----------------------------- Seccion de: Exportar/Importar -----------------------------*/
@@ -475,5 +473,14 @@ namespace Monitor_de_salas_de_computo
         /*----------------------------- Fin de seccion de: Configuraciones -----------------------------*/
 
 
+        private void TabItem_GotFocus(object sender, RoutedEventArgs e)
+        {
+            //ActualizarDatos();
+           /* celdas.Clear();
+            bt_aplicarCambiosReg.IsEnabled = false;
+            bt_AplicarCambiosUsu.IsEnabled = false;
+            bt_AplicarCambiosComp.IsEnabled = false;
+            bt_AplicarCambiosSal.IsEnabled = false;*/
+        }
     }
 }
