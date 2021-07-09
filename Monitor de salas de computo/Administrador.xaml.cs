@@ -49,21 +49,24 @@ namespace Monitor_de_salas_de_computo
         public void PrepararVentana(Modelo.Usuario usuario, Computadora computadora, Window own)
         {
             controlador.PrepararVentana(usuario, computadora, this);
-          
-            dg_Registros.DataContext = controlador.Registros;           
-            dg_Usuarios.DataContext = controlador.Usuarios;      
+
+            dg_Registros.DataContext = controlador.Registros;
+            dg_Usuarios.DataContext = controlador.Usuarios;
             dg_Computadoras.DataContext = controlador.Computadoras;
             dg_Salas.DataContext = controlador.Salas;
-            
+
         }
 
         private void ActualizarDatos()
         {
             controlador.ActualizarRegistros();
-            dg_Registros.DataContext = controlador.Registros;           
-            dg_Usuarios.DataContext = controlador.Usuarios;      
+            dg_Registros.DataContext = controlador.Registros;
+            dg_Usuarios.DataContext = controlador.Usuarios;
             dg_Computadoras.DataContext = controlador.Computadoras;
             dg_Salas.DataContext = controlador.Salas;
+
+            celdas.Clear();
+            bt_aplicarCambiosReg.IsEnabled = false;
         }
 
         /* bool BuscarUsuario(Object obj)
@@ -107,20 +110,20 @@ namespace Monitor_de_salas_de_computo
 
         private void Window_SourceInitialized(object sender, EventArgs e)
         {
-           /* DataTable data = new DataTable();
-            using (var dbUsu = new ConexionBD(this))
-            {
-                var usuarios = dbUsu.Usuarios.ToList();
-                data.Load(usuarios);
-            }
-            dg_Usuarios.SelectedItem = data.DefaultView;
-                //data = Usuario.*/
+            /* DataTable data = new DataTable();
+             using (var dbUsu = new ConexionBD(this))
+             {
+                 var usuarios = dbUsu.Usuarios.ToList();
+                 data.Load(usuarios);
+             }
+             dg_Usuarios.SelectedItem = data.DefaultView;
+                 //data = Usuario.*/
         }
 
         private void bt_CrearComp_Click(object sender, RoutedEventArgs e)
         {
 
-          // ConexionBD dbUsu = new ConexionBD();
+            // ConexionBD dbUsu = new ConexionBD();
             //MessageBox.Show("Prueba: " + dbUsu.Usuarios.ToList().FirstOrDefault().usuario_nombre);
 
         }
@@ -128,14 +131,14 @@ namespace Monitor_de_salas_de_computo
         private void bt_CrearUsuario_Click(object sender, RoutedEventArgs e)
         {
             UsuarioORM nuevoUsuario = new UsuarioORM();
-            nuevoUsuario.Insertar(new Modelo.Usuario(2,"Maria","Mendez", "Martinez", "MarAdmin", "MarAdmin", "1478522","email@gmail.com"
-                ,"0","ICO", new DateTime(2016,03,04), new DateTime(2000,10,14)));
+            nuevoUsuario.Insertar(new Modelo.Usuario(2, "Maria", "Mendez", "Martinez", "MarAdmin", "MarAdmin", "1478522", "email@gmail.com"
+                , "0", "ICO", new DateTime(2016, 03, 04), new DateTime(2000, 10, 14)));
             controlador.ActualizarRegistros();
         }
 
         private void tb_BuscarUsuarios_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+
 
             //dg_Usuarios.ItemsSource = dg_Usuarios.Items.Filter(new Predicate<ItemsControl> (usu => usutb_BuscarUsuarios.Text));
             //dg_Usuarios.fil
@@ -161,30 +164,39 @@ namespace Monitor_de_salas_de_computo
 
         private void dg_Registros_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            int NumFila = e.Row.GetIndex();
+            int numFila = e.Row.GetIndex();
+            CeldaControl celdaAuxiliar;
+
+            if (!e.Row.IsNewItem)
+            {
+                celdaAuxiliar = new CeldaControl(controlador.Registros.ElementAt<Registro>(numFila), "edi", numFila);
+
+                // TO DO: optimizar con una instruccion de predicados
+                bool edicionDuplicada = false;
+                foreach (CeldaControl celda in celdas)
+                {
+                    if (celda.IdElemento.Equals(celdaAuxiliar.IdElemento)
+                        && celda.Operacion.Equals(celdaAuxiliar.Operacion))
+                        edicionDuplicada = true;
+                }
+
+                if (!edicionDuplicada)
+                {
+                    celdas.Add(celdaAuxiliar);
+                    //e.Row.Background = Brushes.Yellow;
+                    bt_aplicarCambiosReg.IsEnabled = true;
+
+                }
+            }
             // Codigo para obtener el valor de la celda editada a travez del enumerador Registro
             //string valorInicialCelda = controlador.Registros.ElementAt(NumFila).getPropiedadNum(e.Column.DisplayIndex).ToString();
 
             /*MessageBox.Show($"{e.Row.GetIndex()} es el id de objeto actualizado\n" +
                 $" y la celda es : {controlador.Registros.ToArray()[e.Row.GetIndex()]}" +
                 $" columna: { e.Column.DisplayIndex} and = {valorCelda}");*/
-            CeldaControl celdaAuxiliar = new CeldaControl("", "edi", NumFila);
-            // TO DO: optimizar con una instruccion de predicados
-            bool edicionDuplicada = false;
-            foreach(CeldaControl celda in celdas)
-            {
-                if (celda.IdElemento.Equals(celdaAuxiliar.IdElemento)
-                    && celda.Operacion.Equals(celdaAuxiliar.Operacion))
-                    edicionDuplicada = true;
-            }
-
-            if (!edicionDuplicada)
-            {
-                celdas.Add(celdaAuxiliar);
-                //e.Row.Background = Brushes.Yellow;
-                bt_aplicarCambiosReg.IsEnabled = true;
-
-            }
+            //celdaAuxiliar = new CeldaControl(controlador.Registros.ElementAt<Registro>(numFila), "edi", numFila);
+            
+            
 
 
 
@@ -206,11 +218,11 @@ namespace Monitor_de_salas_de_computo
 
         private void dg_Registros_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Subtract || e.Key == Key.Delete)
+            if ((e.Key == Key.Subtract || e.Key == Key.Delete) && ((DataGrid)sender).SelectedCells.Count > 0)
             {
-                
+                MessageBox.Show("" + sender.GetType() + "\n" + sender.ToString());
                 int numFila = dg_Registros.SelectedIndex;
-                CeldaControl celdaAuxiliar = new CeldaControl("", "eli", numFila);
+                CeldaControl celdaAuxiliar = new CeldaControl(controlador.Registros.ElementAt<Registro>(numFila), "eli", numFila);
                 // TO DO: optimizar con una instruccion de predicados
                 bool edicionDuplicada = false;
                 foreach (CeldaControl celda in celdas)
@@ -225,6 +237,7 @@ namespace Monitor_de_salas_de_computo
                     celdas.Add(celdaAuxiliar);
                     //  = Brushes.Red;
                     bt_aplicarCambiosReg.IsEnabled = true;
+
                 }
             }
         }
@@ -244,12 +257,12 @@ namespace Monitor_de_salas_de_computo
                     case "eli":
                         operaciones.Eliminar(controlador.Registros.ElementAt<Registro>(celda.IdElemento));
                         ActualizarDatos();
+                        
                         break;
 
                     case "cre":
-                        /*operaciones.Insertar(new Registro(1, 1, 1, new DateTime(), "Mendez", "Martinez", "MarAdmin", "MarAdmin", "1478522", "email@gmail.com"
-                            , "0", "ICO", new DateTime(2016, 03, 04), new DateTime(2000, 10, 14)));
-                        controlador.ActualizarRegistros();*/
+                        operaciones.Insertar((Registro)celda.DatoOriginal);
+                        ActualizarDatos();
                         break;
                 }
             }
@@ -260,8 +273,8 @@ namespace Monitor_de_salas_de_computo
 
         private void dg_Registros_AddingNewItem(object sender, AddingNewItemEventArgs e)
         {
-            int numFila = -1;
-            CeldaControl celdaAuxiliar = new CeldaControl("", "cre", numFila);
+            /*int numFila = dg_Registros.SelectedIndex;
+            CeldaControl celdaAuxiliar = new CeldaControl(, "cre", numFila);
             // TO DO: optimizar con una instruccion de predicados
             bool edicionDuplicada = false;
             foreach (CeldaControl celda in celdas)
@@ -276,6 +289,23 @@ namespace Monitor_de_salas_de_computo
                 celdas.Add(celdaAuxiliar);
                 //  = Brushes.Red;
                 bt_aplicarCambiosReg.IsEnabled = true;
+            }*/
+
+            /* MessageBox.Show($"la fila es: { dg_Registros.SelectedIndex} \n el valor del " +
+                 $"registro es: {controlador.Registros.ElementAt(dg_Registros.SelectedIndex)}");*/
+        }
+
+        private void dg_Registros_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        {
+            int numFila = e.Row.GetIndex();
+            CeldaControl celdaAuxiliar;
+            MessageBox.Show("El item  es:" + e.Row.Item + "");
+
+            if (e.Row.IsNewItem)
+            {
+                //Registro nuevoReg = new Registro(-1, e.Row.Item);
+                 celdaAuxiliar = new CeldaControl((Registro)e.Row.Item, "cre", numFila);
+                MessageBox.Show("El item  es:" + e.Row.Item.ToString() + "\n" + ((Registro)e.Row.Item).RegistroId);
             }
         }
     }

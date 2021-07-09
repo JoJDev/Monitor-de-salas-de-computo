@@ -27,14 +27,14 @@
                     <TextBox x:Name="tb_BuscarRegistros" Width="200" Height="20" VerticalAlignment="Top" Margin="60,20,0,0" HorizontalAlignment="Left"/>
                     <Button Content="Buscar" Width="60" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="280, 20" CommandParameter="Reg" />
                     <Button x:Name="bt_aplicarCambiosReg" Content="Aplicar Cambios" IsEnabled="False"  VerticalAlignment="Top" HorizontalAlignment="Right" Width="100" Height="25" Margin="20" Click="bt_aplicarCambiosReg_Click"/>
-                    <DataGrid x:Name="dg_Registros" Margin="0,60,0,0" SelectionMode="Single" ItemsSource="{Binding}" CanUserDeleteRows="False" AutoGenerateColumns="False" CellEditEnding="dg_Registros_CellEditEnding" KeyUp="dg_Registros_KeyUp" AddingNewItem="dg_Registros_AddingNewItem" >
+                    <DataGrid x:Name="dg_Registros" Margin="0,60,0,0" SelectionMode="Single" ItemsSource="{Binding}" CanUserDeleteRows="False" AutoGenerateColumns="False" CellEditEnding="dg_Registros_CellEditEnding" KeyUp="dg_Registros_KeyUp" AddingNewItem="dg_Registros_AddingNewItem" RowEditEnding="dg_Registros_RowEditEnding" >
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="RegId" IsReadOnly="True" Header="Id" Binding="{Binding RegistroId, Mode=TwoWay}" />
                             <DataGridTextColumn Header="Usuario Id" Binding="{Binding UsuarioId, Mode=TwoWay}"/>
                             <DataGridTextColumn Header="Compu Id" Binding="{Binding CompId, Mode=TwoWay}"/>
                             <DataGridTextColumn Header="Fecha de inicio" Binding="{Binding FechaInicio, Mode=TwoWay}"/>
                             <DataGridTextColumn Header="Duracion de sesion" Binding="{Binding DuracionTiempo, Mode=TwoWay}"/>
-                            <DataGridTextColumn Header="Tipo de desconexion" Binding="{Binding TipoDesconexion, Mode=TwoWay}"/>
+                            <DataGridTextColumn Header="Tipo de desconexion" Binding="{Binding TipoDesconexion, Mode=TwoWay}" />
                             <!--
                             <DataGridTemplateColumn Header="Edit">
                                 DataGridTemplateColumn.CellTemplate >
