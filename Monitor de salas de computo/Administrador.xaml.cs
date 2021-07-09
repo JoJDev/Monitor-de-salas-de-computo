@@ -75,9 +75,11 @@ namespace Monitor_de_salas_de_computo
             this.Close();
         }
 
+
         /*----------------------------- Seccion de: PC´s activas -----------------------------*/
 
         /*----------------------------- Fin de seccion de: PC´s activas -----------------------------*/
+
 
         /*----------------------------- Seccion de: Registros -----------------------------*/
         private void dg_Registros_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -113,15 +115,14 @@ namespace Monitor_de_salas_de_computo
         {
             if ((e.Key == Key.Subtract || e.Key == Key.Delete) && !editando)
             {
-                MessageBox.Show("" + sender.GetType() + "\n" + sender.ToString());
+
                 int numFila = dg_Registros.SelectedIndex;
                 CeldaControl celdaAuxiliar = new CeldaControl(controlador.Registros.ElementAt<Registro>(numFila), "eli", numFila);
                 // TO DO: optimizar con una instruccion de predicados
                 bool edicionDuplicada = false;
                 foreach (CeldaControl celda in celdas)
                 {
-                    if (celda.IdElemento.Equals(celdaAuxiliar.IdElemento)
-                        && celda.Operacion.Equals(celdaAuxiliar.Operacion))
+                    if (celda.IdElemento.Equals(celdaAuxiliar.IdElemento) && celda.Operacion.Equals(celdaAuxiliar.Operacion))
                         edicionDuplicada = true;
                 }
 
@@ -164,18 +165,17 @@ namespace Monitor_de_salas_de_computo
         {
             int numFila = e.Row.GetIndex();
             CeldaControl celdaAuxiliar;
-            MessageBox.Show("El item  es:" + e.Row.Item + "");
             editando = false;
 
             if (e.Row.IsNewItem)
             {
                 //Registro nuevoReg = new Registro(-1, e.Row.Item);
                 celdaAuxiliar = new CeldaControl((Registro)e.Row.Item, "cre", numFila);
-                MessageBox.Show("El item  es:" + e.Row.Item.ToString() + "\n" + ((Registro)e.Row.Item).RegistroId);
                 e.Row.Background = Brushes.Green;
             }
         }
         /*----------------------------- Fin de seccion de: Registros -----------------------------*/
+
 
         /*----------------------------- Seccion de: Usuarios -----------------------------*/
         private void dg_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
@@ -197,8 +197,7 @@ namespace Monitor_de_salas_de_computo
                 bool edicionDuplicada = false;
                 foreach (CeldaControl celda in celdas)
                 {
-                    if (celda.IdElemento.Equals(celdaAuxiliar.IdElemento)
-                        && celda.Operacion.Equals(celdaAuxiliar.Operacion))
+                    if (celda.IdElemento.Equals(celdaAuxiliar.IdElemento) && celda.Operacion.Equals(celdaAuxiliar.Operacion))
                         edicionDuplicada = true;
                 }
 
@@ -206,26 +205,75 @@ namespace Monitor_de_salas_de_computo
                 {
                     celdas.Add(celdaAuxiliar);
                     //((DataGrid)sender).SelectedCells. Background = Brushes.Yellow;
-                    bt_aplicarCambiosReg.IsEnabled = true;
-
+                    bt_AplicarCambiosUsu.IsEnabled = true;
                 }
             }
         }
 
         private void dg_Usuarios_KeyUp(object sender, KeyEventArgs e)
         {
+            if ((e.Key == Key.Subtract || e.Key == Key.Delete) && !editando)
+            {
+                int numFila = dg_Usuarios.SelectedIndex;
+                CeldaControl celdaAuxiliar = new CeldaControl(controlador.Usuarios.ElementAt<Modelo.Usuario>(numFila), "eli", numFila);
+                // TO DO: optimizar con una instruccion de predicados
+                bool edicionDuplicada = false;
+                foreach (CeldaControl celda in celdas)
+                {
+                    if (celda.IdElemento.Equals(celdaAuxiliar.IdElemento) && celda.Operacion.Equals(celdaAuxiliar.Operacion))
+                        edicionDuplicada = true;
+                }
 
+                if (!edicionDuplicada)
+                {
+                    celdas.Add(celdaAuxiliar);
+                    //((DataGrid)sender).sel .Background = Brushes.Red;
+                    bt_AplicarCambiosUsu.IsEnabled = true;
+
+                }
+            }
         }
 
         private void dg_Usuarios_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
+            int numFila = e.Row.GetIndex();
+            CeldaControl celdaAuxiliar;
+            editando = false;
 
+            if (e.Row.IsNewItem)
+            {
+                //Registro nuevoReg = new Registro(-1, e.Row.Item);
+                celdaAuxiliar = new CeldaControl((Modelo.Usuario)e.Row.Item, "cre", numFila);
+                e.Row.Background = Brushes.Green;
+            }
         }
 
+        private void bt_AplicarCambiosUsu_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (CeldaControl celda in celdas)
+            {
+                UsuarioORM operaciones = new UsuarioORM();
+                switch (celda.Operacion)
+                {
+                    case "edi":
+                        operaciones.Actualizar(controlador.Usuarios.ElementAt<Modelo.Usuario>(celda.IdElemento));
+                        break;
 
+                    case "eli":
+                        operaciones.Eliminar(controlador.Usuarios.ElementAt<Modelo.Usuario>(celda.IdElemento));
+                        break;
 
-
+                    case "cre":
+                        operaciones.Insertar((Modelo.Usuario)celda.DatoOriginal);
+                        break;
+                }
+            }
+            ActualizarDatos();
+            celdas.Clear();
+            bt_aplicarCambiosReg.IsEnabled = false;
+        }
         /*----------------------------- Fin de seccion de: Usuarios -----------------------------*/
+
 
         /*----------------------------- Seccion de: Computadoras -----------------------------*/
         private void dg_Computadoras_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -251,7 +299,7 @@ namespace Monitor_de_salas_de_computo
                 {
                     celdas.Add(celdaAuxiliar);
                     //((DataGrid)sender).SelectedCells. Background = Brushes.Yellow;
-                    bt_aplicarCambiosReg.IsEnabled = true;
+                    bt_AplicarCambiosComp.IsEnabled = true;
 
                 }
             }
@@ -259,30 +307,163 @@ namespace Monitor_de_salas_de_computo
 
         private void dg_Computadoras_KeyUp(object sender, KeyEventArgs e)
         {
+            if ((e.Key == Key.Subtract || e.Key == Key.Delete) && !editando)
+            {
+                int numFila = dg_Computadoras.SelectedIndex;
+                CeldaControl celdaAuxiliar = new CeldaControl(controlador.Computadoras.ElementAt<Computadora>(numFila), "eli", numFila);
+                // TO DO: optimizar con una instruccion de predicados
+                bool edicionDuplicada = false;
+                foreach (CeldaControl celda in celdas)
+                {
+                    if (celda.IdElemento.Equals(celdaAuxiliar.IdElemento) && celda.Operacion.Equals(celdaAuxiliar.Operacion))
+                        edicionDuplicada = true;
+                }
 
+                if (!edicionDuplicada)
+                {
+                    celdas.Add(celdaAuxiliar);
+                    //((DataGrid)sender).sel .Background = Brushes.Red;
+                    bt_AplicarCambiosComp.IsEnabled = true;
+
+                }
+            }
         }
 
         private void dg_Computadoras_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
+            int numFila = e.Row.GetIndex();
+            CeldaControl celdaAuxiliar;
+            MessageBox.Show("El item  es:" + e.Row.Item + "");
+            editando = false;
 
+            if (e.Row.IsNewItem)
+            {
+                //Registro nuevoReg = new Registro(-1, e.Row.Item);
+                celdaAuxiliar = new CeldaControl((Computadora)e.Row.Item, "cre", numFila);
+                MessageBox.Show("El item  es:" + e.Row.Item.ToString() + "\n" + ((Computadora)e.Row.Item).CompId);
+                e.Row.Background = Brushes.Green;
+            }
+        }
+        private void bt_AplicarCambiosComp_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (CeldaControl celda in celdas)
+            {
+                ComputadoraORM operaciones = new ComputadoraORM();
+                switch (celda.Operacion)
+                {
+                    case "edi":
+                        operaciones.Actualizar(controlador.Computadoras.ElementAt<Computadora>(celda.IdElemento));
+                        break;
+
+                    case "eli":
+                        operaciones.Eliminar(controlador.Computadoras.ElementAt<Computadora>(celda.IdElemento));
+                        break;
+
+                    case "cre":
+                        operaciones.Insertar((Computadora)celda.DatoOriginal);
+                        break;
+                }
+            }
+            ActualizarDatos();
+            celdas.Clear();
+            bt_aplicarCambiosReg.IsEnabled = false;
         }
         /*----------------------------- Fin de seccion de: Computadoras -----------------------------*/
 
         /*----------------------------- Seccion de: Salas -----------------------------*/
         private void dg_Salas_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
+            int numFila = e.Row.GetIndex();
+            CeldaControl celdaAuxiliar;
+            editando = false;
 
+            if (!e.Row.IsNewItem)
+            {
+                celdaAuxiliar = new CeldaControl(controlador.Salas.ElementAt<Sala>(numFila), "edi", numFila);
+
+                // TO DO: optimizar con una instruccion de predicados
+                bool edicionDuplicada = false;
+                foreach (CeldaControl celda in celdas)
+                {
+                    if (celda.IdElemento.Equals(celdaAuxiliar.IdElemento)
+                        && celda.Operacion.Equals(celdaAuxiliar.Operacion))
+                        edicionDuplicada = true;
+                }
+
+                if (!edicionDuplicada)
+                {
+                    celdas.Add(celdaAuxiliar);
+                    //((DataGrid)sender).SelectedCells. Background = Brushes.Yellow;
+                    bt_aplicarCambiosReg.IsEnabled = true;
+
+                }
+            }
         }
 
         private void dg_Salas_KeyUp(object sender, KeyEventArgs e)
         {
+            if ((e.Key == Key.Subtract || e.Key == Key.Delete) && !editando)
+            {
+                int numFila = dg_Salas.SelectedIndex;
+                CeldaControl celdaAuxiliar = new CeldaControl(controlador.Salas.ElementAt<Sala>(numFila), "eli", numFila);
+                // TO DO: optimizar con una instruccion de predicados
+                bool edicionDuplicada = false;
+                foreach (CeldaControl celda in celdas)
+                {
+                    if (celda.IdElemento.Equals(celdaAuxiliar.IdElemento) && celda.Operacion.Equals(celdaAuxiliar.Operacion))
+                        edicionDuplicada = true;
+                }
 
+                if (!edicionDuplicada)
+                {
+                    celdas.Add(celdaAuxiliar);
+                    //((DataGrid)sender).sel .Background = Brushes.Red;
+                    bt_AplicarCambiosSal.IsEnabled = true;
+                }
+            }
         }
 
         private void dg_Salas_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
+            int numFila = e.Row.GetIndex();
+            CeldaControl celdaAuxiliar;
+            editando = false;
+
+            if (e.Row.IsNewItem)
+            {
+                //Registro nuevoReg = new Registro(-1, e.Row.Item);
+                celdaAuxiliar = new CeldaControl((Sala)e.Row.Item, "cre", numFila);
+                e.Row.Background = Brushes.Green;
+            }
+        }
+
+        private void bt_AplicarCambiosSal_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (CeldaControl celda in celdas)
+            {
+                SalaORM operaciones = new SalaORM();
+                switch (celda.Operacion)
+                {
+                    case "edi":
+                        operaciones.Actualizar(controlador.Salas.ElementAt<Sala>(celda.IdElemento));
+                        break;
+
+                    case "eli":
+                        operaciones.Eliminar(controlador.Salas.ElementAt<Sala>(celda.IdElemento));
+                        break;
+
+                    case "cre":
+                        operaciones.Insertar((Sala)celda.DatoOriginal);
+                        break;
+                }
+            }
+            ActualizarDatos();
+            celdas.Clear();
+            bt_aplicarCambiosReg.IsEnabled = false;
 
         }
+
+
         /*----------------------------- Fin de seccion de: Salas -----------------------------*/
 
         /*----------------------------- Seccion de: Exportar/Importar -----------------------------*/
