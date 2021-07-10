@@ -90,7 +90,7 @@ namespace Monitor_de_salas_de_computo
 
             if (!e.Row.IsNewItem)
             {
-                celdaAuxiliar = new CeldaControl(controlador.Registros.ElementAt<Registro>(numFila), "edi", numFila);
+                celdaAuxiliar = new CeldaControl(controlador.Registros.ElementAt<Registro>(numFila), "edi-r", numFila);
 
                 // TO DO: optimizar con una instruccion de predicados
                 bool edicionDuplicada = false;
@@ -117,7 +117,7 @@ namespace Monitor_de_salas_de_computo
             {
 
                 int numFila = dg_Registros.SelectedIndex;
-                CeldaControl celdaAuxiliar = new CeldaControl(controlador.Registros.ElementAt<Registro>(numFila), "eli", numFila);
+                CeldaControl celdaAuxiliar = new CeldaControl(controlador.Registros.ElementAt<Registro>(numFila), "eli-r", numFila);
                 // TO DO: optimizar con una instruccion de predicados
                 bool edicionDuplicada = false;
                 foreach (CeldaControl celda in celdas)
@@ -143,16 +143,19 @@ namespace Monitor_de_salas_de_computo
                 RegistroORM operaciones = new RegistroORM();
                 switch (celda.Operacion)
                 {
-                    case "edi":
+                    case "edi-r":
                         operaciones.Actualizar(controlador.Registros.ElementAt<Registro>(celda.IdElemento));
                         break;
 
-                    case "eli":
+                    case "eli-r":
                         operaciones.Eliminar(controlador.Registros.ElementAt<Registro>(celda.IdElemento));
                         break;
 
-                    case "cre":
+                    case "cre-r":
                         operaciones.Insertar((Registro)celda.DatoOriginal);
+                        break;
+
+                    default:
                         break;
                 }
             }
@@ -170,7 +173,7 @@ namespace Monitor_de_salas_de_computo
             if (e.Row.IsNewItem)
             {
                 //Registro nuevoReg = new Registro(-1, e.Row.Item);
-                celdaAuxiliar = new CeldaControl((Registro)e.Row.Item, "cre", numFila);
+                celdaAuxiliar = new CeldaControl((Registro)e.Row.Item, "cre-r", numFila);
                 e.Row.Background = Brushes.Green;
             }
         }
@@ -191,7 +194,7 @@ namespace Monitor_de_salas_de_computo
 
             if (!e.Row.IsNewItem)
             {
-                celdaAuxiliar = new CeldaControl(controlador.Usuarios.ElementAt<Modelo.Usuario>(numFila), "edi", numFila);
+                celdaAuxiliar = new CeldaControl(controlador.Usuarios.ElementAt<Modelo.Usuario>(numFila), "edi-u", numFila);
 
                 // TO DO: optimizar con una instruccion de predicados
                 bool edicionDuplicada = false;
@@ -215,7 +218,7 @@ namespace Monitor_de_salas_de_computo
             if ((e.Key == Key.Subtract || e.Key == Key.Delete) && !editando)
             {
                 int numFila = dg_Usuarios.SelectedIndex;
-                CeldaControl celdaAuxiliar = new CeldaControl(controlador.Usuarios.ElementAt<Modelo.Usuario>(numFila), "eli", numFila);
+                CeldaControl celdaAuxiliar = new CeldaControl(controlador.Usuarios.ElementAt<Modelo.Usuario>(numFila), "eli-u", numFila);
                 // TO DO: optimizar con una instruccion de predicados
                 bool edicionDuplicada = false;
                 foreach (CeldaControl celda in celdas)
@@ -243,7 +246,7 @@ namespace Monitor_de_salas_de_computo
             if (e.Row.IsNewItem)
             {
                 //Registro nuevoReg = new Registro(-1, e.Row.Item);
-                celdaAuxiliar = new CeldaControl((Modelo.Usuario)e.Row.Item, "cre", numFila);
+                celdaAuxiliar = new CeldaControl((Modelo.Usuario)e.Row.Item, "cre-u", numFila);
                 e.Row.Background = Brushes.Green;
                 bt_AplicarCambiosUsu.IsEnabled = true;
             }
@@ -256,16 +259,19 @@ namespace Monitor_de_salas_de_computo
                 UsuarioORM operaciones = new UsuarioORM();
                 switch (celda.Operacion)
                 {
-                    case "edi":
+                    case "edi-u":
                         operaciones.Actualizar(controlador.Usuarios.ElementAt<Modelo.Usuario>(celda.IdElemento));
                         break;
 
-                    case "eli":
+                    case "eli-u":
                         operaciones.Eliminar(controlador.Usuarios.ElementAt<Modelo.Usuario>(celda.IdElemento));
                         break;
 
-                    case "cre":
+                    case "cre-u":
                         operaciones.Insertar((Modelo.Usuario)celda.DatoOriginal);
+                        break;
+                    
+                    default:
                         break;
                 }
             }
@@ -285,7 +291,7 @@ namespace Monitor_de_salas_de_computo
 
             if (!e.Row.IsNewItem)
             {
-                celdaAuxiliar = new CeldaControl(controlador.Computadoras.ElementAt<Computadora>(numFila), "edi", numFila);
+                celdaAuxiliar = new CeldaControl(controlador.Computadoras.ElementAt<Computadora>(numFila), "edi-c", numFila);
 
                 // TO DO: optimizar con una instruccion de predicados
                 bool edicionDuplicada = false;
@@ -310,7 +316,7 @@ namespace Monitor_de_salas_de_computo
             if ((e.Key == Key.Subtract || e.Key == Key.Delete) && !editando)
             {
                 int numFila = dg_Computadoras.SelectedIndex;
-                CeldaControl celdaAuxiliar = new CeldaControl(controlador.Computadoras.ElementAt<Computadora>(numFila), "eli", numFila);
+                CeldaControl celdaAuxiliar = new CeldaControl(controlador.Computadoras.ElementAt<Computadora>(numFila), "eli-c", numFila);
                 // TO DO: optimizar con una instruccion de predicados
                 bool edicionDuplicada = false;
                 foreach (CeldaControl celda in celdas)
@@ -338,7 +344,7 @@ namespace Monitor_de_salas_de_computo
             if (e.Row.IsNewItem)
             {
                 //Registro nuevoReg = new Registro(-1, e.Row.Item);
-                celdaAuxiliar = new CeldaControl((Computadora)e.Row.Item, "cre", numFila);
+                celdaAuxiliar = new CeldaControl((Computadora)e.Row.Item, "cre-c", numFila);
                 e.Row.Background = Brushes.Green;
                 bt_AplicarCambiosComp.IsEnabled = true;
             }
@@ -350,16 +356,19 @@ namespace Monitor_de_salas_de_computo
                 ComputadoraORM operaciones = new ComputadoraORM();
                 switch (celda.Operacion)
                 {
-                    case "edi":
+                    case "edi-c":
                         operaciones.Actualizar(controlador.Computadoras.ElementAt<Computadora>(celda.IdElemento));
                         break;
 
-                    case "eli":
+                    case "eli-c":
                         operaciones.Eliminar(controlador.Computadoras.ElementAt<Computadora>(celda.IdElemento));
                         break;
 
-                    case "cre":
+                    case "cre-c":
                         operaciones.Insertar((Computadora)celda.DatoOriginal);
+                        break;
+
+                    default:
                         break;
                 }
             }
@@ -378,7 +387,7 @@ namespace Monitor_de_salas_de_computo
 
             if (!e.Row.IsNewItem)
             {
-                celdaAuxiliar = new CeldaControl(controlador.Salas.ElementAt<Sala>(numFila), "edi", numFila);
+                celdaAuxiliar = new CeldaControl(controlador.Salas.ElementAt<Sala>(numFila), "edi-s", numFila);
 
                 // TO DO: optimizar con una instruccion de predicados
                 bool edicionDuplicada = false;
@@ -404,7 +413,7 @@ namespace Monitor_de_salas_de_computo
             if ((e.Key == Key.Subtract || e.Key == Key.Delete) && !editando)
             {
                 int numFila = dg_Salas.SelectedIndex;
-                CeldaControl celdaAuxiliar = new CeldaControl(controlador.Salas.ElementAt<Sala>(numFila), "eli", numFila);
+                CeldaControl celdaAuxiliar = new CeldaControl(controlador.Salas.ElementAt<Sala>(numFila), "eli-s", numFila);
                 // TO DO: optimizar con una instruccion de predicados
                 bool edicionDuplicada = false;
                 foreach (CeldaControl celda in celdas)
@@ -431,7 +440,7 @@ namespace Monitor_de_salas_de_computo
             if (e.Row.IsNewItem)
             {
                 //Registro nuevoReg = new Registro(-1, e.Row.Item);
-                celdaAuxiliar = new CeldaControl((Sala)e.Row.Item, "cre", numFila);
+                celdaAuxiliar = new CeldaControl((Sala)e.Row.Item, "cre-s", numFila);
                 e.Row.Background = Brushes.Green;
                 bt_AplicarCambiosSal.IsEnabled = true;
             }
@@ -444,16 +453,19 @@ namespace Monitor_de_salas_de_computo
                 SalaORM operaciones = new SalaORM();
                 switch (celda.Operacion)
                 {
-                    case "edi":
+                    case "edi-s":
                         operaciones.Actualizar(controlador.Salas.ElementAt<Sala>(celda.IdElemento));
                         break;
 
-                    case "eli":
+                    case "eli-s":
                         operaciones.Eliminar(controlador.Salas.ElementAt<Sala>(celda.IdElemento));
                         break;
 
-                    case "cre":
+                    case "cre-s":
                         operaciones.Insertar((Sala)celda.DatoOriginal);
+                        break;
+
+                    default:
                         break;
                 }
             }
@@ -472,15 +484,5 @@ namespace Monitor_de_salas_de_computo
 
         /*----------------------------- Fin de seccion de: Configuraciones -----------------------------*/
 
-
-        private void TabItem_GotFocus(object sender, RoutedEventArgs e)
-        {
-            //ActualizarDatos();
-           /* celdas.Clear();
-            bt_aplicarCambiosReg.IsEnabled = false;
-            bt_AplicarCambiosUsu.IsEnabled = false;
-            bt_AplicarCambiosComp.IsEnabled = false;
-            bt_AplicarCambiosSal.IsEnabled = false;*/
-        }
     }
 }
