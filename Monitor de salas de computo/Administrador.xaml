@@ -48,7 +48,7 @@
                     <Button x:Name="bt_AplicarCambiosUsu" Content="Aplicar cambios" IsEnabled="False" Width="140" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,15" 
                             Click="bt_AplicarCambiosUsu_Click"/>
                     <DataGrid x:Name="dg_Usuarios" Margin="0,60,0,0" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserDeleteRows="False" SelectionMode="Single" ColumnWidth="*" 
-                              BeginningEdit="dg_BeginningEdit" CellEditEnding="dg_Usuarios_CellEditEnding" KeyUp="dg_Usuarios_KeyUp" RowEditEnding="dg_Usuarios_RowEditEnding"> 
+                              BeginningEdit="dg_BeginningEdit" CellEditEnding="dg_Usuarios_CellEditEnding" KeyUp="dg_Usuarios_KeyUp" RowEditEnding="dg_Usuarios_RowEditEnding">
                         <DataGrid.Columns >
                             <DataGridTextColumn Header="Id" IsReadOnly="True" Binding="{Binding UsuarioId, Mode=TwoWay}"/>
                             <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre, Mode=TwoWay}"/>
@@ -62,7 +62,7 @@
                             <DataGridTextColumn Header="Carrera" Binding="{Binding Carrera, Mode=TwoWay}"/>
                             <DataGridTextColumn Header="Fecha de inicio" Binding="{Binding FechaInicio, Mode=TwoWay}"/>
                             <DataGridTextColumn Header="Fecha de nacimiento" Binding="{Binding FechaNacimiento, Mode=TwoWay}"/>
-                        </DataGrid.Columns> 
+                        </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </TabItem>
@@ -111,14 +111,99 @@
             </TabItem>
             <TabItem Header="Exportar a Excel/CSB" GotFocus="TabItem_GotFocus">
                 <Grid Background="#FFE5E5E5" >
-                    <Button Content="Exportar a Excel" Width="140" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="200,20"/>
-                    <Button Content="Exportar a CSV" Width="140" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderBrush="DarkGray" BorderThickness="1" Grid.Column="0" Margin="10"/>
+                    <Border BorderBrush="DarkGray" BorderThickness="1" Grid.Column="1" Margin="10"/>
+                    <!-- Parte de la interfaz de importacion -->
+                    <TextBlock Grid.Row="0" Margin="25,20" TextWrapping="Wrap"><Bold>Instrucciones:</Bold> Importa archivos <Italic>Excel y CSV</Italic> especificando
+                    la ruta o rutas de los archivos de la tabla especificada, si todas las tablas estan en un mismo archivo <Italic>Excel</Italic>, solo agrega la 
+                        misma direccion (Las pestañans deben ser "Usuarios-Computadoras-Salas", en ese orden).</TextBlock>
+                    <StackPanel VerticalAlignment="Top" Margin="20,100">
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <StackPanel>
+                                <TextBlock HorizontalAlignment="Left" Margin="10">Tablas a importar:</TextBlock>
+                                <Label HorizontalAlignment="Stretch">
+                                    <WrapPanel >
+                                        <TextBlock Margin="10,0,0,0" Width="82">Usuarios:</TextBlock>
+                                        <TextBox x:Name="tbl_UrlStringUsu" Width="230" Margin="10,0"></TextBox>
+                                        <Button x:Name="bt_UrlImpUsu"  Content="Buscar" Width="50"></Button>
+                                    </WrapPanel>
+                                </Label>
+                                <Label HorizontalAlignment="Stretch">
+                                    <WrapPanel >
+                                        <TextBlock Margin="10,0,0,0" Width="82">Computadoras:</TextBlock>
+                                        <TextBox x:Name="tbl_UrlStringCom" Width="230" Margin="10,0"></TextBox>
+                                        <Button x:Name="bt_UrlImpCom"  Content="Buscar" Width="50"></Button>
+                                    </WrapPanel>
+                                </Label>
+                                <Label HorizontalAlignment="Stretch" Margin="0,0,0,8">
+                                    <WrapPanel >
+                                        <TextBlock Margin="10,0,0,0" Width="82" FlowDirection="LeftToRight" HorizontalAlignment="Stretch">Salas:</TextBlock>
+                                        <TextBox x:Name="tbl_UrlStringSala" Width="230" Margin="10,0"></TextBox>
+                                        <Button x:Name="bt_UrlImpSala"  Content="Buscar" Width="50"></Button>
+                                    </WrapPanel>
+                                </Label>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <TextBlock x:Name="tbl_ResultadoImport" Grid.Column="0" VerticalAlignment="Bottom" Margin="20,60" Height="60" Visibility="Hidden" TextWrapping="WrapWithOverflow">Resultado: -</TextBlock>
+
+                    <StackPanel Grid.Column="0" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="20" Orientation="Horizontal" >
+                        <Button Content="Importar"  Width="140" Height="30"  HorizontalAlignment="Right" Margin="20,0"/>
+                        
+                    </StackPanel>
+                    <!-- Fin de importacion -->
+                    <!-- Parte de la interfaz de exportacion -->
+                    <TextBlock Grid.Column="1" Margin="25,20" TextWrapping="Wrap"><Bold>Instrucciones:</Bold> Importa archivos <Italic>Excel y CSV</Italic> especificando
+                    la ruta o rutas de los archivos de la tabla especificada, si todas las tablas estan en un mismo archivo <Italic>Excel</Italic>, solo agrega la 
+                        misma direccasion (Las pestañans deben ser "Usuarios-Computadoras-Salas", en ese orden).</TextBlock>
+                    <StackPanel VerticalAlignment="Top" Margin="20,100" Grid.Column="1">
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <StackPanel>
+                                <TextBlock HorizontalAlignment="Left" Margin="10">Tablas a importar:</TextBlock>
+                                <Label HorizontalAlignment="Stretch">
+                                    <WrapPanel >
+                                        <TextBlock Margin="10,0,0,0" Width="82">Usuarios:</TextBlock>
+                                        <TextBox x:Name="tbl_" Width="230" Margin="10,0"></TextBox>
+                                        <Button x:Name="bts"  Content="Buscar" Width="50"></Button>
+                                    </WrapPanel>
+                                </Label>
+                                <Label HorizontalAlignment="Stretch">
+                                    <WrapPanel >
+                                        <TextBlock Margin="10,0,0,0" Width="82">Computadoras:</TextBlock>
+                                        <TextBox x:Name="tbl" Width="230" Margin="10,0"></TextBox>
+                                        <Button x:Name="btd"  Content="Buscar" Width="50"></Button>
+                                    </WrapPanel>
+                                </Label>
+                                <Label HorizontalAlignment="Stretch" Margin="0,0,0,8">
+                                    <WrapPanel >
+                                        <TextBlock Margin="10,0,0,0" Width="82" FlowDirection="LeftToRight" HorizontalAlignment="Stretch">Salas:</TextBlock>
+                                        <TextBox x:Name="tbla" Width="230" Margin="10,0"></TextBox>
+                                        <Button x:Name="bta"  Content="Buscar" Width="50"></Button>
+                                    </WrapPanel>
+                                </Label>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <TextBlock x:Name="tbl_ResultadoExport" Grid.Column="0" VerticalAlignment="Bottom" Margin="20,60" Height="60" Visibility="Hidden" TextWrapping="WrapWithOverflow">Resultado: -</TextBlock>
+
+
+                    <StackPanel Grid.Column="1" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="20" Orientation="Horizontal">
+                        <Button Content="Exportar a Excel" Width="140" Height="30"  HorizontalAlignment="Left" Margin="20,0"/>
+                        <Button Content="Exportar a CSV" Width="140" Height="30"  HorizontalAlignment="Right" Margin="20,0"/>
+                        <!-- fin de exportacion -->
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Configuraciones" GotFocus="TabItem_GotFocus">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-           
+
         </TabControl>
     </Grid>
 </Window>
