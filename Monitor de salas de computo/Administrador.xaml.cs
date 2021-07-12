@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using System.Data;
 using Monitor_de_salas_de_computo.Controladores;
 
+using System.IO;
+
 namespace Monitor_de_salas_de_computo
 {
     /// <summary>
@@ -473,6 +475,11 @@ namespace Monitor_de_salas_de_computo
             celdas.Clear();
             bt_AplicarCambiosSal.IsEnabled = false;
 
+        }
+
+        private void bt_UrlImpUsu_Click(object sender, RoutedEventArgs e)
+        {
+            openF
         }
         /*----------------------------- Fin de seccion de: Salas -----------------------------*/
 

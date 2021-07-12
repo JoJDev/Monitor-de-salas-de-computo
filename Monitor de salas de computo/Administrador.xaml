@@ -129,7 +129,7 @@
                                     <WrapPanel >
                                         <TextBlock Margin="10,0,0,0" Width="82">Usuarios:</TextBlock>
                                         <TextBox x:Name="tbl_UrlStringUsu" Width="230" Margin="10,0"></TextBox>
-                                        <Button x:Name="bt_UrlImpUsu"  Content="Buscar" Width="50"></Button>
+                                        <Button x:Name="bt_UrlImpUsu"  Content="Buscar" Width="50" Click="bt_UrlImpUsu_Click"></Button>
                                     </WrapPanel>
                                 </Label>
                                 <Label HorizontalAlignment="Stretch">
@@ -154,43 +154,49 @@
 
                     <StackPanel Grid.Column="0" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="20" Orientation="Horizontal" >
                         <Button Content="Importar"  Width="140" Height="30"  HorizontalAlignment="Right" Margin="20,0"/>
-                        
+
                     </StackPanel>
                     <!-- Fin de importacion -->
                     <!-- Parte de la interfaz de exportacion -->
-                    <TextBlock Grid.Column="1" Margin="25,20" TextWrapping="Wrap"><Bold>Instrucciones:</Bold> Importa archivos <Italic>Excel y CSV</Italic> especificando
-                    la ruta o rutas de los archivos de la tabla especificada, si todas las tablas estan en un mismo archivo <Italic>Excel</Italic>, solo agrega la 
-                        misma direccasion (Las pestañans deben ser "Usuarios-Computadoras-Salas", en ese orden).</TextBlock>
-                    <StackPanel VerticalAlignment="Top" Margin="20,100" Grid.Column="1">
+                    <TextBlock Grid.Column="1" Margin="25,20" TextWrapping="Wrap"><Bold>Instrucciones:</Bold> Exporta reprtes especificando que valores se desean 
+                        procesar y la ubicación a guardarlos en formato <Italic>Excel o CSV</Italic>.</TextBlock>
+                    <StackPanel VerticalAlignment="Top" Margin="20,60" Grid.Column="1">
                         <Border BorderBrush="Black" BorderThickness="1">
                             <StackPanel>
-                                <TextBlock HorizontalAlignment="Left" Margin="10">Tablas a importar:</TextBlock>
+                                <TextBlock HorizontalAlignment="Left" Margin="10">Parametros para la exportacion:</TextBlock>
                                 <Label HorizontalAlignment="Stretch">
                                     <WrapPanel >
-                                        <TextBlock Margin="10,0,0,0" Width="82">Usuarios:</TextBlock>
-                                        <TextBox x:Name="tbl_" Width="230" Margin="10,0"></TextBox>
-                                        <Button x:Name="bts"  Content="Buscar" Width="50"></Button>
+                                        <TextBlock Margin="10,0,0,0" Width="60">Guardar en:</TextBlock>
+                                        <TextBox x:Name="tbl_" Width="250" Margin="10,0"></TextBox>
+                                        <Button x:Name="bts"  Content="Examinar" Width="60"></Button>
                                     </WrapPanel>
                                 </Label>
-                                <Label HorizontalAlignment="Stretch">
-                                    <WrapPanel >
-                                        <TextBlock Margin="10,0,0,0" Width="82">Computadoras:</TextBlock>
-                                        <TextBox x:Name="tbl" Width="230" Margin="10,0"></TextBox>
-                                        <Button x:Name="btd"  Content="Buscar" Width="50"></Button>
-                                    </WrapPanel>
-                                </Label>
-                                <Label HorizontalAlignment="Stretch" Margin="0,0,0,8">
-                                    <WrapPanel >
-                                        <TextBlock Margin="10,0,0,0" Width="82" FlowDirection="LeftToRight" HorizontalAlignment="Stretch">Salas:</TextBlock>
-                                        <TextBox x:Name="tbla" Width="230" Margin="10,0"></TextBox>
-                                        <Button x:Name="bta"  Content="Buscar" Width="50"></Button>
-                                    </WrapPanel>
-                                </Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label HorizontalAlignment="Stretch">
+                                        <WrapPanel Orientation="Vertical">
+                                            <TextBlock>Tabla a exportar:</TextBlock>
+                                            <CheckBox Name="chk_expTablaReg" Content="Registros" Margin="5,7,5,4"></CheckBox>
+                                            <CheckBox Name="chk_expTablaUsu" Content="Usuarios" Margin="4"></CheckBox>
+                                            <CheckBox Name="chk_expTablaCom" Content="Computadores" Margin="4"></CheckBox>
+                                            <CheckBox Name="chk_expTablaSal" Content="Salas" Margin="4"></CheckBox>
+                                            <CheckBox Name="chk_expTablaConf" Content="Configuraciones" Margin="4"></CheckBox>
+                                        </WrapPanel>
+                                    </Label>
+                                    <Label>
+                                        <StackPanel >
+                                            <TextBlock>Estadisticas:</TextBlock>
+                                            <CheckBox Name="chk_expEstadHoras" Content="Horas de uso" Margin="4"></CheckBox>
+                                            <CheckBox Name="chk_expEstadCarreras" Content="Uso por Carreras" Margin="4"></CheckBox>
+                                            <CheckBox Name="chk_expEstadUsuario" Content="Uso por usuario" Margin="4"></CheckBox>
+                                            <CheckBox Name="chk_expEstad" Content="uso por usuario" Margin="4"></CheckBox>
+                                        </StackPanel>
+                                    </Label>
+                                </StackPanel>
                             </StackPanel>
                         </Border>
                     </StackPanel>
 
-                    <TextBlock x:Name="tbl_ResultadoExport" Grid.Column="0" VerticalAlignment="Bottom" Margin="20,60" Height="60" Visibility="Hidden" TextWrapping="WrapWithOverflow">Resultado: -</TextBlock>
+                    <TextBlock x:Name="tbl_ResultadoExport" Grid.Column="0" VerticalAlignment="Bottom" Margin="20,20" Height="60" Visibility="Hidden" TextWrapping="WrapWithOverflow">Resultado: -</TextBlock>
 
 
                     <StackPanel Grid.Column="1" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="20" Orientation="Horizontal">
