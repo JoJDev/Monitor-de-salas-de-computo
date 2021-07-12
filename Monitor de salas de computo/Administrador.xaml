@@ -109,7 +109,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Exportar a Excel/CSB" GotFocus="TabItem_GotFocus">
+            <TabItem Header="Exportar a Excel/CSB" >
                 <Grid Background="#FFE5E5E5" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -206,7 +206,7 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem Header="Configuraciones" GotFocus="TabItem_GotFocus">
+            <TabItem Header="Configuraciones">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
 

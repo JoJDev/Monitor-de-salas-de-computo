@@ -15,6 +15,7 @@ using System.Data;
 using Monitor_de_salas_de_computo.Controladores;
 
 using System.IO;
+using Microsoft.Win32;
 
 namespace Monitor_de_salas_de_computo
 {
@@ -176,7 +177,9 @@ namespace Monitor_de_salas_de_computo
             {
                 //Registro nuevoReg = new Registro(-1, e.Row.Item);
                 celdaAuxiliar = new CeldaControl((Registro)e.Row.Item, "cre-r", numFila);
+                celdas.Add(celdaAuxiliar);
                 e.Row.Background = Brushes.Green;
+                bt_aplicarCambiosReg.IsEnabled = true;
             }
         }
         /*----------------------------- Fin de seccion de: Registros -----------------------------*/
@@ -249,6 +252,7 @@ namespace Monitor_de_salas_de_computo
             {
                 //Registro nuevoReg = new Registro(-1, e.Row.Item);
                 celdaAuxiliar = new CeldaControl((Modelo.Usuario)e.Row.Item, "cre-u", numFila);
+                celdas.Add(celdaAuxiliar);
                 e.Row.Background = Brushes.Green;
                 bt_AplicarCambiosUsu.IsEnabled = true;
             }
@@ -272,7 +276,7 @@ namespace Monitor_de_salas_de_computo
                     case "cre-u":
                         operaciones.Insertar((Modelo.Usuario)celda.DatoOriginal);
                         break;
-                    
+
                     default:
                         break;
                 }
@@ -347,6 +351,7 @@ namespace Monitor_de_salas_de_computo
             {
                 //Registro nuevoReg = new Registro(-1, e.Row.Item);
                 celdaAuxiliar = new CeldaControl((Computadora)e.Row.Item, "cre-c", numFila);
+                celdas.Add(celdaAuxiliar);
                 e.Row.Background = Brushes.Green;
                 bt_AplicarCambiosComp.IsEnabled = true;
             }
@@ -443,6 +448,7 @@ namespace Monitor_de_salas_de_computo
             {
                 //Registro nuevoReg = new Registro(-1, e.Row.Item);
                 celdaAuxiliar = new CeldaControl((Sala)e.Row.Item, "cre-s", numFila);
+                celdas.Add(celdaAuxiliar);
                 e.Row.Background = Brushes.Green;
                 bt_AplicarCambiosSal.IsEnabled = true;
             }
@@ -479,7 +485,9 @@ namespace Monitor_de_salas_de_computo
 
         private void bt_UrlImpUsu_Click(object sender, RoutedEventArgs e)
         {
-            openF
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Archivos Excel y CSV (*.xlsx *.csv)|*.xlsx;*.csv|Archivos Excel (*.xlsx)|*.xlsx|Archivos CSV (*.csv)|*.csv";
+            tbl_UrlStringUsu.Text = (openFileDialog.ShowDialog() == true) ? openFileDialog.FileName : "";
         }
         /*----------------------------- Fin de seccion de: Salas -----------------------------*/
 
