@@ -136,14 +136,14 @@
                                     <WrapPanel >
                                         <TextBlock Margin="10,0,0,0" Width="82">Computadoras:</TextBlock>
                                         <TextBox x:Name="tbl_UrlStringCom" Width="230" Margin="10,0"></TextBox>
-                                        <Button x:Name="bt_UrlImpCom"  Content="Buscar" Width="50"></Button>
+                                        <Button x:Name="bt_UrlImpCom"  Content="Buscar" Width="50" Click="bt_UrlImpCom_Click"></Button>
                                     </WrapPanel>
                                 </Label>
                                 <Label HorizontalAlignment="Stretch" Margin="0,0,0,8">
                                     <WrapPanel >
                                         <TextBlock Margin="10,0,0,0" Width="82" FlowDirection="LeftToRight" HorizontalAlignment="Stretch">Salas:</TextBlock>
                                         <TextBox x:Name="tbl_UrlStringSala" Width="230" Margin="10,0"></TextBox>
-                                        <Button x:Name="bt_UrlImpSala"  Content="Buscar" Width="50"></Button>
+                                        <Button x:Name="bt_UrlImpSala"  Content="Buscar" Width="50" Click="bt_UrlImpSala_Click"></Button>
                                     </WrapPanel>
                                 </Label>
                             </StackPanel>
@@ -153,7 +153,7 @@
                     <TextBlock x:Name="tbl_ResultadoImport" Grid.Column="0" VerticalAlignment="Bottom" Margin="20,60" Height="60" Visibility="Hidden" TextWrapping="WrapWithOverflow">Resultado: -</TextBlock>
 
                     <StackPanel Grid.Column="0" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="20" Orientation="Horizontal" >
-                        <Button Content="Importar"  Width="140" Height="30"  HorizontalAlignment="Right" Margin="20,0"/>
+                        <Button Content="Importar"  Width="140" Height="30"  HorizontalAlignment="Right" Margin="20,0" Click="Button_Click"/>
 
                     </StackPanel>
                     <!-- Fin de importacion -->

@@ -483,16 +483,35 @@ namespace Monitor_de_salas_de_computo
 
         }
 
+
+        /*----------------------------- Fin de seccion de: Salas -----------------------------*/
+
+        /*----------------------------- Seccion de: Exportar/Importar -----------------------------*/
         private void bt_UrlImpUsu_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Archivos Excel y CSV (*.xlsx *.csv)|*.xlsx;*.csv|Archivos Excel (*.xlsx)|*.xlsx|Archivos CSV (*.csv)|*.csv";
             tbl_UrlStringUsu.Text = (openFileDialog.ShowDialog() == true) ? openFileDialog.FileName : "";
         }
-        /*----------------------------- Fin de seccion de: Salas -----------------------------*/
 
-        /*----------------------------- Seccion de: Exportar/Importar -----------------------------*/
+        private void bt_UrlImpCom_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Archivos Excel y CSV (*.xlsx *.csv)|*.xlsx;*.csv|Archivos Excel (*.xlsx)|*.xlsx|Archivos CSV (*.csv)|*.csv";
+            tbl_UrlStringCom.Text = (openFileDialog.ShowDialog() == true) ? openFileDialog.FileName : "";
+        }
 
+        private void bt_UrlImpSala_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Archivos Excel y CSV (*.xlsx *.csv)|*.xlsx;*.csv|Archivos Excel (*.xlsx)|*.xlsx|Archivos CSV (*.csv)|*.csv";
+            tbl_UrlStringSala.Text = (openFileDialog.ShowDialog() == true) ? openFileDialog.FileName : "";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         /*----------------------------- Fin de seccion de: Exportar/Importar -----------------------------*/
 
         /*----------------------------- Seccion de: Configuraciones -----------------------------*/
